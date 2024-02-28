@@ -1,3 +1,6 @@
 [submodule "libft"]
 	path = libft
 	url = git@github.com:UnRenardQuiDab/libft.git
+[submodule "vector"]
+	path = vector
+	url = git@github.com:UnRenardQuiDab/vector_c.git
