@@ -2,3 +2,7 @@
 *.a
 *.d
 minishell
+.vscode
+test
+out
+in
