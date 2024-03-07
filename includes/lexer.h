@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 16:44:47 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/07 19:11:39 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/07 22:25:56 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@
 # include "vector.h"
 
 # define SPECIAL_CHAR "<>|'\""
+# define SPECIAL_NO_QUOTE "<>|"
 
 typedef enum e_tokentype
 {
+	UNSET,
 	UNQUOTED,
 	DOUBLE_QUOTED = '"',
 	SINGLE_QUOTED = '\'',
@@ -36,6 +38,7 @@ typedef struct s_token
 	t_tokentype	type;
 	char		*txt;
 	size_t		txt_size;
+	bool		is_separated;
 }	t_token;
 
 int	lexer(t_vector *lex, char *cmd);

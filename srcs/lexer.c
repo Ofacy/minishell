@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 17:00:53 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/07 20:08:56 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/07 22:48:36 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,26 @@
 #include "libft.h"
 #include <stdio.h>
 
-size_t	lexer_txt(t_token *token, char *cmd, char quote)
+static size_t	lexer_txt_space(t_token *token, char *cmd)
 {
 	size_t	i;
 
 	i = 0;
-	if (quote == ' ')
-		token->type = UNQUOTED;
+	token->type = UNQUOTED;
+	while (cmd[i] && cmd[i] != ' ' && ft_strchr(SPECIAL_CHAR, cmd[i]) == NULL)
+		i++;
+	token->txt = cmd;
+	token->txt_size = i;
+	token->is_separated = (cmd[i] == ' '
+			|| ft_strchr(SPECIAL_NO_QUOTE, cmd[i]) != NULL);
+	return (i);
+}
+
+static size_t	lexer_txt(t_token *token, char *cmd, char quote)
+{
+	size_t	i;
+
+	i = 0;
 	token->type = quote;
 	while (cmd[i] && cmd[i] != quote)
 		i++;
@@ -29,12 +42,14 @@ size_t	lexer_txt(t_token *token, char *cmd, char quote)
 	{
 		token->txt = cmd;
 		token->txt_size = i;
+		token->is_separated = cmd[i + 1] == ' '
+			|| ft_strchr(SPECIAL_NO_QUOTE, cmd[i + 1]) != NULL;
 		return (i + 1);
 	}
 	return (i);
 }
 
-size_t	lexer_special(t_token *token, char *cmd)
+static size_t	lexer_special(t_token *token, char *cmd)
 {
 	if (*(cmd + 1) == *cmd && *cmd == '<')
 	{
@@ -53,7 +68,7 @@ size_t	lexer_special(t_token *token, char *cmd)
 	return (1);
 }
 
-size_t	lexer_char(t_token *token, char *cmd)
+static size_t	lexer_char(t_token *token, char *cmd)
 {
 	if (ft_strchr(SPECIAL_CHAR, cmd[0]) != NULL)
 	{
@@ -61,7 +76,7 @@ size_t	lexer_char(t_token *token, char *cmd)
 	}
 	else if (cmd[0] == ' ')
 		return (1);
-	return (lexer_txt(token, cmd, ' '));
+	return (lexer_txt_space(token, cmd));
 }
 
 int	lexer(t_vector *lex, char *cmd)
@@ -69,11 +84,15 @@ int	lexer(t_vector *lex, char *cmd)
 	t_token	current;
 
 	vector_init(lex, sizeof(t_token));
-	while(*cmd)
+	while (*cmd)
 	{
+		current.type = UNSET;
 		current.txt = NULL;
 		current.txt_size = 0;
+		current.is_separated = true;
 		cmd += lexer_char(&current, cmd);
+		if (current.type == UNSET)
+			continue ;
 		if (vector_add(lex, &current) != 0)
 		{
 			vector_free(lex);
