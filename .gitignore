@@ -3,6 +3,7 @@
 *.d
 minishell
 .vscode
+.cache
 test
 out
 in

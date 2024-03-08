@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 17:00:53 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/07 22:48:36 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/08 11:14:23 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int	lexer(t_vector *lex, char *cmd)
 		current.txt = NULL;
 		current.txt_size = 0;
 		current.is_separated = true;
+		current.is_txt_heap = false;
 		cmd += lexer_char(&current, cmd);
 		if (current.type == UNSET)
 			continue ;

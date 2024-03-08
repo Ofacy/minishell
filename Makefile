@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/14 13:24:31 by bwisniew          #+#    #+#              #
-#    Updated: 2024/03/07 19:13:14 by bwisniew         ###   ########.fr        #
+#    Updated: 2024/03/08 17:56:31 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 C_FLAGS = -g3 -Wall -Wextra -Werror -MMD -MP
 SRCS_DIR = srcs
-SRCS =	main.c env.c lexer.c 
+SRCS =	main.c lexer.c env.c expander.c expander_join.c syntax.c token_utils.c
 OUTDIR = obj
 OBJ = $(SRCS:%.c=$(OUTDIR)/%.o)
 DEP = $(OBJ:.o=.d)

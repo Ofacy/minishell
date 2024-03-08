@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 16:44:47 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/07 22:25:56 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/08 17:56:02 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef enum e_tokentype
 {
 	UNSET,
 	UNQUOTED,
+	NEWLINE = '\n',
 	DOUBLE_QUOTED = '"',
 	SINGLE_QUOTED = '\'',
 	PIPE = '|',
@@ -39,6 +40,7 @@ typedef struct s_token
 	char		*txt;
 	size_t		txt_size;
 	bool		is_separated;
+	bool		is_txt_heap;
 }	t_token;
 
 int	lexer(t_vector *lex, char *cmd);
