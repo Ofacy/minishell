@@ -1,5 +1,6 @@
 
 #include "minishell.h"
+#include <stdlib.h>
 
 bool	is_type_arrow(t_tokentype type)
 {
@@ -35,4 +36,12 @@ char	*get_token_str(t_tokentype type)
 	else if (type == NEWLINE)
 		return ("newline");
 	return ("UNKNOWN");
+}
+
+void	free_token(t_token *token)
+{
+	if(token->is_txt_heap)
+		free(token->txt);
+	token->type = UNSET;
+	token->txt = NULL;
 }

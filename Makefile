@@ -6,14 +6,14 @@
 #    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/14 13:24:31 by bwisniew          #+#    #+#              #
-#    Updated: 2024/03/08 17:56:31 by lcottet          ###   ########.fr        #
+#    Updated: 2024/03/09 18:18:16 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 C_FLAGS = -g3 -Wall -Wextra -Werror -MMD -MP
 SRCS_DIR = srcs
-SRCS =	main.c lexer.c env.c expander.c expander_join.c syntax.c token_utils.c
+SRCS =	main.c lexer.c env.c expander.c expander_join.c syntax.c token_utils.c prompt.c
 OUTDIR = obj
 OBJ = $(SRCS:%.c=$(OUTDIR)/%.o)
 DEP = $(OBJ:.o=.d)
@@ -27,7 +27,7 @@ all: $(NAME)
 -include $(DEP)
 
 $(NAME): $(LIBFT) $(VECOTR) $(OBJ)  
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(VECOTR)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(VECOTR) -lreadline
 
 $(OUTDIR)/%.o: $(SRCS_DIR)/%.c $(LIBFT) $(VECOTR) | $(OUTDIR)
 	$(CC) $(C_FLAGS) $(INCLUDE:%=-I %) -o $@ -c $<

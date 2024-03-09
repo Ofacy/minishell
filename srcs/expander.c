@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:26:27 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/08 17:56:00 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/09 18:32:07 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ int	get_expended_str(t_token *token, t_vector *env)
 	exp_str = malloc(sizeof(char) * (exp_len + 1));
 	if (!exp_str)
 		return (1);
-	i = 0;
 	exp_i = 0;
+	i = 0;
 	while (exp_i < exp_len)
 	{
 		if (token->txt[i] == '$')
@@ -91,6 +91,7 @@ int	get_expended_str(t_token *token, t_vector *env)
 	token->txt = exp_str;
 	token->txt_size = exp_i;
 	token->is_txt_heap = true;
+	token->type = UNQUOTED;
 	return (0);
 }
 
@@ -128,7 +129,7 @@ int	expander(t_vector *lex, t_vector *env)
 	{
 		if (((t_token *)lex->tab)[i].txt != NULL
 				&& (((t_token *)lex->tab)[i].type == UNQUOTED
-				|| ((t_token *)lex->tab)[i].type == SINGLE_QUOTED))
+				|| ((t_token *)lex->tab)[i].type == DOUBLE_QUOTED))
 			if (get_expended_str(((t_token *)lex->tab) + i, env) != 0)
 				return (1);
 		i++;

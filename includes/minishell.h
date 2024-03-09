@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:55:03 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/08 17:56:01 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/09 18:54:52 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 
 # define ENV_NAME_CHAR "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\
 	0123456789_?"
+
+# define PROMPT_DEFAULT "\e[1;32m$USER@$NAME\e[0m:\e[1;34m$PWD\e[0m$ "
 
 typedef struct s_env
 {
@@ -57,6 +59,8 @@ void	env_free(void *env);
 t_env	*env_get(t_vector *env, char *key);
 int		env_set(t_vector *env, char *key, char *value);
 int		create_env(t_vector *vector, char **env);
+
+char	*get_user_input(t_mshell *sh);
 
 int 	check_syntax(t_vector *tokens);
 bool	is_unclosed_quotes(t_token *token);

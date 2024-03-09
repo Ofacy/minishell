@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 16:21:31 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/08 17:56:27 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/09 18:30:04 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ t_tokentype	check_double_arrow(t_vector *tokens)
 	size_t	i;
 
 	i = 0;
+	if (tokens->len == 0)
+		return (0);
 	while (i < tokens->len - 1)
 	{
 		if (is_type_arrow(((t_token *)tokens->tab)[i].type))
