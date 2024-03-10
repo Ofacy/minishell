@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:12:55 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/09 18:36:21 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/10 20:47:40 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-
 
 t_token	prompt(t_mshell *sh)
 {

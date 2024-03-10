@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:15:13 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/08 17:56:16 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/10 20:47:40 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_env	*env_get(t_vector *env, char *key)
 
 	key_size = 0;
 	while (ft_strchr(ENV_NAME_CHAR, key[key_size]) != NULL
-			&& key[key_size])
+		&& key[key_size])
 		key_size++;
 	i = 0;
 	while (i < env->len)
@@ -88,7 +88,7 @@ t_env	*env_get(t_vector *env, char *key)
 		if (env_var->key_size != key_size)
 		{
 			i++;
-			continue;
+			continue ;
 		}
 		if (ft_strncmp(env_var->key, key, key_size) == 0)
 			return (env_var);

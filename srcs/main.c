@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:11:23 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/09 18:44:16 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/10 22:28:04 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,14 @@ int	main(int argc, char **argv, char **env)
 		input = get_user_input(&mshell);
 		if (!input)
 			break ;
+		mshell.input = input;
+		vector_init(&mshell.history_entry, sizeof(char));
+		if (vector_addstr(&mshell.history_entry, input) != 0)
+			return (1); // handle error
 		lexer(&mshell.tokens, input);
-		if (mshell.tokens.len != 0)
-			add_history(input);
 		check_syntax(&mshell.tokens);
 		expander(&mshell.tokens, &mshell.env);
+		exec(&mshell);
 		i = 0;
 		while (i < mshell.tokens.len)
 		{
@@ -47,10 +50,14 @@ int	main(int argc, char **argv, char **env)
 			printf("\n");
 			i++;
 		}
+		if (mshell.tokens.len != 0)
+			add_history((char *)mshell.history_entry.tab);
 		free(input);
 		vector_foreach(&mshell.tokens, (void (*)(void *))free_token);
 		vector_free(&mshell.tokens);
+		vector_free(&mshell.history_entry);
 	}
+	close_fd(&mshell.stdout);
 	rl_clear_history();
 	vector_foreach(&mshell.env, (void (*)(void *))env_free);
 	vector_free(&mshell.env);

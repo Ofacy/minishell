@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 16:21:31 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/09 18:30:04 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/10 20:47:39 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 #include "libft.h"
 #include <stdio.h>
 
-t_tokentype	check_double_arrow(t_vector *tokens)
+static t_tokentype	check_special(t_vector *tokens)
 {
 	size_t	i;
 
 	i = 0;
 	if (tokens->len == 0)
 		return (0);
+	if (((t_token *)tokens->tab)[i].type == PIPE)
+		return (PIPE);
 	while (i < tokens->len - 1)
 	{
 		if (is_type_arrow(((t_token *)tokens->tab)[i].type))
@@ -33,7 +35,7 @@ t_tokentype	check_double_arrow(t_vector *tokens)
 	return (0);
 }
 
-t_tokentype	check_unclosed_quotes(t_vector *tokens)
+static t_tokentype	check_unclosed_quotes(t_vector *tokens)
 {
 	size_t	i;
 
@@ -47,20 +49,22 @@ t_tokentype	check_unclosed_quotes(t_vector *tokens)
 	return (0);
 }
 
-int check_syntax(t_vector *tokens)
+int	check_syntax(t_vector *tokens)
 {
 	t_tokentype	type;
 
-	type = check_double_arrow(tokens);
+	type = check_special(tokens);
 	if (type)
 	{
-		printf("minishell: syntax error near unexpected token `%s`\n", get_token_str(type));
+		printf("minishell: syntax error near unexpected token `%s`\n",
+			get_token_str(type));
 		return (1);
 	}
 	type = check_unclosed_quotes(tokens);
 	if (type)
 	{
-		printf("minishell: syntax error unclosed quotes `%s`\n", get_token_str(type));
+		printf("minishell: syntax error unclosed quotes `%s`\n",
+			get_token_str(type));
 		return (1);
 	}
 	return (0);

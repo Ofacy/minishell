@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:26:27 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/09 18:32:07 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/10 20:47:41 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ size_t	expended_len(t_token *token, t_vector *env)
 			if (env_var)
 				exp_size += env_var->value_size;
 			v_size = 0;
-			while (ft_strchr(ENV_NAME_CHAR, token->txt[i + v_size + 1]) != NULL && token->txt[i + v_size + 1])
+			while (ft_strchr(ENV_NAME_CHAR, token->txt[i + v_size + 1]) != NULL
+				&& token->txt[i + v_size + 1])
 				v_size++;
 			if (v_size == 0)
 				exp_size++;
@@ -76,7 +77,8 @@ int	get_expended_str(t_token *token, t_vector *env)
 		{
 			exp_i += replace_env_var(token->txt + i + 1, exp_str + exp_i, env);
 			v_size = 0;
-			while (ft_strchr(ENV_NAME_CHAR, token->txt[i + v_size + 1]) != NULL && token->txt[i + v_size + 1])
+			while (ft_strchr(ENV_NAME_CHAR, token->txt[i + v_size + 1]) != NULL
+				&& token->txt[i + v_size + 1])
 				v_size++;
 			if (v_size == 0)
 				exp_str[exp_i++] = '$';
@@ -115,6 +117,8 @@ int	join_unseparated(t_vector *lex)
 			token->is_separated = false;
 			vector_remove(lex, i + 1);
 		}
+		if (((t_token *)lex->tab)[i].type == SINGLE_QUOTED)
+			((t_token *)lex->tab)[i].type = UNQUOTED;
 		i++;
 	}
 	return (0);

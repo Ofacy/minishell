@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:26:27 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/08 14:07:57 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/10 20:47:41 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*expander_join(t_token *t1, t_token *t2)
 	char	*str;
 	size_t	str_len;
 	size_t	str2_len;
-	
+
 	str_len = t1->txt_size;
 	str2_len = t2->txt_size;
 	str = malloc((str_len + str2_len + 1) * sizeof(char));

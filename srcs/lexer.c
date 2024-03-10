@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 17:00:53 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/08 11:14:23 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/10 20:38:17 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int	lexer(t_vector *lex, char *cmd)
 {
 	t_token	current;
 
+	if (!cmd)
+		return (1);
 	vector_init(lex, sizeof(t_token));
 	while (*cmd)
 	{

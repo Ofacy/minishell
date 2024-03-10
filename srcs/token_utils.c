@@ -1,17 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   token_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/10 20:23:22 by lcottet           #+#    #+#             */
+/*   Updated: 2024/03/10 20:47:39 by lcottet          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
 
 bool	is_type_arrow(t_tokentype type)
 {
-	return (type == HEREDOC || type == REDIRECT_APPEND ||
-		type == REDIRECT_INPUT || type == REDIRECT_OUTPUT);
+	return (type == HEREDOC || type == REDIRECT_APPEND
+		|| type == REDIRECT_INPUT || type == REDIRECT_OUTPUT);
 }
 
 bool	is_unclosed_quotes(t_token *token)
 {
 	return (token->txt == NULL && (token->type == DOUBLE_QUOTED
-		|| token->type == SINGLE_QUOTED));
+			|| token->type == SINGLE_QUOTED));
 }
 
 bool	is_special(t_tokentype type)
@@ -40,7 +51,7 @@ char	*get_token_str(t_tokentype type)
 
 void	free_token(t_token *token)
 {
-	if(token->is_txt_heap)
+	if (token->is_txt_heap)
 		free(token->txt);
 	token->type = UNSET;
 	token->txt = NULL;
