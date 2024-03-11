@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 18:29:04 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/10 21:30:20 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/11 18:35:22 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	exec_set_pipe(t_execute *exec)
 		error("pipe");
 		return (1);
 	}
+	close_fd(&exec->out);
+	close_fd(&exec->nextin);
 	exec->out = fd[1];
 	exec->nextin = fd[0];
 	return (0);
@@ -37,6 +39,7 @@ int	exec_set_pipe(t_execute *exec)
 
 int	exec_set_output(t_execute *exec, t_vector *tokens, size_t i)
 {
+	close_fd(&exec->out);
 	exec->out = open(((t_token *)tokens->tab)[i + 1].txt,
 			O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (exec->out == -1)
@@ -49,6 +52,7 @@ int	exec_set_output(t_execute *exec, t_vector *tokens, size_t i)
 
 int	exec_set_input(t_execute *exec, t_vector *tokens, size_t i)
 {
+	close_fd(&exec->in);
 	exec->in = open(((t_token *)tokens->tab)[i + 1].txt, O_RDONLY);
 	if (exec->in == -1)
 	{
@@ -60,6 +64,7 @@ int	exec_set_input(t_execute *exec, t_vector *tokens, size_t i)
 
 int	exec_set_append(t_execute *exec, t_vector *tokens, size_t i)
 {
+	close_fd(&exec->out);
 	exec->out = open(((t_token *)tokens->tab)[i + 1].txt,
 			O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (exec->out == -1)

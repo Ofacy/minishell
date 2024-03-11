@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:11:23 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/10 22:28:04 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/11 19:33:42 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,28 +34,24 @@ int	main(int argc, char **argv, char **env)
 		if (!input)
 			break ;
 		mshell.input = input;
-		vector_init(&mshell.history_entry, sizeof(char));
-		if (vector_addstr(&mshell.history_entry, input) != 0)
-			return (1); // handle error
 		lexer(&mshell.tokens, input);
 		check_syntax(&mshell.tokens);
 		expander(&mshell.tokens, &mshell.env);
-		exec(&mshell);
+		wait_for_child(exec(&mshell));
 		i = 0;
 		while (i < mshell.tokens.len)
 		{
-			printf("i = %-5lu; type = %d, sparated = %d", i, ((t_token *)mshell.tokens.tab)[i].type, ((t_token *)mshell.tokens.tab)[i].is_separated);
+			printf("i = %-5lu; old_type = %d, type = %d, sparated = %d, heap = %d", i, ((t_token *)mshell.tokens.tab)[i].old_type, ((t_token *)mshell.tokens.tab)[i].type, ((t_token *)mshell.tokens.tab)[i].is_separated, ((t_token *)mshell.tokens.tab)[i].is_txt_heap);
 			if (((t_token *)mshell.tokens.tab)[i].txt != NULL)
 				printf(" txt = '%s', size = %lu", ((t_token *)mshell.tokens.tab)[i].txt, ((t_token *)mshell.tokens.tab)[i].txt_size);
 			printf("\n");
 			i++;
 		}
 		if (mshell.tokens.len != 0)
-			add_history((char *)mshell.history_entry.tab);
+			add_history(input);
 		free(input);
 		vector_foreach(&mshell.tokens, (void (*)(void *))free_token);
 		vector_free(&mshell.tokens);
-		vector_free(&mshell.history_entry);
 	}
 	close_fd(&mshell.stdout);
 	rl_clear_history();

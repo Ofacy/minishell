@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 16:44:47 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/10 21:17:09 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/11 17:57:23 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef enum e_tokentype
 typedef struct s_token
 {
 	t_tokentype	type;
+	t_tokentype	old_type;
 	char		*txt;
 	size_t		txt_size;
 	bool		is_separated;

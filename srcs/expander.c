@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:26:27 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/10 20:47:41 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/11 19:37:44 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	get_expended_str(t_token *token, t_vector *env)
 	i = 0;
 	while (exp_i < exp_len)
 	{
-		if (token->txt[i] == '$')
+		if (token->txt[i] == '$' && token->type != SINGLE_QUOTED)
 		{
 			exp_i += replace_env_var(token->txt + i + 1, exp_str + exp_i, env);
 			v_size = 0;
@@ -132,8 +132,7 @@ int	expander(t_vector *lex, t_vector *env)
 	while (i < lex->len)
 	{
 		if (((t_token *)lex->tab)[i].txt != NULL
-				&& (((t_token *)lex->tab)[i].type == UNQUOTED
-				|| ((t_token *)lex->tab)[i].type == DOUBLE_QUOTED))
+				&& (!is_special(((t_token *)lex->tab)[i].type)))
 			if (get_expended_str(((t_token *)lex->tab) + i, env) != 0)
 				return (1);
 		i++;

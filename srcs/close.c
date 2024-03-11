@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 20:34:14 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/10 22:28:13 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/11 15:38:24 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int	close_fd(t_fd *fd)
 {
-	char *fd_str;
+	char	*fd_str;
 
 	if (*fd == -1)
 		return (0);

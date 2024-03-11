@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 20:41:37 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/10 21:20:13 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/11 19:33:00 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,33 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdlib.h>
+#include <stdio.h>
 
-int	here_doc_line(t_mshell *sh, int file, char *line)
+char	*here_doc_getline(t_mshell *sh, size_t i)
 {
-	write(file, line, ft_strlen(line));
-	write(file, "\n", 1);
-	if (vector_addstr(&sh->history_entry, line) != 0)
-		return (free(line), 2);
+	t_token	line;
+	
+	line.txt = readline(PROMPT_HEREDOC);
+	line.txt_size = ft_strlen(line.txt);
+	line.is_txt_heap = true;
+	if (((t_token *)sh->tokens.tab)[i].old_type == UNQUOTED)
+	{
+		if (get_expended_str(&line, &sh->env) < 0)
+		{
+			free_token(&line);
+			return (NULL);
+		}
+	}
+	printf("txt = %s\n", line.txt);
+	return (line.txt);
+}
+
+int	here_doc_line(int file, char *line)
+{
+	if (write(file, line, ft_strlen(line)) == -1)
+		return (free(line), 1);
+	if (write(file, "\n", 1) == -1)
+		return (free(line), 1);
 	free(line);
 	return (0);
 }
@@ -39,13 +59,14 @@ int	exec_set_heredoc(t_execute *exec, t_mshell *sh, size_t i)
 		error(".heredoc");
 		return (1);
 	}
-	line = readline("> ");
+	line = here_doc_getline(sh, i + 1);
 	while (line && ft_strncmp(line, ((t_token *)sh->tokens.tab)[i + 1].txt,
-		ft_strlen(((t_token *)sh->tokens.tab)[i + 1].txt)))
+		((t_token *)sh->tokens.tab)[i + 1].txt_size))
 	{
-		if (here_doc_line(sh, file, line))
+		if (here_doc_line(file, line))
 			return (2);
-		line = readline("> ");
+		line = here_doc_getline(sh, i + 1);
+		printf("%s VS %s\n", line, ((t_token *)sh->tokens.tab)[i + 1].txt);
 	}
 	close_fd(&file);
 	exec->in = open(".heredoc", O_RDONLY);

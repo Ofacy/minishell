@@ -6,7 +6,7 @@
 #    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/14 13:24:31 by bwisniew          #+#    #+#              #
-#    Updated: 2024/03/10 21:38:44 by lcottet          ###   ########.fr        #
+#    Updated: 2024/03/11 18:46:08 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ C_FLAGS = -g3 -Wall -Wextra -Werror -MMD -MP
 SRCS_DIR = srcs
 SRCS =	main.c lexer.c env.c expander.c expander_join.c syntax.c token_utils.c \
 		prompt.c path.c exec.c exec_fd.c error.c close.c env_to_envp.c \
-		free_mshell.c here_doc.c fork.c
+		free_mshell.c here_doc.c fork.c exec_prepare.c wait.c
 OUTDIR = obj
 OBJ = $(SRCS:%.c=$(OUTDIR)/%.o)
 DEP = $(OBJ:.o=.d)
@@ -43,6 +43,9 @@ $(VECOTR): FORCE
 $(OUTDIR):
 	mkdir -p $(OUTDIR) 
 
+valgrind: $(NAME)
+	valgrind --track-fds=yes --trace-children=yes --leak-check=full --show-leak-kinds=all --suppressions=./mask_readline_leaks.supp ./minishell
+
 clean:
 	rm -rf $(OUTDIR)
 	make -C libft clean
@@ -58,4 +61,4 @@ norm:
 
 FORCE:
 
-.PHONY: all clean fclean re norm FORCE
+.PHONY: all clean fclean re norm FORCE valgrind
