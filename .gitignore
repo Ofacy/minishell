@@ -7,3 +7,4 @@ minishell
 test
 out
 in
+compile_commands.json

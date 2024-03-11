@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:18:34 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/11 19:40:02 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/11 22:08:19 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,19 +92,21 @@ pid_t	exec(t_mshell *sh)
 	t_execute	exec;
 
 	pid = -1;
-	exec.nextin = -1;
+	exec.nextin = dup(STDIN_FILENO);
 	exec_init(&exec, sh);
 	i = 0;
 	while (i < sh->tokens.len)
 	{
 		if (exec_prepare(sh, &exec, &i) != 0)
 			return (close_exec(&exec), vector_free(&exec.args), -1);
-		if (exec.in > 0 && exec.out > 0)
+		if (exec.in >= 0 && exec.out >= 0)
 		{
 			pid = exec_txt(&exec, sh);
 			if (pid < 0)
 				return (close_exec(&exec), vector_free(&exec.args), -1);
 		}
+		else
+			pid = -1;
 		vector_free(&exec.args);
 		close_fd(&exec.in);
 		close_fd(&exec.out);

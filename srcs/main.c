@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:11:23 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/11 19:33:42 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/11 22:12:18 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,19 @@ int	main(int argc, char **argv, char **env)
 			break ;
 		mshell.input = input;
 		lexer(&mshell.tokens, input);
-		check_syntax(&mshell.tokens);
-		expander(&mshell.tokens, &mshell.env);
-		wait_for_child(exec(&mshell));
-		i = 0;
-		while (i < mshell.tokens.len)
+		if (check_syntax(&mshell.tokens) == 0)
 		{
-			printf("i = %-5lu; old_type = %d, type = %d, sparated = %d, heap = %d", i, ((t_token *)mshell.tokens.tab)[i].old_type, ((t_token *)mshell.tokens.tab)[i].type, ((t_token *)mshell.tokens.tab)[i].is_separated, ((t_token *)mshell.tokens.tab)[i].is_txt_heap);
-			if (((t_token *)mshell.tokens.tab)[i].txt != NULL)
-				printf(" txt = '%s', size = %lu", ((t_token *)mshell.tokens.tab)[i].txt, ((t_token *)mshell.tokens.tab)[i].txt_size);
-			printf("\n");
-			i++;
+			expander(&mshell.tokens, &mshell.env);
+			wait_for_child(exec(&mshell));
+			i = 0;
+			while (i < mshell.tokens.len)
+			{
+				printf("i = %-5lu; old_type = %d, type = %d, sparated = %d, heap = %d", i, ((t_token *)mshell.tokens.tab)[i].old_type, ((t_token *)mshell.tokens.tab)[i].type, ((t_token *)mshell.tokens.tab)[i].is_separated, ((t_token *)mshell.tokens.tab)[i].is_txt_heap);
+				if (((t_token *)mshell.tokens.tab)[i].txt != NULL)
+					printf(" txt = '%s', size = %lu", ((t_token *)mshell.tokens.tab)[i].txt, ((t_token *)mshell.tokens.tab)[i].txt_size);
+				printf("\n");
+				i++;
+			}
 		}
 		if (mshell.tokens.len != 0)
 			add_history(input);
