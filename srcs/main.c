@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:11:23 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/11 22:12:18 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/12 16:42:26 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,15 @@ int	main(int argc, char **argv, char **env)
 		lexer(&mshell.tokens, input);
 		if (check_syntax(&mshell.tokens) == 0)
 		{
-			expander(&mshell.tokens, &mshell.env);
+			expander(&mshell.tokens, &mshell.env, 0, mshell.tokens.len);
 			wait_for_child(exec(&mshell));
 			i = 0;
 			while (i < mshell.tokens.len)
 			{
 				printf("i = %-5lu; old_type = %d, type = %d, sparated = %d, heap = %d", i, ((t_token *)mshell.tokens.tab)[i].old_type, ((t_token *)mshell.tokens.tab)[i].type, ((t_token *)mshell.tokens.tab)[i].is_separated, ((t_token *)mshell.tokens.tab)[i].is_txt_heap);
 				if (((t_token *)mshell.tokens.tab)[i].txt != NULL)
-					printf(" txt = '%s', size = %lu", ((t_token *)mshell.tokens.tab)[i].txt, ((t_token *)mshell.tokens.tab)[i].txt_size);
-				printf("\n");
+					printf(" is_file = %d txt = '%s', size = %lu", ((t_token *)mshell.tokens.tab)[i].is_file, ((t_token *)mshell.tokens.tab)[i].txt, ((t_token *)mshell.tokens.tab)[i].txt_size);
+				printf("\n\n");
 				i++;
 			}
 		}

@@ -6,14 +6,14 @@
 #    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/14 13:24:31 by bwisniew          #+#    #+#              #
-#    Updated: 2024/03/11 18:46:08 by lcottet          ###   ########.fr        #
+#    Updated: 2024/03/12 15:34:40 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 C_FLAGS = -g3 -Wall -Wextra -Werror -MMD -MP
 SRCS_DIR = srcs
-SRCS =	main.c lexer.c env.c expander.c expander_join.c syntax.c token_utils.c \
+SRCS =	main.c lexer.c env.c expander.c expander_utils.c syntax.c token_utils.c \
 		prompt.c path.c exec.c exec_fd.c error.c close.c env_to_envp.c \
 		free_mshell.c here_doc.c fork.c exec_prepare.c wait.c
 OUTDIR = obj

@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:55:03 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/11 18:49:31 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/12 15:29:31 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ typedef struct s_mshell
 
 void	free_token(t_token *token);
 
-int		expander(t_vector *lex, t_vector *env);
+int		expander(t_vector *lex, t_vector *env, size_t i, size_t n);
+size_t	expander_skip_arrow(t_vector *lex, size_t i, size_t n);
 int		get_expended_str(t_token *token, t_vector *env);
 void	env_free(void *env);
 t_env	*env_get(t_vector *env, char *key);
@@ -92,7 +93,8 @@ void	custom_error(char *str, char *error_msg);
 
 int		wait_for_child(pid_t last_pid);
 
-int		exec_fd(t_execute *exec, t_mshell sh, size_t i);
+int		expend_file(t_mshell *sh, size_t i);
+int		exec_fd(t_execute *exec, t_mshell *sh, size_t i);
 int		close_fd(t_fd *fd);
 void	free_mshell(t_mshell *sh);
 int		close_exec(t_execute *exec);

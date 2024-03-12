@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 16:44:47 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/11 17:57:23 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/12 15:16:25 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_token
 	size_t		txt_size;
 	bool		is_separated;
 	bool		is_txt_heap;
+	bool		is_file;
 }	t_token;
 
 int	lexer(t_vector *lex, char *cmd);

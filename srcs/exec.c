@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:18:34 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/11 22:08:19 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/12 16:40:34 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ int	exec_set_cmd(t_execute *exec, t_mshell *sh)
 	exec->cmd = get_openable_path(((char **)exec->args.tab)[0], X_OK, &sh->env);
 	if (!exec->cmd)
 	{
-		error(((char **)exec->args.tab)[0]);
+		if (errno == ENOENT)
+			custom_error(((char **)exec->args.tab)[0], "command not found");
+		else
+			error(((char **)exec->args.tab)[0]);
 		return (1);
 	}
 	return (0);
@@ -99,14 +102,12 @@ pid_t	exec(t_mshell *sh)
 	{
 		if (exec_prepare(sh, &exec, &i) != 0)
 			return (close_exec(&exec), vector_free(&exec.args), -1);
-		if (exec.in >= 0 && exec.out >= 0)
+		if (exec.in > 0 && exec.out > 0)
 		{
 			pid = exec_txt(&exec, sh);
 			if (pid < 0)
 				return (close_exec(&exec), vector_free(&exec.args), -1);
 		}
-		else
-			pid = -1;
 		vector_free(&exec.args);
 		close_fd(&exec.in);
 		close_fd(&exec.out);

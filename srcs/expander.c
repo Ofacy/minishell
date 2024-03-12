@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:26:27 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/11 19:37:44 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/12 15:14:53 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ size_t	expended_len(t_token *token, t_vector *env)
 	exp_size = 0;
 	while (i < token->txt_size)
 	{
-		if (token->txt[i] == '$')
+		if (token->txt[i] == '$' && token->type != SINGLE_QUOTED)
 		{
 			env_var = env_get(env, token->txt + i + 1);
 			if (env_var)
@@ -97,14 +97,12 @@ int	get_expended_str(t_token *token, t_vector *env)
 	return (0);
 }
 
-int	join_unseparated(t_vector *lex)
+int	join_unseparated(t_vector *lex, size_t i, size_t n)
 {
-	size_t	i;
 	t_token	*token;
 	char	*tmp;
 
-	i = 0;
-	while (i < lex->len)
+	while (i < n)
 	{
 		token = ((t_token *)lex->tab) + i;
 		if (!token->is_separated)
@@ -119,23 +117,24 @@ int	join_unseparated(t_vector *lex)
 		}
 		if (((t_token *)lex->tab)[i].type == SINGLE_QUOTED)
 			((t_token *)lex->tab)[i].type = UNQUOTED;
+		i = expander_skip_arrow(lex, i, n);
 		i++;
 	}
 	return (0);
 }
 
-int	expander(t_vector *lex, t_vector *env)
+int	expander(t_vector *lex, t_vector *env, size_t i, size_t n)
 {
-	size_t	i;
+	size_t	i_cp;
 
-	i = 0;
-	while (i < lex->len)
+	i_cp = i;
+	while (i < n)
 	{
-		if (((t_token *)lex->tab)[i].txt != NULL
-				&& (!is_special(((t_token *)lex->tab)[i].type)))
+		if (((t_token *)lex->tab)[i].txt != NULL && !is_special(((t_token *)lex->tab)[i].type))
 			if (get_expended_str(((t_token *)lex->tab) + i, env) != 0)
 				return (1);
+		i = expander_skip_arrow(lex, i, n);
 		i++;
 	}
-	return (join_unseparated(lex));
+	return (join_unseparated(lex, i_cp, n));
 }
