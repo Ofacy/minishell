@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 20:41:37 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/13 17:54:54 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:10:32 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 char	*here_doc_getline(t_mshell *sh, size_t i)
 {
 	t_token	line;
-	
+
 	line.txt = readline(PROMPT_HEREDOC);
 	line.txt_size = ft_strlen(line.txt);
 	line.is_txt_heap = true;

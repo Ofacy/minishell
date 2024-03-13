@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:55:03 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/13 17:54:39 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/13 19:30:48 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int		expend_file(t_mshell *sh, size_t i);
 int		get_expended_str(t_token *token, t_mshell *sh);
 
 t_env	*env_get(t_mshell *sh, char *key);
-int		set_env_return(t_mshell *sh ,int value);
+int		set_env_return(t_mshell *sh, int value);
 int		env_set(t_mshell *sh, char *key, char *value);
 int		create_env(t_vector *vector, char **env);
 void	env_free(void *env);
@@ -86,10 +86,11 @@ bool	is_special(t_tokentype type);
 char	*get_token_str(t_tokentype type);
 
 pid_t	exec(t_mshell *sh);
-int		exec_prepare(t_mshell *sh, t_execute *exec, size_t *i);
 pid_t	exec_fork(t_execute *exec, t_mshell *sh);
-void	exec_cmd(t_execute *exec, t_mshell *sh, char **envp);
+int		exec_prepare(t_mshell *sh, t_execute *exec, size_t *i);
 int		exec_fd(t_execute *exec, t_mshell *sh, size_t i);
+void	exec_cmd(t_execute *exec, t_mshell *sh, char **envp);
+void	exec_fail(t_execute *exec, t_mshell *sh, char **envp);
 
 char	*expander_join(t_token *t1, t_token *t2);
 

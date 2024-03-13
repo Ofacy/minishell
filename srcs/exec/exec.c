@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:18:34 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/13 17:54:47 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/13 19:44:20 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,7 @@ void	exec_cmd(t_execute *exec, t_mshell *sh, char **envp)
 		close_fd(&exec->nextin);
 	if (execve(exec->cmd, (char **)exec->args.tab, envp) == -1)
 	{
-		close(STDOUT_FILENO);
-		close(STDIN_FILENO);
-		error(exec->cmd);
-		ft_freesplit(envp);
-		free(exec->cmd);
-		vector_free(&exec->args);
-		free_mshell(sh);
+		exec_fail(exec, sh, envp);
 		exit(127);
 	}
 }
@@ -115,6 +109,5 @@ pid_t	exec(t_mshell *sh)
 		i++;
 	}
 	close_exec(&exec);
-	printf("pid = %d\n", pid);
 	return (pid);
 }

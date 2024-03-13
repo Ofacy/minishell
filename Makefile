@@ -6,7 +6,7 @@
 #    By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/14 13:24:31 by bwisniew          #+#    #+#              #
-#    Updated: 2024/03/13 17:36:14 by bwisniew         ###   ########.fr        #
+#    Updated: 2024/03/13 19:29:13 by bwisniew         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRCS =	main.c env.c prompt.c error.c env_utils.c mshell_utils.c
 
 PARSER_SRCS = lexer.c expander.c expander_utils.c syntax.c token_utils.c
 
-EXEC_SRCS =	path.c exec.c exec_fd.c here_doc.c fork.c exec_prepare.c wait.c \
+EXEC_SRCS =	path.c exec.c exec_fd.c here_doc.c fork.c exec_utils.c wait.c \
 			close.c 
 
 SRCS += $(PARSER_SRCS:%.c=parser/%.c) $(EXEC_SRCS:%.c=exec/%.c)

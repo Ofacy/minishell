@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:26:27 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/13 17:53:01 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:10:12 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,14 +125,15 @@ int	join_unseparated(t_vector *lex, size_t i, size_t n)
 
 int	expander(t_mshell *sh, size_t i, size_t n)
 {
-	size_t	i_cp;
-	t_vector *lex;
+	size_t		i_cp;
+	t_vector	*lex;
 
 	i_cp = i;
 	lex = &sh->tokens;
 	while (i < n)
 	{
-		if (((t_token *)lex->tab)[i].txt != NULL && !is_special(((t_token *)lex->tab)[i].type))
+		if (((t_token *)lex->tab)[i].txt != NULL
+			&& !is_special(((t_token *)lex->tab)[i].type))
 			if (get_expended_str(((t_token *)lex->tab) + i, sh) != 0)
 				return (1);
 		i = expander_skip_arrow(lex, i, n);

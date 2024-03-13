@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 20:53:51 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/13 17:37:16 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:09:53 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	**env_to_envp(t_vector *env)
 	return (envp);
 }
 
-int	set_env_return(t_mshell *sh ,int value)
+int	set_env_return(t_mshell *sh, int value)
 {
 	sh->last_return.value = ft_itoa(value);
 	if (!sh->last_return.value)
