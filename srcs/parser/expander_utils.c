@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:26:27 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/12 15:59:54 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/13 17:54:07 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*expander_join(t_token *t1, t_token *t2)
 	return (str);
 }
 
-int	expend_file_ambi(t_token *token, t_vector *env)
+int	expend_file_ambi(t_token *token, t_mshell *sh)
 {
 	size_t	char_i;
 	t_env	*env_var;
@@ -62,7 +62,7 @@ int	expend_file_ambi(t_token *token, t_vector *env)
 	{
 		if (token->txt[char_i] == '$' && token->type != SINGLE_QUOTED)
 		{
-			env_var = env_get(env, token->txt + char_i + 1);
+			env_var = env_get(sh, token->txt + char_i + 1);
 			if (!env_var)
 			{
 				char_i++;
@@ -88,11 +88,11 @@ int	expend_file(t_mshell *sh, size_t i)
 	i++;
 	while (i < sh->tokens.len && ((t_token *)sh->tokens.tab)[i].is_file == 1)
 	{
-		if (expend_file_ambi(&((t_token *)sh->tokens.tab)[i], &sh->env) != 0)
+		if (expend_file_ambi(&((t_token *)sh->tokens.tab)[i], sh) != 0)
 			return (1);
 		i++;
 	}
-	if (expander(&sh->tokens, &sh->env, i_cp + 1,
+	if (expander(sh, i_cp + 1,
 		expander_skip_arrow(&sh->tokens, i_cp, sh->tokens.len)) < 0)
 		return (1);
 	return (0);

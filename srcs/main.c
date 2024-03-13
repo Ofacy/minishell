@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:11:23 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/12 16:42:26 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/13 17:53:28 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int argc, char **argv, char **env)
 	char	*input;
 
 	mshell.stdout = dup(STDOUT_FILENO);
+	init_mshell(&mshell);
 	dup2(STDERR_FILENO, STDOUT_FILENO);
 	if (create_env(&mshell.env, env) != 0)
 		return (1);
@@ -37,8 +38,8 @@ int	main(int argc, char **argv, char **env)
 		lexer(&mshell.tokens, input);
 		if (check_syntax(&mshell.tokens) == 0)
 		{
-			expander(&mshell.tokens, &mshell.env, 0, mshell.tokens.len);
-			wait_for_child(exec(&mshell));
+			expander(&mshell, 0, mshell.tokens.len);
+			set_env_return(&mshell, wait_for_child(exec(&mshell)));
 			i = 0;
 			while (i < mshell.tokens.len)
 			{

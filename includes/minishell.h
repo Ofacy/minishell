@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:55:03 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/12 15:29:31 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/13 17:54:39 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,22 +58,26 @@ typedef struct s_mshell
 	t_vector	env;
 	t_fd		stdout;
 	t_fd		pipe[2];
+	t_env		last_return;
 	char		*input;
 }	t_mshell;
 
 void	free_token(t_token *token);
 
-int		expander(t_vector *lex, t_vector *env, size_t i, size_t n);
 size_t	expander_skip_arrow(t_vector *lex, size_t i, size_t n);
-int		get_expended_str(t_token *token, t_vector *env);
-void	env_free(void *env);
-t_env	*env_get(t_vector *env, char *key);
-int		env_set(t_vector *env, char *key, char *value);
+int		expander(t_mshell *sh, size_t i, size_t n);
+int		expend_file(t_mshell *sh, size_t i);
+int		get_expended_str(t_token *token, t_mshell *sh);
+
+t_env	*env_get(t_mshell *sh, char *key);
+int		set_env_return(t_mshell *sh ,int value);
+int		env_set(t_mshell *sh, char *key, char *value);
 int		create_env(t_vector *vector, char **env);
+void	env_free(void *env);
 
 char	*get_user_input(t_mshell *sh);
 
-char	*get_openable_path(char *file, int access_mode, t_vector *env);
+char	*get_openable_path(char *file, int access_mode, t_mshell *sh);
 
 int		check_syntax(t_vector *tokens);
 bool	is_unclosed_quotes(t_token *token);
@@ -85,6 +89,7 @@ pid_t	exec(t_mshell *sh);
 int		exec_prepare(t_mshell *sh, t_execute *exec, size_t *i);
 pid_t	exec_fork(t_execute *exec, t_mshell *sh);
 void	exec_cmd(t_execute *exec, t_mshell *sh, char **envp);
+int		exec_fd(t_execute *exec, t_mshell *sh, size_t i);
 
 char	*expander_join(t_token *t1, t_token *t2);
 
@@ -93,11 +98,11 @@ void	custom_error(char *str, char *error_msg);
 
 int		wait_for_child(pid_t last_pid);
 
-int		expend_file(t_mshell *sh, size_t i);
-int		exec_fd(t_execute *exec, t_mshell *sh, size_t i);
 int		close_fd(t_fd *fd);
-void	free_mshell(t_mshell *sh);
 int		close_exec(t_execute *exec);
+
+void	free_mshell(t_mshell *sh);
+void	init_mshell(t_mshell *sh);
 
 char	**env_to_envp(t_vector *env);
 

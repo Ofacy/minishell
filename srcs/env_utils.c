@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_to_envp.c                                      :+:      :+:    :+:   */
+/*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 20:53:51 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/10 22:02:11 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/13 17:37:16 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,13 @@ char	**env_to_envp(t_vector *env)
 	}
 	envp[i] = NULL;
 	return (envp);
+}
+
+int	set_env_return(t_mshell *sh ,int value)
+{
+	sh->last_return.value = ft_itoa(value);
+	if (!sh->last_return.value)
+		return (1);
+	sh->last_return.value_size = ft_strlen(sh->last_return.value);
+	return (0);
 }

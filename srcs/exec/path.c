@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:23:03 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/10 21:45:57 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/13 17:54:21 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 #include <errno.h>
 #include <stdlib.h>
 
-char	**get_path_folders(t_vector *env)
+char	**get_path_folders(t_mshell *sh)
 {
 	t_env	*var;
 
-	var = env_get(env, "PATH");
+	var = env_get(sh, "PATH");
 	if (!var)
 	{
 		errno = ENOENT;
@@ -47,7 +47,7 @@ char	*path_valid(char *file, char *curr_path, int access_mode)
 	return (NULL);
 }
 
-char	*get_openable_path(char *file, int access_mode, t_vector *env)
+char	*get_openable_path(char *file, int access_mode, t_mshell *sh)
 {
 	char	*tmp;
 	int		i;
@@ -59,7 +59,7 @@ char	*get_openable_path(char *file, int access_mode, t_vector *env)
 		return (ft_strdup(file));
 	if (errno == EACCES)
 		return (NULL);
-	path = get_path_folders(env);
+	path = get_path_folders(sh);
 	if (!path)
 		return (NULL);
 	i = 0;

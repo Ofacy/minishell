@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 20:41:37 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/11 19:33:00 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/13 17:54:54 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*here_doc_getline(t_mshell *sh, size_t i)
 	line.is_txt_heap = true;
 	if (((t_token *)sh->tokens.tab)[i].old_type == UNQUOTED)
 	{
-		if (get_expended_str(&line, &sh->env) < 0)
+		if (get_expended_str(&line, sh) < 0)
 		{
 			free_token(&line);
 			return (NULL);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:18:34 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/12 16:40:34 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/13 17:54:47 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	exec_init(t_execute *exec, t_mshell *sh)
 
 int	exec_set_cmd(t_execute *exec, t_mshell *sh)
 {
-	exec->cmd = get_openable_path(((char **)exec->args.tab)[0], X_OK, &sh->env);
+	exec->cmd = get_openable_path(((char **)exec->args.tab)[0], X_OK, sh);
 	if (!exec->cmd)
 	{
 		if (errno == ENOENT)

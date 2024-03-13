@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:12:55 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/10 20:47:40 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/13 17:51:56 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_token	prompt(t_mshell *sh)
 	t_token	prompt;
 	t_env	*env_prompt;
 
-	env_prompt = env_get(&sh->env, "PROMPT");
+	env_prompt = env_get(sh, "PROMPT");
 	if (!env_prompt)
 		prompt.txt = PROMPT_DEFAULT;
 	else
@@ -29,7 +29,7 @@ t_token	prompt(t_mshell *sh)
 	prompt.txt_size = ft_strlen(prompt.txt);
 	prompt.is_txt_heap = false;
 	prompt.type = UNQUOTED;
-	if (get_expended_str(&prompt, &sh->env) != 0)
+	if (get_expended_str(&prompt, sh) != 0)
 		free_token(&prompt);
 	return (prompt);
 }

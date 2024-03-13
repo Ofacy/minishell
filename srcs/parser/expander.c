@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:26:27 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/12 15:14:53 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/13 17:53:01 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-size_t	expended_len(t_token *token, t_vector *env)
+size_t	expended_len(t_token *token, t_mshell *sh)
 {
 	size_t	exp_size;
 	t_env	*env_var;
@@ -28,7 +28,7 @@ size_t	expended_len(t_token *token, t_vector *env)
 	{
 		if (token->txt[i] == '$' && token->type != SINGLE_QUOTED)
 		{
-			env_var = env_get(env, token->txt + i + 1);
+			env_var = env_get(sh, token->txt + i + 1);
 			if (env_var)
 				exp_size += env_var->value_size;
 			v_size = 0;
@@ -46,18 +46,18 @@ size_t	expended_len(t_token *token, t_vector *env)
 	return (exp_size);
 }
 
-int	replace_env_var(char *token_str, char *exp_str, t_vector *env)
+int	replace_env_var(char *token_str, char *exp_str, t_mshell *sh)
 {
 	t_env	*env_var;
 
-	env_var = env_get(env, token_str);
+	env_var = env_get(sh, token_str);
 	if (!env_var)
 		return (0);
 	ft_strlcpy(exp_str, env_var->value, env_var->value_size + 1);
 	return (env_var->value_size);
 }
 
-int	get_expended_str(t_token *token, t_vector *env)
+int	get_expended_str(t_token *token, t_mshell *sh)
 {
 	char	*exp_str;
 	size_t	exp_len;
@@ -65,7 +65,7 @@ int	get_expended_str(t_token *token, t_vector *env)
 	size_t	exp_i;
 	size_t	v_size;
 
-	exp_len = expended_len(token, env);
+	exp_len = expended_len(token, sh);
 	exp_str = malloc(sizeof(char) * (exp_len + 1));
 	if (!exp_str)
 		return (1);
@@ -75,7 +75,7 @@ int	get_expended_str(t_token *token, t_vector *env)
 	{
 		if (token->txt[i] == '$' && token->type != SINGLE_QUOTED)
 		{
-			exp_i += replace_env_var(token->txt + i + 1, exp_str + exp_i, env);
+			exp_i += replace_env_var(token->txt + i + 1, exp_str + exp_i, sh);
 			v_size = 0;
 			while (ft_strchr(ENV_NAME_CHAR, token->txt[i + v_size + 1]) != NULL
 				&& token->txt[i + v_size + 1])
@@ -123,15 +123,17 @@ int	join_unseparated(t_vector *lex, size_t i, size_t n)
 	return (0);
 }
 
-int	expander(t_vector *lex, t_vector *env, size_t i, size_t n)
+int	expander(t_mshell *sh, size_t i, size_t n)
 {
 	size_t	i_cp;
+	t_vector *lex;
 
 	i_cp = i;
+	lex = &sh->tokens;
 	while (i < n)
 	{
 		if (((t_token *)lex->tab)[i].txt != NULL && !is_special(((t_token *)lex->tab)[i].type))
-			if (get_expended_str(((t_token *)lex->tab) + i, env) != 0)
+			if (get_expended_str(((t_token *)lex->tab) + i, sh) != 0)
 				return (1);
 		i = expander_skip_arrow(lex, i, n);
 		i++;
