@@ -1,31 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/10 18:37:34 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/14 14:11:32 by bwisniew         ###   ########.fr       */
+/*   Created: 2024/03/14 13:57:39 by bwisniew          #+#    #+#             */
+/*   Updated: 2024/03/14 13:57:40 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <errno.h>
-#include <string.h>
-#include <stdio.h>
-
-void	error(char *str)
-{
-	printf("%s: %s: %s\n", SHELL_NAME, str, strerror(errno));
-}
-
-void	custom_error(char *str, char *error_msg)
-{
-	printf("%s: %s: %s\n", SHELL_NAME, str, error_msg);
-}
-
-void	builtin_error(char *str, char *error_msg)
-{
-	printf("%s: %s\n", str, error_msg);
-}

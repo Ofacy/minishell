@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:55:03 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/13 19:30:48 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/14 19:32:03 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "lexer.h"
 # include <sys/types.h>
 
-# define CMD_COUNT 7
+# define BUILTIN_COUNT 5
 
 # define ENV_NAME_CHAR "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\
 	0123456789_?"
@@ -28,18 +28,22 @@
 
 typedef int	t_fd;
 
+typedef struct s_mshell	t_mshell;
+typedef struct s_execute	t_execute;
 typedef struct s_env
 {
 	char	*key;
 	char	*value;
 	size_t	value_size;
 	size_t	key_size;
+	bool	exported;
 }	t_env;
 
 typedef struct s_cmd
 {
 	char	*name;
-	int		(*func)(int argc, char **argv, t_vector *env);
+	int		(*func)(t_mshell *sh, t_execute	*exec);
+	bool	fork;
 }	t_cmd;
 
 typedef struct s_execute
@@ -47,13 +51,14 @@ typedef struct s_execute
 	t_fd		in;
 	t_fd		out;
 	t_fd		nextin;
+	t_cmd		*builtin;
 	char		*cmd;
 	t_vector	args;
 }	t_execute;
 
 typedef struct s_mshell
 {
-	t_cmd		commands[CMD_COUNT];
+	t_cmd		commands[BUILTIN_COUNT];
 	t_vector	tokens;
 	t_vector	env;
 	t_fd		stdout;
@@ -65,7 +70,7 @@ typedef struct s_mshell
 void	free_token(t_token *token);
 
 size_t	expander_skip_arrow(t_vector *lex, size_t i, size_t n);
-int		expander(t_mshell *sh, size_t i, size_t n);
+int		expander(t_mshell *sh, size_t start, size_t end);
 int		expend_file(t_mshell *sh, size_t i);
 int		get_expended_str(t_token *token, t_mshell *sh);
 
@@ -91,11 +96,13 @@ int		exec_prepare(t_mshell *sh, t_execute *exec, size_t *i);
 int		exec_fd(t_execute *exec, t_mshell *sh, size_t i);
 void	exec_cmd(t_execute *exec, t_mshell *sh, char **envp);
 void	exec_fail(t_execute *exec, t_mshell *sh, char **envp);
+void	choose_fork_exec(t_mshell *sh, t_execute *exec, char **envp);
 
 char	*expander_join(t_token *t1, t_token *t2);
 
 void	error(char *str);
 void	custom_error(char *str, char *error_msg);
+void	builtin_error(char *str, char *error_msg);
 
 int		wait_for_child(pid_t last_pid);
 
@@ -104,7 +111,16 @@ int		close_exec(t_execute *exec);
 
 void	free_mshell(t_mshell *sh);
 void	init_mshell(t_mshell *sh);
+void	builtin_init(t_mshell *sh);
 
 char	**env_to_envp(t_vector *env);
+
+int		cd(t_mshell *sh, t_execute *exec);
+int		echo(t_mshell *sh, t_execute *exec);
+int		env(t_mshell *sh, t_execute *exec);
+int		export(t_mshell *sh, t_execute *exec);
+int		pwd(t_mshell *sh, t_execute *exec);
+int		unset(t_mshell *sh, t_execute *exec);
+t_cmd	*get_builtin(t_mshell *sh, char *cmd);
 
 #endif

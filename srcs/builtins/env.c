@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/10 18:37:34 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/14 14:11:32 by bwisniew         ###   ########.fr       */
+/*   Created: 2024/03/14 13:57:41 by bwisniew          #+#    #+#             */
+/*   Updated: 2024/03/14 18:36:13 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <errno.h>
-#include <string.h>
 #include <stdio.h>
 
-void	error(char *str)
+void	print_env(t_env *env)
 {
-	printf("%s: %s: %s\n", SHELL_NAME, str, strerror(errno));
+	if (env->value)
+		printf("%s=%s\n", env->key, env->value);
 }
 
-void	custom_error(char *str, char *error_msg)
+int	env(t_mshell *sh, t_execute *exec)
 {
-	printf("%s: %s: %s\n", SHELL_NAME, str, error_msg);
-}
-
-void	builtin_error(char *str, char *error_msg)
-{
-	printf("%s: %s\n", str, error_msg);
+	(void)exec;
+	vector_foreach(&sh->env, (void (*)(void *))print_env);
+	return (0);
 }

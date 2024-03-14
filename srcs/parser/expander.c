@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:26:27 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/13 18:10:12 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:12:42 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,21 +123,21 @@ int	join_unseparated(t_vector *lex, size_t i, size_t n)
 	return (0);
 }
 
-int	expander(t_mshell *sh, size_t i, size_t n)
+int	expander(t_mshell *sh, size_t start, size_t end)
 {
 	size_t		i_cp;
 	t_vector	*lex;
 
-	i_cp = i;
+	i_cp = start;
 	lex = &sh->tokens;
-	while (i < n)
+	while (start < end)
 	{
-		if (((t_token *)lex->tab)[i].txt != NULL
-			&& !is_special(((t_token *)lex->tab)[i].type))
-			if (get_expended_str(((t_token *)lex->tab) + i, sh) != 0)
+		if (((t_token *)lex->tab)[start].txt != NULL
+			&& !is_special(((t_token *)lex->tab)[start].type))
+			if (get_expended_str(((t_token *)lex->tab) + start, sh) != 0)
 				return (1);
-		i = expander_skip_arrow(lex, i, n);
-		i++;
+		start = expander_skip_arrow(lex, start, end);
+		start++;
 	}
-	return (join_unseparated(lex, i_cp, n));
+	return (join_unseparated(lex, i_cp, end));
 }

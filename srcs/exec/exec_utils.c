@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:31:10 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/13 19:45:03 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/14 19:31:34 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	exec_fail(t_execute *exec, t_mshell *sh, char **envp)
 {
 	close(STDOUT_FILENO);
 	close(STDIN_FILENO);
-	error(exec->cmd);
 	ft_freesplit(envp);
 	free(exec->cmd);
 	vector_free(&exec->args);
@@ -44,4 +43,22 @@ int	exec_prepare(t_mshell *sh, t_execute *exec, size_t *i)
 		(*i)++;
 	}
 	return (0);
+}
+
+void	choose_fork_exec(t_mshell *sh, t_execute *exec, char **envp)
+{
+	int	ret;
+
+	if (exec->builtin)
+	{
+		ret = exec->builtin->func(sh, exec);
+		exec_fail(exec, sh, envp);
+		exit(ret);
+	}
+	if (execve(exec->cmd, (char **)exec->args.tab, envp) == -1)
+	{
+		exec_fail(exec, sh, envp);
+		error(exec->cmd);
+		exit(127);
+	}
 }

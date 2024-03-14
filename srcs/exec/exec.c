@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:18:34 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/13 19:44:20 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/14 19:37:55 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	exec_init(t_execute *exec, t_mshell *sh)
 {
 	vector_init(&exec->args, sizeof(char *));
 	exec->cmd = NULL;
+	exec->builtin = NULL;
 	exec->in = exec->nextin;
 	exec->nextin = dup(STDIN_FILENO);
 	exec->out = dup(sh->stdout);
@@ -29,6 +30,10 @@ void	exec_init(t_execute *exec, t_mshell *sh)
 
 int	exec_set_cmd(t_execute *exec, t_mshell *sh)
 {
+
+	exec->builtin = get_builtin(sh, ((char **)exec->args.tab)[0]);
+	if (exec->builtin)
+		return (0);
 	exec->cmd = get_openable_path(((char **)exec->args.tab)[0], X_OK, sh);
 	if (!exec->cmd)
 	{
@@ -60,11 +65,7 @@ void	exec_cmd(t_execute *exec, t_mshell *sh, char **envp)
 		close_fd(&exec->in);
 	if (exec->nextin != STDIN_FILENO)
 		close_fd(&exec->nextin);
-	if (execve(exec->cmd, (char **)exec->args.tab, envp) == -1)
-	{
-		exec_fail(exec, sh, envp);
-		exit(127);
-	}
+	choose_fork_exec(sh, exec, envp);
 }
 
 pid_t	exec_txt(t_execute *exec, t_mshell *sh)
@@ -77,6 +78,15 @@ pid_t	exec_txt(t_execute *exec, t_mshell *sh)
 		return (-1);
 	if (exec_set_cmd(exec, sh))
 		return (-1);
+	if (exec->builtin && !exec->builtin->fork)
+	{
+		if (set_env_return(sh, exec->builtin->func(sh, exec)) != 0)
+		{
+			error("set_env_return");
+			return (-2);
+		}
+		return (-4);
+	}
 	pid = exec_fork(exec, sh);
 	free(exec->cmd);
 	return (pid);
@@ -102,6 +112,8 @@ pid_t	exec(t_mshell *sh)
 			if (pid < 0)
 				return (close_exec(&exec), vector_free(&exec.args), -1);
 		}
+		else
+			pid = -2;
 		vector_free(&exec.args);
 		close_fd(&exec.in);
 		close_fd(&exec.out);

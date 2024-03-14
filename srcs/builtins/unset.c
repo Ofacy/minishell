@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/10 18:37:34 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/14 14:11:32 by bwisniew         ###   ########.fr       */
+/*   Created: 2024/03/14 13:57:38 by bwisniew          #+#    #+#             */
+/*   Updated: 2024/03/14 18:21:01 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <errno.h>
-#include <string.h>
-#include <stdio.h>
 
-void	error(char *str)
+int	unset(t_mshell *sh, t_execute *exec)
 {
-	printf("%s: %s: %s\n", SHELL_NAME, str, strerror(errno));
-}
+	t_env	*env;
+	size_t	i;
+	char	**args;
 
-void	custom_error(char *str, char *error_msg)
-{
-	printf("%s: %s: %s\n", SHELL_NAME, str, error_msg);
-}
-
-void	builtin_error(char *str, char *error_msg)
-{
-	printf("%s: %s\n", str, error_msg);
+	args = exec->args.tab;
+	if (!args[0])
+	{
+		custom_error("unset", "not enough arguments");
+		return (1);
+	}
+	i = 0;
+	while (args[i])
+	{
+		env = env_get(sh, args[i]);
+		if (env)
+			vector_remove(&sh->env, env - (t_env *)sh->env.tab);
+		i++;
+	}
+	return (0);
 }

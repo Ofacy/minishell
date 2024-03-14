@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:26:27 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/13 18:13:36 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:14:38 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ size_t	expander_skip_arrow(t_vector *lex, size_t i, size_t n)
 	if (i < n && is_type_arrow(((t_token *)lex->tab)[i].type))
 	{
 		((t_token *)lex->tab)[i + 1].is_file = true;
-		i += 2;
+		i ++;
 		while (i < n && !((t_token *)lex->tab)[i].is_separated
 			&& !is_special(((t_token *)lex->tab)[i].type))
 		{
@@ -94,7 +94,7 @@ int	expend_file(t_mshell *sh, size_t i)
 		i++;
 	}
 	if (expander(sh, i_cp + 1,
-			expander_skip_arrow(&sh->tokens, i_cp, sh->tokens.len)) < 0)
+			expander_skip_arrow(&sh->tokens, i_cp, sh->tokens.len) + 1) < 0)
 		return (1);
 	return (0);
 }
