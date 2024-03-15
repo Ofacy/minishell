@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:11:23 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/14 18:52:04 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:56:57 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv, char **env)
 	dup2(STDERR_FILENO, STDOUT_FILENO);
 	if (create_env(&mshell.env, env) != 0)
 		return (1);
-	while (1)
+	while (mshell.exit == -1)
 	{
 		input = get_user_input(&mshell);
 		if (!input)
@@ -65,4 +65,5 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	(void)env;
+	return (mshell.exit);
 }

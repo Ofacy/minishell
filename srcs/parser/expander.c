@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:26:27 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/14 16:12:42 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:47:31 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,11 @@ size_t	expended_len(t_token *token, t_mshell *sh)
 			if (env_var)
 				exp_size += env_var->value_size;
 			v_size = 0;
-			while (ft_strchr(ENV_NAME_CHAR, token->txt[i + v_size + 1]) != NULL
-				&& token->txt[i + v_size + 1])
+			while (token->txt[i + v_size + 1] && ft_strchr(ENV_NAME_CHAR, token->txt[i + v_size + 1]) != NULL)
 				v_size++;
-			if (v_size == 0)
+			if (token->txt[i + v_size + 1] == '?')
+				i++;
+			else if (v_size == 0)
 				exp_size++;
 			i += v_size;
 		}
@@ -77,10 +78,11 @@ int	get_expended_str(t_token *token, t_mshell *sh)
 		{
 			exp_i += replace_env_var(token->txt + i + 1, exp_str + exp_i, sh);
 			v_size = 0;
-			while (ft_strchr(ENV_NAME_CHAR, token->txt[i + v_size + 1]) != NULL
-				&& token->txt[i + v_size + 1])
+			while (token->txt[i + v_size + 1] && ft_strchr(ENV_NAME_CHAR, token->txt[i + v_size + 1]) != NULL)
 				v_size++;
-			if (v_size == 0)
+			if (token->txt[i + v_size + 1] == '?')
+				i++;
+			else if (v_size == 0)
 				exp_str[exp_i++] = '$';
 			i += v_size;
 		}

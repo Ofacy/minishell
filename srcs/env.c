@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:15:13 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/14 16:49:03 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/15 15:56:55 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ int	env_set(t_mshell *sh, char *name, char *value)
 		env_var->value = ft_strdup(value);
 		if (!env_var->value)
 			return (1);
+		env_var->value_size = ft_strlen(value);
 	}
 	else
 	{
-		env_tmp.exported = false;
 		env_tmp.key = ft_strdup(name);
 		if (!env_tmp.key)
 			return (1);

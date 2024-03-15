@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:43 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/15 13:21:01 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/15 16:11:05 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <string.h>
 #include <errno.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 int	cd_change_env(t_mshell *sh)
 {
@@ -23,9 +24,9 @@ int	cd_change_env(t_mshell *sh)
 	char	*new_pwd;
 
 	pwd = env_get(sh, "PWD");
-	oldpwd = env_get(sh, "OLDPWD");
 	if (pwd)
 	{
+		oldpwd = env_get(sh, "OLDPWD");
 		if (oldpwd && env_set(sh, "OLDPWD", pwd->value) != 0)
 		{
 			custom_error("cd", "coulnd't change OLDPWD");

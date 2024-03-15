@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:18:34 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/14 19:37:55 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:12:29 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ pid_t	exec_txt(t_execute *exec, t_mshell *sh)
 	char		*null;
 	pid_t		pid;
 
+	if (exec->args.len == 0)
+		return (-4);
 	null = NULL;
 	if (vector_add(&exec->args, &null) != 0)
 		return (-1);

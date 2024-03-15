@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:55:03 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/15 13:25:48 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/15 19:52:51 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 # include "lexer.h"
 # include <sys/types.h>
 
-# define BUILTIN_COUNT 5
+# define BUILTIN_COUNT 7
 
 # define ENV_NAME_CHAR "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\
-	0123456789_?"
+	0123456789_"
 # define PROMPT_DEFAULT "\e[1;32m$USER\e[0m@\e[1;36m$PWD\e[0m$ "
 # define PATH_DEFAULT "/usr/local/sbin:/usr/local/bin:/usr/sbin:\
 	/usr/bin:/sbin:/bin"
@@ -28,7 +28,7 @@
 
 typedef int	t_fd;
 
-typedef struct s_mshell	t_mshell;
+typedef struct s_mshell		t_mshell;
 typedef struct s_execute	t_execute;
 typedef struct s_env
 {
@@ -65,6 +65,7 @@ typedef struct s_mshell
 	t_fd		pipe[2];
 	t_env		last_return;
 	char		*input;
+	int			exit;
 }	t_mshell;
 
 void	free_token(t_token *token);
@@ -121,6 +122,7 @@ int		env(t_mshell *sh, t_execute *exec);
 int		export(t_mshell *sh, t_execute *exec);
 int		pwd(t_mshell *sh, t_execute *exec);
 int		unset(t_mshell *sh, t_execute *exec);
+int		exit_builtin(t_mshell *sh, t_execute *exec);
 t_cmd	*get_builtin(t_mshell *sh, char *cmd);
 
 #endif

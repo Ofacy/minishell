@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 21:09:43 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/14 18:51:13 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:56:30 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	init_mshell(t_mshell *sh)
 	sh->last_return.key_size = 1;
 	sh->last_return.value = ft_itoa(0);
 	sh->last_return.value_size = 1;
+	sh->exit = -1;
 }
 
 void	free_mshell(t_mshell *sh)

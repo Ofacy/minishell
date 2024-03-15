@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 20:41:37 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/13 18:10:32 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:21:01 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ char	*here_doc_getline(t_mshell *sh, size_t i)
 	t_token	line;
 
 	line.txt = readline(PROMPT_HEREDOC);
+	if (!line.txt)
+	{
+		custom_error("warning", "unexpected EOF in here-document");
+		return (NULL);
+	}
 	line.txt_size = ft_strlen(line.txt);
 	line.is_txt_heap = true;
 	if (((t_token *)sh->tokens.tab)[i].old_type == UNQUOTED)
@@ -66,7 +71,6 @@ int	exec_set_heredoc(t_execute *exec, t_mshell *sh, size_t i)
 		if (here_doc_line(file, line))
 			return (2);
 		line = here_doc_getline(sh, i + 1);
-		printf("%s VS %s\n", line, ((t_token *)sh->tokens.tab)[i + 1].txt);
 	}
 	close_fd(&file);
 	exec->in = open(".heredoc", O_RDONLY);

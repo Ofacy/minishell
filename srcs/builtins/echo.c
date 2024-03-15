@@ -1,3 +1,5 @@
+
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -10,6 +12,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "minishell.h"
 #include <unistd.h>
 #include <stdio.h>
@@ -50,9 +53,16 @@ int	echo_print_args(char **args, size_t i)
 	while (args[i])
 	{
 		if (res == -2)
-			res = printf("%s", args[i]);
+			res = write(STDOUT_FILENO, args[i], ft_strlen(args[i]));
 		else
-			res = printf(" %s", args[i]);
+		{
+			if (write(STDOUT_FILENO, " ", 1) == -1)
+			{
+				error("echo");
+				return (1);
+			}
+			res = write(STDOUT_FILENO, args[i], ft_strlen(args[i]));
+		}
 		if (res == -1)
 		{
 			error("echo");

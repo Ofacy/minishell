@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 18:30:15 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/14 19:51:50 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:09:10 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	builtin_init(t_mshell *sh)
 	sh->commands[2] = (t_cmd){"pwd", pwd, true};
 	sh->commands[3] = (t_cmd){"env", env, true};
 	sh->commands[4] = (t_cmd){"unset", unset, false};
+	sh->commands[5] = (t_cmd){"export", export, false};
+	sh->commands[6] = (t_cmd){"exit", exit_builtin, false};
 }
 
 t_cmd	*get_builtin(t_mshell *sh, char *cmd)
@@ -27,6 +29,8 @@ t_cmd	*get_builtin(t_mshell *sh, char *cmd)
 	size_t	i;
 
 	i = 0;
+	if (!cmd)
+		return (NULL);
 	while (i < BUILTIN_COUNT)
 	{
 		if (ft_strcmp(sh->commands[i].name, cmd) == 0)
