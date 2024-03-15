@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:42 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/14 19:39:48 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/15 14:02:17 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <unistd.h>
 #include <stdio.h>
 
-bool	echo_is_valid_flag(char *src)
+bool	echo_is_valid_flag(char *src, bool *has_n)
 {
 	size_t	i;
 
@@ -22,7 +22,10 @@ bool	echo_is_valid_flag(char *src)
 		return (false);
 	i = 1;
 	while (src[i] == 'n')
+	{
+		*has_n = false;
 		i++;
+	}
 	return (src[i] == '\0');
 }
 
@@ -30,14 +33,10 @@ size_t	echo_skip_flag(char **args, bool *has_n)
 {
 	size_t	i;
 
-	i = 0;
-	*has_n = false;
-	while (args[i])
+	i = 1;
+	*has_n = true;
+	while (args[i] && echo_is_valid_flag(args[i], has_n))
 	{
-		if (echo_is_valid_flag(args[i]))
-			*has_n = true;
-		else
-			break ;
 		i++;
 	}
 	return (i);
