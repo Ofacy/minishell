@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:11:23 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/15 17:56:57 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/18 10:58:17 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int argc, char **argv, char **env)
 		vector_foreach(&mshell.tokens, (void (*)(void *))free_token);
 		vector_free(&mshell.tokens);
 	}
-	printf("\n");
+	printf("exit\n");
 	close_fd(&mshell.stdout);
 	rl_clear_history();
 	vector_foreach(&mshell.env, (void (*)(void *))env_free);

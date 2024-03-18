@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 18:29:04 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/12 15:34:20 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/18 10:51:31 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	exec_set_pipe(t_execute *exec)
 	close_fd(&exec->nextin);
 	exec->out = fd[1];
 	exec->nextin = fd[0];
+	exec->has_pipe = false;
 	return (0);
 }
 

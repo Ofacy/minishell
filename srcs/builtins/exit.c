@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:36 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/15 18:20:02 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/18 10:58:10 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	exit_builtin(t_mshell *sh, t_execute *exec)
 	char	**args;
 	size_t	argc;
 
-	printf("exit\n");
 	args = exec->args.tab;
 	argc = 0;
 	while (args[argc])

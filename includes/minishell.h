@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:55:03 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/15 19:52:51 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/18 10:51:08 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef struct s_cmd
 {
 	char	*name;
 	int		(*func)(t_mshell *sh, t_execute	*exec);
-	bool	fork;
 }	t_cmd;
 
 typedef struct s_execute
@@ -51,6 +50,7 @@ typedef struct s_execute
 	t_fd		in;
 	t_fd		out;
 	t_fd		nextin;
+	bool		has_pipe;
 	t_cmd		*builtin;
 	char		*cmd;
 	t_vector	args;

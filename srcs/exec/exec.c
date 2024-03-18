@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:18:34 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/15 19:12:29 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/18 10:53:03 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	exec_init(t_execute *exec, t_mshell *sh)
 {
 	vector_init(&exec->args, sizeof(char *));
 	exec->cmd = NULL;
+	exec->has_pipe = false;
 	exec->builtin = NULL;
 	exec->in = exec->nextin;
 	exec->nextin = dup(STDIN_FILENO);
@@ -30,7 +31,6 @@ void	exec_init(t_execute *exec, t_mshell *sh)
 
 int	exec_set_cmd(t_execute *exec, t_mshell *sh)
 {
-
 	exec->builtin = get_builtin(sh, ((char **)exec->args.tab)[0]);
 	if (exec->builtin)
 		return (0);
@@ -80,7 +80,7 @@ pid_t	exec_txt(t_execute *exec, t_mshell *sh)
 		return (-1);
 	if (exec_set_cmd(exec, sh))
 		return (-1);
-	if (exec->builtin && !exec->builtin->fork)
+	if (exec->builtin && !exec->has_pipe)
 	{
 		if (set_env_return(sh, exec->builtin->func(sh, exec)) != 0)
 		{
