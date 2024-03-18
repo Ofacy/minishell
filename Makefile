@@ -6,7 +6,7 @@
 #    By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/14 13:24:31 by bwisniew          #+#    #+#              #
-#    Updated: 2024/03/15 18:00:07 by bwisniew         ###   ########.fr        #
+#    Updated: 2024/03/18 16:20:36 by bwisniew         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRCS =	main.c env.c prompt.c error.c env_utils.c mshell_utils.c
 PARSER_SRCS = lexer.c expander.c expander_utils.c syntax.c token_utils.c
 
 EXEC_SRCS =	path.c exec.c exec_fd.c here_doc.c fork.c exec_utils.c wait.c \
-			close.c 
+			close.c exec_builtins.c
 
 BUILTINS_SRCS = env.c pwd.c unset.c cd.c echo.c builtin_utils.c export.c exit.c
 

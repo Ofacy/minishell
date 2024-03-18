@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_fd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 18:29:04 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/18 10:51:31 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/18 11:54:53 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	exec_set_pipe(t_execute *exec)
 {
 	t_fd	fd[2];
 
+	exec->has_pipe = true;
 	fd[0] = -1;
 	fd[1] = -1;
 	if (pipe(fd) == -1)
@@ -33,14 +34,17 @@ int	exec_set_pipe(t_execute *exec)
 	}
 	close_fd(&exec->out);
 	close_fd(&exec->nextin);
-	exec->out = fd[1];
+	if (!exec->has_redirect)
+		exec->out = fd[1];
+	else
+		close(fd[1]);
 	exec->nextin = fd[0];
-	exec->has_pipe = false;
 	return (0);
 }
 
 int	exec_set_output(t_execute *exec, t_mshell *sh, size_t i)
 {
+	exec->has_redirect = true;
 	close_fd(&exec->out);
 	if (expend_file(sh, i))
 		return (1);
@@ -56,6 +60,7 @@ int	exec_set_output(t_execute *exec, t_mshell *sh, size_t i)
 
 int	exec_set_input(t_execute *exec, t_mshell *sh, size_t i)
 {
+	exec->has_redirect = true;
 	close_fd(&exec->in);
 	if (expend_file(sh, i))
 		return (1);
@@ -70,6 +75,7 @@ int	exec_set_input(t_execute *exec, t_mshell *sh, size_t i)
 
 int	exec_set_append(t_execute *exec, t_mshell *sh, size_t i)
 {
+	exec->has_redirect = true;
 	close_fd(&exec->out);
 	if (expend_file(sh, i))
 		return (1);

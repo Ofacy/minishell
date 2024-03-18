@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:43 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/15 16:11:05 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:30:27 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ int	cd_change_env(t_mshell *sh)
 		oldpwd = env_get(sh, "OLDPWD");
 		if (oldpwd && env_set(sh, "OLDPWD", pwd->value) != 0)
 		{
-			custom_error("cd", "coulnd't change OLDPWD");
+			custom_error("cd", "couldn't change OLDPWD");
 			return (1);
 		}
 		new_pwd = getcwd(NULL, 0);
 		if (new_pwd && env_set(sh, "PWD", new_pwd) != 0)
 		{
-			custom_error("cd", "coulnd't change PWD");
+			custom_error("cd", "couldn't change PWD");
 			if (new_pwd)
 				free(new_pwd);
 			return (1);

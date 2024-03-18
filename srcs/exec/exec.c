@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:18:34 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/18 10:53:03 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/18 16:20:48 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 void	exec_init(t_execute *exec, t_mshell *sh)
 {
 	vector_init(&exec->args, sizeof(char *));
+	exec->has_redirect = false;
 	exec->cmd = NULL;
-	exec->has_pipe = false;
 	exec->builtin = NULL;
 	exec->in = exec->nextin;
 	exec->nextin = dup(STDIN_FILENO);
@@ -82,11 +82,8 @@ pid_t	exec_txt(t_execute *exec, t_mshell *sh)
 		return (-1);
 	if (exec->builtin && !exec->has_pipe)
 	{
-		if (set_env_return(sh, exec->builtin->func(sh, exec)) != 0)
-		{
-			error("set_env_return");
+		if (exec_builtins(exec, sh) != 0)
 			return (-2);
-		}
 		return (-4);
 	}
 	pid = exec_fork(exec, sh);
@@ -102,6 +99,7 @@ pid_t	exec(t_mshell *sh)
 
 	pid = -1;
 	exec.nextin = dup(STDIN_FILENO);
+	exec.has_pipe = false;
 	exec_init(&exec, sh);
 	i = 0;
 	while (i < sh->tokens.len)

@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:55:03 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/18 10:51:08 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/18 16:20:27 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,18 @@
 # define BUILTIN_COUNT 7
 
 # define ENV_NAME_CHAR "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\
-	0123456789_"
-# define PROMPT_DEFAULT "\e[1;32m$USER\e[0m@\e[1;36m$PWD\e[0m$ "
+0123456789_"
+# define PROMPT_DEFAULT "\001\e[1;32m\002$USER\001\e[0m\002@\
+\001\e[1;36m\002$PWD\001\e[0m\002$ "
 # define PATH_DEFAULT "/usr/local/sbin:/usr/local/bin:/usr/sbin:\
-	/usr/bin:/sbin:/bin"
+/usr/bin:/sbin:/bin"
 # define SHELL_NAME "minishell"
 # define PROMPT_HEREDOC "> "
 
-typedef int	t_fd;
-
+typedef int					t_fd;
 typedef struct s_mshell		t_mshell;
 typedef struct s_execute	t_execute;
+
 typedef struct s_env
 {
 	char	*key;
@@ -51,6 +52,7 @@ typedef struct s_execute
 	t_fd		out;
 	t_fd		nextin;
 	bool		has_pipe;
+	bool		has_redirect;
 	t_cmd		*builtin;
 	char		*cmd;
 	t_vector	args;
@@ -97,6 +99,7 @@ int		exec_prepare(t_mshell *sh, t_execute *exec, size_t *i);
 int		exec_fd(t_execute *exec, t_mshell *sh, size_t i);
 void	exec_cmd(t_execute *exec, t_mshell *sh, char **envp);
 void	exec_fail(t_execute *exec, t_mshell *sh, char **envp);
+int		exec_builtins(t_execute *exec, t_mshell *sh);
 void	choose_fork_exec(t_mshell *sh, t_execute *exec, char **envp);
 
 char	*expander_join(t_token *t1, t_token *t2);

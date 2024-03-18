@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:39 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/15 17:37:03 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/18 15:25:29 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,12 @@ t_env	*export_sort(t_mshell *sh)
 	}
 	return (env);
 }
-int		export_print(t_mshell *sh)
+
+int	export_print(t_mshell *sh)
 {
 	size_t	i;
 	t_env	*env;
-	
+
 	i = 0;
 	env = export_sort(sh);
 	if (!env)
