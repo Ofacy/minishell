@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:55:03 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/18 16:20:27 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/18 19:22:42 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,8 @@ int		pwd(t_mshell *sh, t_execute *exec);
 int		unset(t_mshell *sh, t_execute *exec);
 int		exit_builtin(t_mshell *sh, t_execute *exec);
 t_cmd	*get_builtin(t_mshell *sh, char *cmd);
+
+void	signal_handler(int sig);
+void	signal_stop(int sig);
 
 #endif

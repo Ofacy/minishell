@@ -6,7 +6,7 @@
 #    By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/14 13:24:31 by bwisniew          #+#    #+#              #
-#    Updated: 2024/03/18 16:20:36 by bwisniew         ###   ########.fr        #
+#    Updated: 2024/03/18 19:22:42 by bwisniew         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ C_FLAGS = -g3 -Wall -Wextra -Werror -MMD -MP
 
 SRCS_DIR = srcs
 
-SRCS =	main.c env.c prompt.c error.c env_utils.c mshell_utils.c
+SRCS =	main.c env.c prompt.c error.c env_utils.c mshell_utils.c signal.c
 
 PARSER_SRCS = lexer.c expander.c expander_utils.c syntax.c token_utils.c
 

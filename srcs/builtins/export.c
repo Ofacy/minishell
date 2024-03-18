@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:39 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/18 15:25:29 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:11:31 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,26 @@ int	export_print(t_mshell *sh)
 	return (0);
 }
 
+int	get_key_len(char *str, size_t *i)
+{
+	if (ft_isalpha(str[*i]) == 0 && str[*i] != '_')
+	{
+		custom_error(str, "not a valid identifier");
+		return (1);
+	}
+	(*i)++;
+	while (str[*i] && str[*i] != '=')
+	{
+		if (ft_strchr(ENV_NAME_CHAR, str[*i]) == NULL)
+		{
+			custom_error(str, "not a valid identifier");
+			return (1);
+		}
+		(*i)++;
+	}
+	return (0);
+}
+
 int	try_export(t_mshell *sh, char *str)
 {
 	size_t	i;
@@ -72,15 +92,8 @@ int	try_export(t_mshell *sh, char *str)
 	char	*value;
 
 	i = 0;
-	while (str[i] && str[i] != '=')
-	{
-		if (ft_strchr(ENV_NAME_CHAR, str[i]) == NULL)
-		{
-			custom_error(str, "not a valid identifier");
-			return (1);
-		}
-		i++;
-	}
+	if (get_key_len(str, &i) != 0)
+		return (1);
 	if (i == 0)
 	{
 		custom_error(str, "not a valid identifier");

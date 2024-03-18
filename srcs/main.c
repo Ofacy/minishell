@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:11:23 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/18 15:33:28 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/18 19:22:42 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include <readline/history.h>
 #include <readline/readline.h>
+#include <signal.h>
 
 int	main(int argc, char **argv, char **env)
 {
@@ -31,7 +32,9 @@ int	main(int argc, char **argv, char **env)
 		return (1);
 	while (mshell.exit == -1)
 	{
+		signal(SIGINT, signal_handler);
 		input = get_user_input(&mshell);
+		signal(SIGINT, signal_stop);
 		if (!input)
 			break ;
 		mshell.input = input;

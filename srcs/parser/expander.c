@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:26:27 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/18 15:26:32 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/18 19:28:29 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,14 +109,13 @@ int	join_unseparated(t_vector *lex, size_t i, size_t n)
 	while (i < n)
 	{
 		token = ((t_token *)lex->tab) + i;
-		if (!token->is_separated)
+		while (!token->is_separated)
 		{
 			tmp = expander_join(token,
 					((t_token *)lex->tab) + i + 1);
 			if (!tmp)
 				return (1);
 			token->txt = tmp;
-			token->is_separated = false;
 			vector_remove(lex, i + 1);
 		}
 		if (((t_token *)lex->tab)[i].type == SINGLE_QUOTED)

@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:26:27 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/14 16:14:38 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/18 18:47:25 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ char	*expander_join(t_token *t1, t_token *t2)
 	ft_strlcpy(str, t1->txt, str_len + 1);
 	ft_strlcat(str, t2->txt, str_len + str2_len + 1);
 	t1->txt_size = str_len + str2_len + 1;
+	t1->is_separated = t2->is_separated;
 	free_token(t1);
 	free_token(t2);
 	t1->is_txt_heap = true;
