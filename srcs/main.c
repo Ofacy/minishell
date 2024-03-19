@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:11:23 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/18 19:22:42 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:38:26 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	main(int argc, char **argv, char **env)
 			break ;
 		mshell.input = input;
 		lexer(&mshell.tokens, input);
+		if (mshell.tokens.len != 0)
+			add_history(input);
 		if (check_syntax(&mshell.tokens) == 0)
 		{
 			expander(&mshell, 0, mshell.tokens.len);
@@ -53,8 +55,6 @@ int	main(int argc, char **argv, char **env)
 				i++;
 			}
 		}
-		if (mshell.tokens.len != 0)
-			add_history(input);
 		free(input);
 		vector_foreach(&mshell.tokens, (void (*)(void *))free_token);
 		vector_free(&mshell.tokens);

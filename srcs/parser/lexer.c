@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 17:00:53 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/12 15:18:02 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/19 16:58:18 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,12 @@ static size_t	lexer_txt_space(t_token *token, char *cmd)
 
 	i = 0;
 	token->type = UNQUOTED;
-	while (cmd[i] && cmd[i] != ' ' && ft_strchr(SPECIAL_CHAR, cmd[i]) == NULL)
+	while (cmd[i] && !ft_isspace(cmd[i])
+		&& ft_strchr(SPECIAL_CHAR, cmd[i]) == NULL)
 		i++;
 	token->txt = cmd;
 	token->txt_size = i;
-	token->is_separated = (cmd[i] == ' '
+	token->is_separated = (ft_isspace(cmd[i])
 			|| ft_strchr(SPECIAL_NO_QUOTE, cmd[i]) != NULL);
 	return (i);
 }
@@ -42,7 +43,7 @@ static size_t	lexer_txt(t_token *token, char *cmd, char quote)
 	{
 		token->txt = cmd;
 		token->txt_size = i;
-		token->is_separated = cmd[i + 1] == ' '
+		token->is_separated = ft_isspace(cmd[i + 1])
 			|| ft_strchr(SPECIAL_NO_QUOTE, cmd[i + 1]) != NULL;
 		return (i + 1);
 	}
@@ -74,7 +75,7 @@ static size_t	lexer_char(t_token *token, char *cmd)
 	{
 		return (lexer_special(token, cmd));
 	}
-	else if (cmd[0] == ' ')
+	else if (ft_isspace(cmd[0]))
 		return (1);
 	return (lexer_txt_space(token, cmd));
 }

@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:55:03 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/18 19:22:42 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:42:42 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,11 @@ typedef struct s_mshell
 void	free_token(t_token *token);
 
 size_t	expander_skip_arrow(t_vector *lex, size_t i, size_t n);
+int		replace_env_var(char *token_str, char *exp_str, t_mshell *sh);
 int		expander(t_mshell *sh, size_t start, size_t end);
 int		expend_file(t_mshell *sh, size_t i);
 int		get_expended_str(t_token *token, t_mshell *sh);
+int		expender_token_split(t_vector *tokens, size_t *i);
 
 t_env	*env_get(t_mshell *sh, char *key);
 int		set_env_return(t_mshell *sh, int value);

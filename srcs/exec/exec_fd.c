@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 18:29:04 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/18 11:54:53 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/19 17:01:03 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,12 @@ int	exec_set_pipe(t_execute *exec)
 		error("pipe");
 		return (1);
 	}
-	close_fd(&exec->out);
 	close_fd(&exec->nextin);
 	if (!exec->has_redirect)
+	{
+		close_fd(&exec->out);
 		exec->out = fd[1];
+	}
 	else
 		close(fd[1]);
 	exec->nextin = fd[0];

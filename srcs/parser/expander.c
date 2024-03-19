@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:26:27 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/18 19:28:29 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:45:08 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,6 @@ size_t	expended_len(t_token *token, t_mshell *sh)
 		i++;
 	}
 	return (exp_size);
-}
-
-int	replace_env_var(char *token_str, char *exp_str, t_mshell *sh)
-{
-	t_env	*env_var;
-
-	env_var = env_get(sh, token_str);
-	if (!env_var)
-		return (0);
-	ft_strlcpy(exp_str, env_var->value, env_var->value_size + 1);
-	return (env_var->value_size);
 }
 
 int	get_expended_str(t_token *token, t_mshell *sh)
@@ -101,6 +90,21 @@ int	get_expended_str(t_token *token, t_mshell *sh)
 	return (0);
 }
 
+int	get_expended_tokens(t_vector *tokens, size_t *i, t_mshell *sh)
+{
+	t_token		*token;
+
+	token = ((t_token *)tokens->tab) + (*i);
+	if (get_expended_str(token, sh) != 0)
+		return (1);
+	if (token->old_type == UNQUOTED && token->txt != NULL)
+	{
+		if (expender_token_split(tokens, i) != 0)
+			return (1);
+	}
+	return (0);
+}
+
 int	join_unseparated(t_vector *lex, size_t i, size_t n)
 {
 	t_token	*token;
@@ -129,17 +133,22 @@ int	join_unseparated(t_vector *lex, size_t i, size_t n)
 int	expander(t_mshell *sh, size_t start, size_t end)
 {
 	size_t		i_cp;
+	size_t		start_len;
+	size_t		begin_end;
 	t_vector	*lex;
 
 	i_cp = start;
 	lex = &sh->tokens;
+	begin_end = end;
+	start_len = sh->tokens.len;
 	while (start < end)
 	{
 		if (((t_token *)lex->tab)[start].txt != NULL
 			&& !is_special(((t_token *)lex->tab)[start].type))
-			if (get_expended_str(((t_token *)lex->tab) + start, sh) != 0)
+			if (get_expended_tokens(&sh->tokens, &start, sh) != 0)
 				return (1);
 		start = expander_skip_arrow(lex, start, end);
+		end = begin_end + sh->tokens.len - start_len;
 		start++;
 	}
 	return (join_unseparated(lex, i_cp, end));

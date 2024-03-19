@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:26:27 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/18 18:47:25 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:45:08 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,17 @@
 #include "libft.h"
 #include <stdlib.h>
 #include <stdio.h>
+
+int	replace_env_var(char *token_str, char *exp_str, t_mshell *sh)
+{
+	t_env	*env_var;
+
+	env_var = env_get(sh, token_str);
+	if (!env_var)
+		return (0);
+	ft_strlcpy(exp_str, env_var->value, env_var->value_size + 1);
+	return (env_var->value_size);
+}
 
 size_t	expander_skip_arrow(t_vector *lex, size_t i, size_t n)
 {
