@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:38 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/15 15:45:28 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:41:04 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	unset(t_mshell *sh, t_execute *exec)
 	i = 0;
 	while (args[i])
 	{
-		env = env_get(sh, args[i]);
+		env = env_get(sh, args[i], false);
 		if (env)
 			vector_remove(&sh->env, env - (t_env *)sh->env.tab);
 		i++;

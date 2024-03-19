@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:18:34 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/18 16:20:48 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/19 19:07:36 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,14 @@
 #include "libft.h"
 #include <stdio.h>
 
-void	exec_init(t_execute *exec, t_mshell *sh)
+void	exec_init(t_execute *exec, t_mshell *sh, bool next)
 {
+	if (next)
+	{
+		vector_free(&exec->args);
+		close_fd(&exec->in);
+		close_fd(&exec->out);
+	}
 	vector_init(&exec->args, sizeof(char *));
 	exec->has_redirect = false;
 	exec->cmd = NULL;
@@ -100,24 +106,20 @@ pid_t	exec(t_mshell *sh)
 	pid = -1;
 	exec.nextin = dup(STDIN_FILENO);
 	exec.has_pipe = false;
-	exec_init(&exec, sh);
+	exec_init(&exec, sh, false);
 	i = 0;
 	while (i < sh->tokens.len)
 	{
 		if (exec_prepare(sh, &exec, &i) != 0)
 			return (close_exec(&exec), vector_free(&exec.args), -1);
+		pid = -2;
 		if (exec.in > 0 && exec.out > 0)
 		{
 			pid = exec_txt(&exec, sh);
 			if (pid < 0)
 				return (close_exec(&exec), vector_free(&exec.args), -1);
 		}
-		else
-			pid = -2;
-		vector_free(&exec.args);
-		close_fd(&exec.in);
-		close_fd(&exec.out);
-		exec_init(&exec, sh);
+		exec_init(&exec, sh, true);
 		i++;
 	}
 	close_exec(&exec);

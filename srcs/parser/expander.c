@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:26:27 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/19 15:45:08 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/19 19:27:19 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+static size_t	add_env_len(t_token *token, t_mshell *sh, size_t i)
+{
+	t_env	*env_var;
+
+	env_var = env_get(sh, token->txt + i + 1, false);
+	if (env_var)
+		return (env_var->value_size);
+	return (0);
+}
+
 size_t	expended_len(t_token *token, t_mshell *sh)
 {
 	size_t	exp_size;
-	t_env	*env_var;
 	size_t	i;
 	size_t	v_size;
 
@@ -28,13 +37,8 @@ size_t	expended_len(t_token *token, t_mshell *sh)
 	{
 		if (token->txt[i] == '$' && token->type != SINGLE_QUOTED)
 		{
-			env_var = env_get(sh, token->txt + i + 1);
-			if (env_var)
-				exp_size += env_var->value_size;
-			v_size = 0;
-			while (token->txt[i + v_size + 1]
-				&& ft_strchr(ENV_NAME_CHAR, token->txt[i + v_size + 1]) != NULL)
-				v_size++;
+			exp_size += add_env_len(token, sh, i);
+			v_size = skip_env_name(token->txt + i + 1);
 			if (token->txt[i + v_size + 1] == '?')
 				i++;
 			else if (v_size == 0)
@@ -46,48 +50,6 @@ size_t	expended_len(t_token *token, t_mshell *sh)
 		i++;
 	}
 	return (exp_size);
-}
-
-int	get_expended_str(t_token *token, t_mshell *sh)
-{
-	char	*exp_str;
-	size_t	exp_len;
-	size_t	i;
-	size_t	exp_i;
-	size_t	v_size;
-
-	exp_len = expended_len(token, sh);
-	exp_str = malloc(sizeof(char) * (exp_len + 1));
-	if (!exp_str)
-		return (1);
-	exp_i = 0;
-	i = 0;
-	while (exp_i < exp_len)
-	{
-		if (token->txt[i] == '$' && token->type != SINGLE_QUOTED)
-		{
-			exp_i += replace_env_var(token->txt + i + 1, exp_str + exp_i, sh);
-			v_size = 0;
-			while (token->txt[i + v_size + 1]
-				&& ft_strchr(ENV_NAME_CHAR, token->txt[i + v_size + 1]) != NULL)
-				v_size++;
-			if (token->txt[i + v_size + 1] == '?')
-				i++;
-			else if (v_size == 0)
-				exp_str[exp_i++] = '$';
-			i += v_size;
-		}
-		else
-			exp_str[exp_i++] = token->txt[i];
-		i++;
-	}
-	free_token(token);
-	exp_str[exp_i] = '\0';
-	token->txt = exp_str;
-	token->txt_size = exp_i;
-	token->is_txt_heap = true;
-	token->type = UNQUOTED;
-	return (0);
 }
 
 int	get_expended_tokens(t_vector *tokens, size_t *i, t_mshell *sh)

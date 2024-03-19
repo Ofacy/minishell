@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:15:13 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/18 10:48:55 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/19 18:55:09 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,32 +47,31 @@ int	env_set(t_mshell *sh, char *name, char *value)
 	t_env	*env_var;
 	t_env	env_tmp;
 
-	env_var = env_get(sh, name);
-	if (env_var)
+	env_var = env_get(sh, name, true);
+	if (!env_var)
 	{
-		free(env_var->value);
-		env_var->value = ft_strdup(value);
-		if (!env_var->value)
-			return (1);
-		env_var->value_size = ft_strlen(value);
-	}
-	else
-	{
+		env_tmp.value = NULL;
+		env_tmp.value_size = 0;
 		env_tmp.key = ft_strdup(name);
 		if (!env_tmp.key)
 			return (1);
-		env_tmp.value = ft_strdup(value);
-		if (!env_tmp.value)
-			return (free(env_tmp.key), 1);
 		env_tmp.key_size = ft_strlen(env_tmp.key);
-		env_tmp.value_size = ft_strlen(env_tmp.value);
 		if (vector_add(&sh->env, &env_tmp) != 0)
 			return (1);
+		env_var = (t_env *)sh->env.tab + sh->env.len - 1;
 	}
+	if (!value)
+		return (0);
+	if (env_var->value)
+		free(env_var->value);
+	env_var->value = ft_strdup(value);
+	if (!env_var->value)
+		return (1);
+	env_var->value_size = ft_strlen(value);
 	return (0);
 }
 
-t_env	*env_get(t_mshell *sh, char *key)
+t_env	*env_get(t_mshell *sh, char *key, bool nullvalue)
 {
 	size_t		i;
 	size_t		key_size;
@@ -89,13 +88,13 @@ t_env	*env_get(t_mshell *sh, char *key)
 	while (i < env->len)
 	{
 		env_var = (t_env *)env->tab + i;
-		if (env_var->key_size != key_size)
+		if (env_var->key_size == key_size
+			&& ft_strncmp(env_var->key, key, key_size) == 0)
 		{
-			i++;
-			continue ;
-		}
-		if (ft_strncmp(env_var->key, key, key_size) == 0)
+			if (!nullvalue && !env_var->value)
+				return (NULL);
 			return (env_var);
+		}
 		i++;
 	}
 	return (NULL);
@@ -110,7 +109,6 @@ int	create_env(t_vector *vector, char **env)
 	vector_init(vector, sizeof(t_env));
 	while (env[i])
 	{
-		env_tmp.exported = true;
 		env_tmp.key = ft_strcdup(env[i], '=');
 		if (!env_tmp.key)
 			return (1);

@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:43 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/18 11:30:27 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:41:00 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int	cd_change_env(t_mshell *sh)
 	t_env	*oldpwd;
 	char	*new_pwd;
 
-	pwd = env_get(sh, "PWD");
+	pwd = env_get(sh, "PWD", false);
 	if (pwd)
 	{
-		oldpwd = env_get(sh, "OLDPWD");
+		oldpwd = env_get(sh, "OLDPWD", false);
 		if (oldpwd && env_set(sh, "OLDPWD", pwd->value) != 0)
 		{
 			custom_error("cd", "couldn't change OLDPWD");
@@ -49,7 +49,7 @@ int	cd_home(t_mshell *sh)
 {
 	t_env	*home;
 
-	home = env_get(sh, "HOME");
+	home = env_get(sh, "HOME", false);
 	if (!home->value)
 	{
 		custom_error("cd", "HOME not set");

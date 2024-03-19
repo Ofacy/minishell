@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:12:55 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/13 17:51:56 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:40:48 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_token	prompt(t_mshell *sh)
 	t_token	prompt;
 	t_env	*env_prompt;
 
-	env_prompt = env_get(sh, "PROMPT");
+	env_prompt = env_get(sh, "PROMPT", false);
 	if (!env_prompt)
 		prompt.txt = PROMPT_DEFAULT;
 	else

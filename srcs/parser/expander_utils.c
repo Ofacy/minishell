@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:26:27 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/19 15:45:08 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:41:18 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	replace_env_var(char *token_str, char *exp_str, t_mshell *sh)
 {
 	t_env	*env_var;
 
-	env_var = env_get(sh, token_str);
+	env_var = env_get(sh, token_str, false);
 	if (!env_var)
 		return (0);
 	ft_strlcpy(exp_str, env_var->value, env_var->value_size + 1);
@@ -75,7 +75,7 @@ int	expend_file_ambi(t_token *token, t_mshell *sh)
 	{
 		if (token->txt[char_i] == '$' && token->type != SINGLE_QUOTED)
 		{
-			env_var = env_get(sh, token->txt + char_i + 1);
+			env_var = env_get(sh, token->txt + char_i + 1, false);
 			if (!env_var)
 			{
 				char_i++;

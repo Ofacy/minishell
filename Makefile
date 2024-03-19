@@ -6,7 +6,7 @@
 #    By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/14 13:24:31 by bwisniew          #+#    #+#              #
-#    Updated: 2024/03/19 15:10:49 by bwisniew         ###   ########.fr        #
+#    Updated: 2024/03/19 18:47:03 by bwisniew         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ SRCS_DIR = srcs
 
 SRCS =	main.c env.c prompt.c error.c env_utils.c mshell_utils.c signal.c
 
-PARSER_SRCS = lexer.c expander.c expander_utils.c expender_token.c syntax.c token_utils.c
+PARSER_SRCS = lexer.c expander.c expander_utils.c expander_token.c syntax.c \
+			token_utils.c expand.c
 
 EXEC_SRCS =	path.c exec.c exec_fd.c here_doc.c fork.c exec_utils.c wait.c \
 			close.c exec_builtins.c
@@ -43,10 +44,11 @@ VECOTR = vector/libvct.a
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(VECOTR) $(OBJ)  
+$(NAME): $(LIBFT) $(VECOTR) $(OBJ)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(VECOTR) -lreadline
 
-$(OUTDIR)/%.o: $(SRCS_DIR)/%.c $(LIBFT) $(VECOTR) | $(OUTDIR)
+$(OUTDIR)/%.o: $(SRCS_DIR)/%.c $(LIBFT) $(VECOTR)
+	@mkdir -p $(@D)
 	$(CC) $(C_FLAGS) $(INCLUDE:%=-I %) -o $@ -c $<
 
 $(LIBFT): FORCE
@@ -54,9 +56,6 @@ $(LIBFT): FORCE
 
 $(VECOTR): FORCE
 	make -C vector
-
-$(OUTDIR):
-	mkdir -p $(OUTDIR) $(OUTDIR)/exec $(OUTDIR)/parser $(OUTDIR)/builtins
 
 valgrind: $(NAME)
 	valgrind --track-fds=yes --trace-children=yes --leak-check=full --show-leak-kinds=all --suppressions=./mask_readline_leaks.supp ./minishell

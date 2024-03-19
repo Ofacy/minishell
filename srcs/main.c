@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:11:23 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/19 15:38:26 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:47:03 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 int	main(int argc, char **argv, char **env)
 {
 	t_mshell mshell;
-	size_t	i = 0;
+	// size_t	i = 0;
 	char	*input;
 
 	mshell.stdout = dup(STDOUT_FILENO);
@@ -45,15 +45,15 @@ int	main(int argc, char **argv, char **env)
 		{
 			expander(&mshell, 0, mshell.tokens.len);
 			set_env_return(&mshell, wait_for_child(exec(&mshell)));
-			i = 0;
-			while (i < mshell.tokens.len)
-			{
-				printf("i = %-5lu; old_type = %d, type = %d, sparated = %d, heap = %d", i, ((t_token *)mshell.tokens.tab)[i].old_type, ((t_token *)mshell.tokens.tab)[i].type, ((t_token *)mshell.tokens.tab)[i].is_separated, ((t_token *)mshell.tokens.tab)[i].is_txt_heap);
-				if (((t_token *)mshell.tokens.tab)[i].txt != NULL)
-					printf(" is_file = %d txt = '%s', size = %lu", ((t_token *)mshell.tokens.tab)[i].is_file, ((t_token *)mshell.tokens.tab)[i].txt, ((t_token *)mshell.tokens.tab)[i].txt_size);
-				printf("\n\n");
-				i++;
-			}
+			// i = 0;
+			// while (i < mshell.tokens.len)
+			// {
+			// 	printf("i = %-5lu; old_type = %d, type = %d, sparated = %d, heap = %d", i, ((t_token *)mshell.tokens.tab)[i].old_type, ((t_token *)mshell.tokens.tab)[i].type, ((t_token *)mshell.tokens.tab)[i].is_separated, ((t_token *)mshell.tokens.tab)[i].is_txt_heap);
+			// 	if (((t_token *)mshell.tokens.tab)[i].txt != NULL)
+			// 		printf(" is_file = %d txt = '%s', size = %lu", ((t_token *)mshell.tokens.tab)[i].is_file, ((t_token *)mshell.tokens.tab)[i].txt, ((t_token *)mshell.tokens.tab)[i].txt_size);
+			// 	printf("\n\n");
+			// 	i++;
+			// }
 		}
 		free(input);
 		vector_foreach(&mshell.tokens, (void (*)(void *))free_token);
