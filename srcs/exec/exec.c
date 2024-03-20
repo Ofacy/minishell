@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:18:34 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/19 19:07:36 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/20 17:55:17 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	exec_set_cmd(t_execute *exec, t_mshell *sh)
 void	exec_cmd(t_execute *exec, t_mshell *sh, char **envp)
 {
 	close_fd(&sh->stdout);
+	close_fd(&sh->stdin);
 	if (dup2(exec->out, STDOUT_FILENO) < 0)
 	{
 		error("dup2 out");
@@ -89,7 +90,7 @@ pid_t	exec_txt(t_execute *exec, t_mshell *sh)
 	if (exec->builtin && !exec->has_pipe)
 	{
 		if (exec_builtins(exec, sh) != 0)
-			return (-2);
+			return (-3);
 		return (-4);
 	}
 	pid = exec_fork(exec, sh);
@@ -103,8 +104,8 @@ pid_t	exec(t_mshell *sh)
 	pid_t		pid;
 	t_execute	exec;
 
-	pid = -1;
-	exec.nextin = dup(STDIN_FILENO);
+	pid = -2;
+	exec.nextin = dup(sh->stdin);
 	exec.has_pipe = false;
 	exec_init(&exec, sh, false);
 	i = 0;
@@ -112,12 +113,12 @@ pid_t	exec(t_mshell *sh)
 	{
 		if (exec_prepare(sh, &exec, &i) != 0)
 			return (close_exec(&exec), vector_free(&exec.args), -1);
-		pid = -2;
+		pid = -3;
 		if (exec.in > 0 && exec.out > 0)
 		{
 			pid = exec_txt(&exec, sh);
 			if (pid < 0)
-				return (close_exec(&exec), vector_free(&exec.args), -1);
+				return (close_exec(&exec), vector_free(&exec.args), pid);
 		}
 		exec_init(&exec, sh, true);
 		i++;

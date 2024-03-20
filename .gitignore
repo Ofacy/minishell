@@ -2,6 +2,7 @@
 *.a
 *.d
 minishell
+msh_tester
 .vscode
 .cache
 test

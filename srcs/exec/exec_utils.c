@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:31:10 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/19 16:53:51 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/20 15:04:38 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	exec_prepare(t_mshell *sh, t_execute *exec, size_t *i)
 	{
 		if (is_special(((t_token *)sh->tokens.tab)[*i].type))
 		{
-			if (exec->in > 0 && exec->out > 0)
-				exec_fd(exec, sh, *i);
+			if (exec->in > 0 && exec->out > 0 && exec_fd(exec, sh, *i) == 2)
+				return (2);
 			if (((t_token *)sh->tokens.tab)[*i].type != PIPE)
 				(*i)++;
 			else
@@ -57,8 +57,8 @@ void	choose_fork_exec(t_mshell *sh, t_execute *exec, char **envp)
 	}
 	if (execve(exec->cmd, (char **)exec->args.tab, envp) == -1)
 	{
-		exec_fail(exec, sh, envp);
 		error(exec->cmd);
+		exec_fail(exec, sh, envp);
 		exit(127);
 	}
 }

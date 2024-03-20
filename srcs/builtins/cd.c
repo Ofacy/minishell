@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:43 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/19 18:41:00 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/20 18:31:48 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	cd_home(t_mshell *sh)
 	t_env	*home;
 
 	home = env_get(sh, "HOME", false);
-	if (!home->value)
+	if (!home)
 	{
 		custom_error("cd", "HOME not set");
 		return (1);
@@ -71,6 +71,11 @@ int	cd(t_mshell *sh, t_execute *exec)
 	args = exec->args.tab;
 	if (args[1] == NULL)
 		return (cd_home(sh));
+	else if (args[2] != NULL)
+	{
+		custom_error("cd", "too many arguments");
+		return (1);
+	}
 	else if (chdir(args[1]) == -1)
 	{
 		error("cd");

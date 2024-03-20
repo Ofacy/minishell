@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:12:55 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/19 18:40:48 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/20 18:31:48 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ char	*get_user_input(t_mshell *sh)
 	t_token	c_prompt;
 	char	*input;
 
-	c_prompt = prompt(sh);
+	c_prompt.txt = NULL;
+	if (isatty(STDIN_FILENO))
+		c_prompt = prompt(sh);
 	if (c_prompt.type == UNSET)
 		return (NULL);
 	input = readline(c_prompt.txt);

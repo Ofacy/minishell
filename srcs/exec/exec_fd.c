@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 18:29:04 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/19 18:47:03 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/20 14:32:07 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int	exec_set_output(t_execute *exec, t_mshell *sh, size_t i)
 
 int	exec_set_input(t_execute *exec, t_mshell *sh, size_t i)
 {
-	exec->has_redirect = true;
 	close_fd(&exec->in);
 	if (expend_file(sh, i))
 		return (1);

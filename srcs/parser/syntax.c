@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 16:21:31 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/10 20:47:39 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/20 18:31:48 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ int	check_syntax(t_vector *tokens)
 	{
 		printf("minishell: syntax error near unexpected token `%s`\n",
 			get_token_str(type));
-		return (1);
+		return (2);
 	}
 	type = check_unclosed_quotes(tokens);
 	if (type)
 	{
 		printf("minishell: syntax error unclosed quotes `%s`\n",
 			get_token_str(type));
-		return (1);
+		return (2);
 	}
 	return (0);
 }

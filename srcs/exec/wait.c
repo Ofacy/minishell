@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 17:58:52 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/14 16:33:43 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/20 15:25:55 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,16 @@ int	wait_for_child(pid_t last_pid)
 			last_pid_status = status;
 		pid = wait(&status);
 	}
+	if (last_pid == -3)
+		return (0);
 	if (last_pid == -2)
 		return (1);
 	if (errno != ECHILD)
 		return (error("wait"), 127);
-	if (last_pid == -1)
+	if (last_pid == -1 && g_signal == -1)
 		return (127);
+	else if (last_pid == -1)
+		return (128 + g_signal);
 	if (WIFSIGNALED(last_pid_status))
 		return (WTERMSIG(last_pid_status) + 128);
 	return (WEXITSTATUS(last_pid_status));
