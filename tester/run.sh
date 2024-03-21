@@ -6,7 +6,7 @@
 #    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 13:41:27 by lcottet           #+#    #+#              #
-#    Updated: 2024/03/21 19:05:57 by lcottet          ###   ########.fr        #
+#    Updated: 2024/03/21 19:08:40 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ for filename in $TESTS; do
 	echo -n -e $'\n'"${CYAN}Running test${ENDCOLOR} $filename"
 	rm -rf exec_env
 	mkdir -p exec_env
-	cd exec_env && LD_PRELOAD=$OG_PWD/force_tty.so bash 2> ../bash_outputs/err 1> ../bash_outputs/out < ../$filename
+	cd exec_env && bash 2> ../bash_outputs/err 1> ../bash_outputs/out < ../$filename
 	cd ..
 	BASH_EXIT=$?
 	rm -rf exec_env
