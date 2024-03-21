@@ -1,1 +1,1 @@
-ech|o hola | cat
+exit | sleep 3

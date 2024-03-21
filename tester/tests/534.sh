@@ -1,2 +1,4 @@
-cat > ls1 < ls2
+echo hola > bonjour hey
 ls
+cat bonjour
+cat hey

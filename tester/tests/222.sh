@@ -1,2 +1,2 @@
-export HOLA="   -n bonjour   "  
-echo $HOLA
+export HOLA="  bonjour  hey  "  
+echo wesh$""HOLA.

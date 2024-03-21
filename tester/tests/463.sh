@@ -1,1 +1,1 @@
-echo hola | cat | cat | cat | cat | cat | grep hola
+export HOLA=bonjour | cat -e | cat -e

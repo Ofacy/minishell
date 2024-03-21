@@ -1,1 +1,1 @@
-"$HOMEdskjhfkdshfsd"
+$LESS$VAR

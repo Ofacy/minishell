@@ -1,2 +1,2 @@
-export HOL=A=""
-env
+export HOLA=-n
+"echo $HOLA" hey

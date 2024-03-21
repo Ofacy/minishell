@@ -1,2 +1,1 @@
-echo hola > bonjour
-exit | cat -e bonjour
+cd / | echo "hola"

@@ -1,2 +1,3 @@
-whereis grep > Docs/bonjour
-cat Docs/bonjour
+echo hola >> hello >> hello > hello
+echo hola >> hello
+cat < hello

@@ -1,1 +1,1 @@
-unset $PWD
+unset _______

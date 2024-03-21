@@ -1,1 +1,1 @@
-export --HOLA=bonjour
+export +HOLA=bonjour

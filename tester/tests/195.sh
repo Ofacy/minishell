@@ -1,1 +1,4 @@
-export HO*LA=bonjour
+export HOLA=bonsoir
+export HOLA=bonretour
+export HOLA=bonjour
+env

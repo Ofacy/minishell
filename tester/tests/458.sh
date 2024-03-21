@@ -1,1 +1,1 @@
-ls | ls | echo hola | rev
+cat Makefile | cat -e | cat -e

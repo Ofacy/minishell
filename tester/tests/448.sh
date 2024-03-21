@@ -1,1 +1,1 @@
-ifconfig | grep hola
+ls -la | grep "'.'"

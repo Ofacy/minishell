@@ -1,2 +1,3 @@
-cd '////////'
-pwd
+unset HOME
+export HOME=
+cd

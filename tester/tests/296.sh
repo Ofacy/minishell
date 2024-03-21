@@ -1,2 +1,1 @@
-unset PATH
-cat Makefile
+/bin/echo

@@ -1,1 +1,1 @@
-echo hola ||| cat
+sleep 3 | exit

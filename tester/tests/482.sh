@@ -1,1 +1,1 @@
-exit | sleep 3
+echo hola > > bonjour

@@ -1,1 +1,3 @@
-cat Makefile | grep pr | head -n 5 | cd file_not_exist
+echo hola > bonjour
+echo que tal >> bonjour
+cat < bonjour

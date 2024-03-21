@@ -1,3 +1,2 @@
-export HOLA=bonjour
-export BYE=casse-toi
-echo $HOLA et $BYE
+export HOLA="  bonjour  hey  "  
+echo $HOLA | cat -e

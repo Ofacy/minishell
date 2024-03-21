@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 20:23:22 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/21 18:55:39 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/21 20:11:01 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ char	*get_token_str(t_tokentype type)
 		return ("'");
 	else if (type == NEWLINE)
 		return ("newline");
+	else if (type == PIPE)
+		return ("|");
 	return ("UNKNOWN");
 }
 

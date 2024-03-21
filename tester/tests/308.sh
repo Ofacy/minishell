@@ -1,1 +1,1 @@
-/bin/echo
+pwd pwd pwd

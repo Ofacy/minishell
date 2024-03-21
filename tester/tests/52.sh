@@ -1,1 +1,1 @@
-""''echo hola""'''' que""'' tal""''
+echo -n -n

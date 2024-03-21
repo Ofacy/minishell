@@ -1,1 +1,1 @@
-echo $UID
+echo $9HOME

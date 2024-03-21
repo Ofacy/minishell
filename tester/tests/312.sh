@@ -1,1 +1,1 @@
-[touche du haut]
+cd .

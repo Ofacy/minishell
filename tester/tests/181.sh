@@ -1,1 +1,1 @@
-export ?=2
+export HOL.A=bonjour

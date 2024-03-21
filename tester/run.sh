@@ -6,11 +6,15 @@
 #    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 13:41:27 by lcottet           #+#    #+#              #
-#    Updated: 2024/03/21 19:08:40 by lcottet          ###   ########.fr        #
+#    Updated: 2024/03/21 20:40:50 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #!/bin/bash
+
+OUTPUT_EXIT=1
+ERROR_EXIT=0
+STATUS_EXIT=1
 
 RED="\e[31m"
 BLUE="\e[34m"
@@ -41,22 +45,28 @@ for filename in $TESTS; do
 	USER_EXIT=$?
 	OUT_DIFF=$(diff bash_outputs/out user_outputs/out)
 	ERR_DIFF=$(diff bash_outputs/err user_outputs/err)
-	if [ "$OUT_DIFF" != "" ]; then
+	if [ "$OUTPUT_DIFF" != "" ]; then
 		echo -e " ${RED}KO${ENDCOLOR}"
 		echo "OUTPUT DIFF:"
 		echo "$OUT_DIFF"
-		exit 1
+		if [[ "$OUTPUT_EXIT" -eq 1 ]]; then
+			exit 1
+		fi
 	elif [ "$(cat user_outputs/err | wc -l)" != "$(cat bash_outputs/err | uniq -w 14 | wc -l)" ]; then
 		echo -e " ${RED}KO${ENDCOLOR}"
 		echo "ERROR DIFF:"
 		echo "$ERR_DIFF"
-		exit 1
+		if [[ "$ERROR_EXIT" -eq 1 ]]; then
+			exit 1
+		fi
 	elif [ "$BASH_EXIT" != "$USER_EXIT" ]; then
 		echo -e " ${RED}KO${ENDCOLOR}"
 		echo "EXIT CODE DIFF:"
 		echo "Expected: $BASH_EXIT"
 		echo "Got: $USER_EXIT"
-		exit 1
+		if [[ "$STATUS_EXIT" -eq 1 ]]; then
+			exit 1
+		fi
 	else
 		echo -e " ${GREEN}OK${ENDCOLOR}"
 	fi

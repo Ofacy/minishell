@@ -1,1 +1,2 @@
-sleep 3 | exit
+pwd >                     bonjour
+cat bonjour

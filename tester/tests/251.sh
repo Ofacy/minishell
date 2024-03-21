@@ -1,1 +1,2 @@
-export '='='='
+unset PATH
+ls

@@ -1,3 +1,2 @@
-export HOLA=p
-export BYE=w
-$'HOLA'$'BYE'd
+unset OLDPWD
+env | grep OLDPWD

@@ -1,3 +1,5 @@
-export HOLA=p
-export BYE=w
-$"HOLA"$"BYE"d
+pwd
+unset PWD
+env | grep PWD
+cd $PWD
+pwd

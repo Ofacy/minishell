@@ -1,1 +1,2 @@
-cd '$PWD/srcs'
+chmod 000 minishell
+./minishell

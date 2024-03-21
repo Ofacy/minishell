@@ -1,1 +1,1 @@
-unset ======
+/bin/env

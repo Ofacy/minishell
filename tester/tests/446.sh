@@ -1,1 +1,1 @@
-cd .. | pwd
+ls | ls | echo hola | rev

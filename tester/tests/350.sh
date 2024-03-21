@@ -1,1 +1,3 @@
-cd /minishell
+unset HOME
+export HOME
+cd

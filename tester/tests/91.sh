@@ -1,1 +1,1 @@
-<echo<
+|echo -n hola

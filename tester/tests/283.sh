@@ -1,1 +1,2 @@
-unset HOL_A
+unset PATH
+echo $PATH

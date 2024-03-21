@@ -1,3 +1,4 @@
-export HOLA=hey
-echo bonjour > $HOLA
-echo $HOLA
+echo hola > hello >> hello >> hello
+echo hola >> hello
+echo hola > hello >> hello >> hello
+cat < hello

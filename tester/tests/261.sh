@@ -1,2 +1,1 @@
-unset PATH
-echo $PATH
+unset HOL?A HOLA

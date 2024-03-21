@@ -1,5 +1,1 @@
-pwd
-unset PWD
-env | grep PWD
-cd $PWD
-pwd
+unset HOL=A

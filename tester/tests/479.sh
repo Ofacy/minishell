@@ -1,1 +1,2 @@
-sleep 3 | sleep 3
+ls -la > Docs/bonjour
+cat Docs/bonjour

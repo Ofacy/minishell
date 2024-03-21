@@ -1,2 +1,2 @@
-export HOLA=bon"jour"
-env
+export HOLA=at
+c$HOLA Makefile

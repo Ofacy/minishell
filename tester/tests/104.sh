@@ -1,1 +1,1 @@
-echo '$HO''ME'
+echo "" $HOME

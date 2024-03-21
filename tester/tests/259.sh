@@ -1,4 +1,1 @@
-export HOLA=bonjour
-env
-unset HOLA
-env
+unset HOL?A

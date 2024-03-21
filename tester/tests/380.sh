@@ -1,2 +1,1 @@
-env -i ./minishell
-env
+exit hola 666

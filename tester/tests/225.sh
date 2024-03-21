@@ -1,2 +1,3 @@
-export HOLA=at
-c$HOLA Makefile
+export HOLA=bonjour
+export HOLA=' hola et $HOLA'
+echo $HOLA

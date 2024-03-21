@@ -1,3 +1,2 @@
-export HOLA=bonjour
-export HOLA=' hola et $HOLA'
-echo $HOLA
+export TE+S=T
+env

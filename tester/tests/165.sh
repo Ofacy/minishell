@@ -1,1 +1,1 @@
-Ctlr-Z
+export | grep "HOME"

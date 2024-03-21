@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 16:21:31 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/21 15:24:31 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/21 20:07:29 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ static t_tokentype	check_special(t_vector *tokens)
 		if (is_type_arrow(((t_token *)tokens->tab)[i].type))
 			if (is_type_arrow(((t_token *)tokens->tab)[i + 1].type))
 				return (((t_token *)tokens->tab)[i + 1].type);
+		if (((t_token *)tokens->tab)[i].type == PIPE)
+			if (((t_token *)tokens->tab)[i + 1].type == PIPE)
+				return (PIPE);
 		i++;
 	}
 	if (is_special(((t_token *)tokens->tab)[i].type))

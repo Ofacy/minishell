@@ -1,2 +1,3 @@
-export HOLA="s -la" 
-l'$HOLA'
+export HOLA=p
+export BYE=w
+$HOLA"BYE"d

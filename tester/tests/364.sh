@@ -1,2 +1,1 @@
-   cd / | echo $?
-pwd
+env|"wc" -l

@@ -1,1 +1,1 @@
-exit '6'66
+ls | exit

@@ -1,1 +1,1 @@
-cd .. | echo "hola"
+ls | hola | ls

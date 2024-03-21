@@ -1,2 +1,2 @@
-> pwd
-ls
+echo hola > bonjour
+cat < bonjour
