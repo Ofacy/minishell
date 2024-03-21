@@ -6,14 +6,13 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:42 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/18 15:25:46 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/21 12:15:06 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "minishell.h"
 #include <unistd.h>
-#include <stdio.h>
 
 bool	echo_is_valid_flag(char *src, bool *has_n)
 {
@@ -82,7 +81,7 @@ int	echo(t_mshell *sh, t_execute *exec)
 	i = echo_skip_flag(args, &has_nl);
 	if (echo_print_args(args, i) != 0)
 		return (1);
-	if (has_nl && !printf("\n"))
+	if (has_nl && write(1, "\n", 1) == -1)
 	{
 		error("echo");
 		return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:11:23 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/20 18:29:39 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:55:48 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	minishell(t_mshell *sh, char *input)
 
 	if (lexer(&sh->tokens, input) != 0)
 		return (-1);
-	if (sh->tokens.len != 0)
+	if (sh->tokens.len != 0 && isatty(STDERR_FILENO))
 		add_history(input);
 	syntax = check_syntax(&sh->tokens);
 	if (syntax == 0)
@@ -69,7 +69,6 @@ int	prepare_mshell(t_mshell *mshell, char **env)
 	if (mshell->stdin == -1)
 		return (1);
 	init_mshell(mshell);
-	rl_outstream = stderr;
 	dup2(STDERR_FILENO, STDOUT_FILENO);
 	if (create_env(&mshell->env, env) != 0)
 		return (1);
@@ -81,11 +80,10 @@ int	main(int argc, char **argv, char **env)
 	t_mshell	mshell;
 	char		*input;
 
+	(void)argc;
+	(void)argv;
 	if (prepare_mshell(&mshell, env) != 0)
-	{
-		error("init");
-		return (1);
-	}
+		return (error("init"), 1);
 	while (mshell.exit == -1)
 	{
 		signal(SIGINT, signal_handler);
@@ -99,8 +97,7 @@ int	main(int argc, char **argv, char **env)
 	if (isatty(STDIN_FILENO))
 		printf("exit\n");
 	finish_mshell(&mshell);
-	(void)argc;
-	(void)argv;
-	(void)env;
-	return (mshell.exit);
+	if (mshell.exit == -1)
+		return (0);
+	return ((char)mshell.exit);
 }

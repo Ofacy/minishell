@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   expander_token.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 15:03:33 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/19 18:47:03 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:55:42 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "libft.h"
+#include <stdio.h>
 
 static void	replace_white_space(char *str)
 {
@@ -75,7 +76,6 @@ int	expender_token_split(t_vector *tokens, size_t *i)
 		free_token(&token);
 		return (1);
 	}
-	((t_token *)tokens->tab)[*i].is_separated = token.is_separated;
 	ft_freesplit(split_str);
 	free_token(&token);
 	return (0);

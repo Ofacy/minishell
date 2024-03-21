@@ -1,0 +1,2 @@
+export HOLA=$HOMEbonjour
+env

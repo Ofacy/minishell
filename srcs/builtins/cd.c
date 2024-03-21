@@ -6,14 +6,13 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:43 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/20 18:31:48 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/21 12:15:39 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <unistd.h>
 #include <string.h>
-#include <errno.h>
 #include <stdlib.h>
 #include <stdio.h>
 

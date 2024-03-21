@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/14 13:24:31 by bwisniew          #+#    #+#              #
-#    Updated: 2024/03/20 11:15:41 by bwisniew         ###   ########.fr        #
+#    Updated: 2024/03/21 14:11:34 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,9 @@ LIBFT = libft/libft.a
 
 VECOTR = vector/libvct.a
 
+TESTER = ./run.sh
+TESTER_DIR = ./tester
+
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(VECOTR) $(OBJ)
@@ -73,8 +76,11 @@ re: fclean $(NAME)
 norm:
 	norminette includes libft vector srcs
 
+test: $(NAME)
+	cd $(TESTER_DIR) && bash $(TESTER)
+
 FORCE:
 
 -include $(DEP)
 
-.PHONY: all clean fclean re norm FORCE valgrind
+.PHONY: all clean fclean re norm FORCE valgrind test

@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:12:55 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/20 18:31:48 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:55:47 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "libft.h"
+#include "get_next_line.h"
 #include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -40,11 +41,16 @@ char	*get_user_input(t_mshell *sh)
 	char	*input;
 
 	c_prompt.txt = NULL;
-	if (isatty(STDIN_FILENO))
+	c_prompt.type = UNQUOTED;
+	c_prompt.is_txt_heap = false;
+	if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO) && isatty(STDERR_FILENO))
 		c_prompt = prompt(sh);
 	if (c_prompt.type == UNSET)
 		return (NULL);
-	input = readline(c_prompt.txt);
+	if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO) && isatty(STDERR_FILENO))
+		input = readline(c_prompt.txt);
+	else
+		input = get_next_line(STDIN_FILENO);
 	free_token(&c_prompt);
 	return (input);
 }

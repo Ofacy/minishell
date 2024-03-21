@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:17:35 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/19 19:09:41 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:55:43 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 #include "libft.h"
 #include <stdlib.h>
 #include <stdio.h>
+
+bool	should_hide_dollar(t_token *token, size_t i)
+{
+	// (void) token;
+	// (void) i;
+	// return (0);
+	return (ft_strchr("'\"", token->txt[i + 1]) != NULL
+		&& token->type == UNQUOTED);
+}
 
 int	skip_env_name(char *str)
 {

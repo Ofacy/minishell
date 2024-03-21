@@ -1,0 +1,2 @@
+env -i ./minishell
+cd

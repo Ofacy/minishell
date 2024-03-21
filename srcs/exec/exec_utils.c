@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:31:10 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/20 15:04:38 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:57:25 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	exec_fail(t_execute *exec, t_mshell *sh, char **envp)
 {
 	close(STDOUT_FILENO);
 	close(STDIN_FILENO);
+	close(STDERR_FILENO);
 	ft_freesplit(envp);
 	free(exec->cmd);
 	vector_free(&exec->args);

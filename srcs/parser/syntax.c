@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   syntax.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 16:21:31 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/20 18:31:48 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:24:31 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "libft.h"
-#include <stdio.h>
+#include "ft_printf.h"
 
 static t_tokentype	check_special(t_vector *tokens)
 {
@@ -56,14 +56,14 @@ int	check_syntax(t_vector *tokens)
 	type = check_special(tokens);
 	if (type)
 	{
-		printf("minishell: syntax error near unexpected token `%s`\n",
+		ft_printf("minishell: syntax error near unexpected token `%s`\n",
 			get_token_str(type));
 		return (2);
 	}
 	type = check_unclosed_quotes(tokens);
 	if (type)
 	{
-		printf("minishell: syntax error unclosed quotes `%s`\n",
+		ft_printf("minishell: syntax error unclosed quotes `%s`\n",
 			get_token_str(type));
 		return (2);
 	}

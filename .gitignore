@@ -1,11 +1,15 @@
 *.o
 *.a
 *.d
+.heredoc
+tester/bash_outputs
+tester/user_outputs
+tester/exec_env
 minishell
 msh_tester
 .vscode
 .cache
 test
-out
+teset
 in
 *.json
