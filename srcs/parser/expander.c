@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:26:27 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/21 18:55:41 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/21 20:41:17 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ size_t	expended_len(t_token *token, t_mshell *sh)
 	exp_size = 0;
 	while (i < token->txt_size)
 	{
-		if (token->txt[i] == '$' && token->type != SINGLE_QUOTED)
+		if (token->txt[i] == '$' && token->type != SINGLE_QUOTED && !is_white_end(token->txt[i + 1]))
 		{
 			exp_size += add_env_len(token, sh, i);
 			v_size = skip_env_name(token->txt + i + 1);

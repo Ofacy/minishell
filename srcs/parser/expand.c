@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:17:35 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/21 18:55:43 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/21 20:41:09 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 #include "libft.h"
 #include <stdlib.h>
 #include <stdio.h>
+
+bool	is_white_end(char c)
+{
+	return (ft_isspace(c) && c == '\0');
+}
 
 bool	should_hide_dollar(t_token *token, size_t i)
 {
@@ -44,14 +49,14 @@ void	expend_str(t_token *token, t_mshell *sh, size_t exp_len, char *exp_str)
 	i = 0;
 	while (exp_i < exp_len)
 	{
-		if (token->txt[i] == '$' && token->type != SINGLE_QUOTED)
+		if (token->txt[i] == '$' && token->type != SINGLE_QUOTED && !is_white_end(token->txt[i + 1]))
 		{
 			exp_i += replace_env_var(token->txt + i + 1, exp_str + exp_i, sh);
 			v_size = skip_env_name(token->txt + i + 1);
 			if (token->txt[i + v_size + 1] == '?')
 				i++;
 			else if (v_size == 0)
-				exp_str[exp_i++] = '$';
+				exp_str[exp_i++] = token->txt[i + 1];
 			i += v_size;
 		}
 		else
