@@ -6,7 +6,7 @@
 #    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 13:41:27 by lcottet           #+#    #+#              #
-#    Updated: 2024/03/22 16:40:33 by lcottet          ###   ########.fr        #
+#    Updated: 2024/03/29 14:24:19 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,9 @@ GREEN="\e[32m"
 CYAN="\e[36m"
 ENDCOLOR="\e[0m"
 
-TESTS=$(ls -v1 ./tests/*.sh)
+TESTS=$(ls -v1 tests/*.sh)
 
-NB_TEST=$(echo $TESTS | wc -l )
+NB_TEST=$(echo "$TESTS" | wc -l )
 echo -e $'\n\n\n\n'"${YELLOW}Running $NB_TEST tests...${ENDCOLOR}"
 
 mkdir -p bash_outputs
