@@ -6,7 +6,7 @@
 #    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/14 13:24:31 by bwisniew          #+#    #+#              #
-#    Updated: 2024/03/21 14:11:34 by lcottet          ###   ########.fr        #
+#    Updated: 2024/03/29 23:04:27 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,24 +40,24 @@ NAME = minishell
 
 LIBFT = libft/libft.a
 
-VECOTR = vector/libvct.a
+VECTOR = vector/libvct.a
 
 TESTER = ./run.sh
 TESTER_DIR = ./tester
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(VECOTR) $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(VECOTR) -lreadline
+$(NAME): $(LIBFT) $(VECTOR) $(OBJ)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(VECTOR) -lreadline
 
-$(OUTDIR)/%.o: $(SRCS_DIR)/%.c $(LIBFT) $(VECOTR)
+$(OUTDIR)/%.o: $(SRCS_DIR)/%.c $(LIBFT) $(VECTOR)
 	@mkdir -p $(@D)
 	$(CC) $(C_FLAGS) $(INCLUDE:%=-I %) -o $@ -c $<
 
 $(LIBFT): FORCE
 	make -C libft
 
-$(VECOTR): FORCE
+$(VECTOR): FORCE
 	make -C vector
 
 valgrind: $(NAME)
