@@ -6,7 +6,7 @@
 #    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/14 13:24:31 by bwisniew          #+#    #+#              #
-#    Updated: 2024/03/29 23:04:27 by lcottet          ###   ########.fr        #
+#    Updated: 2024/03/29 23:05:54 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ clean:
 	make -C vector clean
 
 fclean: clean
-	rm -f $(NAME) $(LIBFT) $(VECOTR)
+	rm -f $(NAME) $(LIBFT) $(VECTOR)
 
 re: fclean $(NAME)
 
