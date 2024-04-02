@@ -10,11 +10,24 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-      - name: Checkout code
+      - name: Checkout mshell
         uses: actions/checkout@v4
         with:
-          submodules: true
+          submodules: false
+          token: ${{ secrets.MSHELL_PAT }}
+
+      - name: Checkout libft
+        uses: actions/checkout@v4
+        with:
           token: ${{ secrets.PAT }}
+          repository: UnRenardQuiDab/libft
+          path: libft
+
+      - name: Checkout vector
+        uses: actions/checkout@v4
+        with:
+          repository: UnRenardQuiDab/vector_c
+          path: vector
 
       - name: Set up Python
         uses: actions/setup-python@v4
