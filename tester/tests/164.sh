@@ -1,1 +1,1 @@
-export $DONTEXIST
+export =

@@ -1,2 +1,1 @@
-unset OLDPWD
-env | grep OLDPWD
+unset HOL?A HOL.A

@@ -1,1 +1,1 @@
-echo $'HOLA'
+echo 'hola'

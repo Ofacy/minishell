@@ -1,1 +1,1 @@
-ls | hola | ls
+echo hola |cat

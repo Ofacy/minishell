@@ -1,1 +1,1 @@
-unset cd
+/bin/cd Desktop

@@ -1,1 +1,1 @@
-echo | echo
+cd / | echo "hola"

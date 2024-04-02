@@ -1,1 +1,1 @@
-echo my shit terminal is [$TERM4
+echo $HOME9

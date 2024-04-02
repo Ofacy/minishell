@@ -1,1 +1,1 @@
-echo           | cat -e
+echo -n -n

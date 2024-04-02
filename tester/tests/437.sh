@@ -1,1 +1,1 @@
-whoami | grep $USER
+ls -la | grep "."

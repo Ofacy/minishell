@@ -1,1 +1,1 @@
-unset _______
+export hola | unset hola | echo $?

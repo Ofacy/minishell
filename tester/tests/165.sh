@@ -1,1 +1,1 @@
-export | grep "HOME"
+export %

@@ -1,5 +1,3 @@
-echo hola > bonjour
-echo hey > hello
-<bonjour >hello
-cat bonjour 
-cat hello
+export HOLA="bonjour hello"
+>$HOLA>hey
+ls

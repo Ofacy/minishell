@@ -1,1 +1,2 @@
-echo oui | echo non | echo hola | grep hola
+whereis ls | cat -e | cat -e > /tmp/bonjour
+cat /tmp/bonjour

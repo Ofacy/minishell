@@ -1,2 +1,1 @@
-ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls
-|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls
+cat Makefile | grep srcs | grep srcs | cat -e

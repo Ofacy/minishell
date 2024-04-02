@@ -1,1 +1,1 @@
-unset export
+/bin/echo

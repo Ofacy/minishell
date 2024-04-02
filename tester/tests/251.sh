@@ -1,2 +1,1 @@
-unset PATH
-ls
+unset 9HOLA

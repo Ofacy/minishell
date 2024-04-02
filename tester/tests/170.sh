@@ -1,1 +1,2 @@
-export ?=2
+export _HOLA=bonjour
+env

@@ -1,2 +1,2 @@
-export HOLA="s -la" 
-l"$HOLA"
+export HOL=A=""
+env

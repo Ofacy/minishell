@@ -1,3 +1,1 @@
-unset PWD
-env | grep PWD
-pwd
+unset HOLA HOL?A

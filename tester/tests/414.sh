@@ -1,1 +1,1 @@
-exit 9223372036854775808
+echo hola | echo que tal

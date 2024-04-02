@@ -1,1 +1,1 @@
-unset HOL?A HOL.A
+unset HOL}A

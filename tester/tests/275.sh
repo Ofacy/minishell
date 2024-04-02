@@ -1,1 +1,2 @@
-unset HOL#A
+unset "" HOLA
+env | grep HOLA

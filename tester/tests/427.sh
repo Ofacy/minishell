@@ -1,1 +1,1 @@
-echo oui | cat -e
+whoami | grep $USER

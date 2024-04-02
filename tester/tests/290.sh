@@ -1,1 +1,1 @@
-unset echo
+/bin/echo Hola Que Tal

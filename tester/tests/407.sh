@@ -1,1 +1,1 @@
-exit '2'66'32'
+cat | cat | cat | ls

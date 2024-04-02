@@ -1,1 +1,1 @@
-echo "$DONTEXIST""Makefile"
+$?$?

@@ -1,1 +1,1 @@
-echo hola| cat
+export HOLA=bonjour | cat -e | cat -e

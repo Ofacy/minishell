@@ -1,1 +1,2 @@
-cd Makefile
+cd /
+cd ..

@@ -1,2 +1,1 @@
-export HOLA=$HOME
-env
+export HOLA=bon!jour

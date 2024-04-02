@@ -1,1 +1,2 @@
-export HOL{A=bonjour
+export HO$?LA=bonjour
+env

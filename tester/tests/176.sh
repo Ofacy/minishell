@@ -1,1 +1,1 @@
-export HOL@=bonjour
+export HOL.A=bonjour

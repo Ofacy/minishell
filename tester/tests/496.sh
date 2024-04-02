@@ -1,6 +1,2 @@
-echo hola > bonjour
-echo hey > hello
-rm bonjour hello
-echo hola > bonjour > hello > bonjour
+> bonjour echo hola bonjour
 cat bonjour
-cat hello

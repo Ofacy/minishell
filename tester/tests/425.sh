@@ -1,1 +1,1 @@
-pwd | echo hola
+ifconfig | grep ":"

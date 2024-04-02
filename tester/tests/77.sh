@@ -1,1 +1,1 @@
-echo $9HOME
+echo Le path de mon HOME est $HOME

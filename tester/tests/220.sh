@@ -1,2 +1,3 @@
-export HOLA="  bonjour  hey  "  
-echo wesh"$HOLA" | cat -e
+export HOLA=bonjour
+export HOLA=" hola et $HOLA"$HOLA
+echo $HOLA

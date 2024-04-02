@@ -1,1 +1,2 @@
-Ctlr-Z
+export       HOLA=bonjour
+env

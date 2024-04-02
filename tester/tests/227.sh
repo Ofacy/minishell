@@ -1,2 +1,2 @@
-export HOLA="ls        -l    - a"
-echo $HOLA
+export HOL=A=bonjour
+env

@@ -1,1 +1,1 @@
-env | echo hola
+ifconfig | grep hola

@@ -1,1 +1,1 @@
-pwd hola que tal
+cd ./././.

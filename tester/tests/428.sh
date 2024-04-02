@@ -1,1 +1,2 @@
-echo oui | echo non | echo hola | grep oui
+whoami | grep $USER > /tmp/bonjour
+cat /tmp/bonjour

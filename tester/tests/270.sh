@@ -1,1 +1,1 @@
-unset -HOLA
+unset $PWD

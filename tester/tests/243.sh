@@ -1,3 +1,5 @@
-export HOLA=p
-export BYE=w
-"$HOLA""$BYE"d
+export HOLA=bonjour
+env
+unset HOLA
+unset HOLA
+env

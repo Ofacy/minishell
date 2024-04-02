@@ -1,1 +1,3 @@
-sleep 3 | sleep 3
+export HOLA=hey
+echo bonjour > $HOLA
+echo $HOLA

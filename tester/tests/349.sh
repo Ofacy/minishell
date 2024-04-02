@@ -1,3 +1,2 @@
-unset HOME
-export HOME=
-cd
+chmod 000 minishell
+./minishell

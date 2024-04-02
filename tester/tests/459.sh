@@ -1,1 +1,1 @@
-cat Makefile | grep srcs | cat -e
+exit | sleep 3

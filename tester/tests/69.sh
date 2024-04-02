@@ -1,1 +1,1 @@
-echo " $ " | cat -e
+echo my shit terminal is [$TERM]
