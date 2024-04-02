@@ -6,7 +6,7 @@
 #    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 13:41:27 by lcottet           #+#    #+#              #
-#    Updated: 2024/03/29 14:24:19 by lcottet          ###   ########.fr        #
+#    Updated: 2024/04/02 08:49:45 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ ENDCOLOR="\e[0m"
 
 TESTS=$(ls -v1 tests/*.sh)
 
-NB_TEST=$(echo "$TESTS" | wc -l )
+NB_TEST=$(echo "$TESTS" | wc -l)
 echo -e $'\n\n\n\n'"${YELLOW}Running $NB_TEST tests...${ENDCOLOR}"
 
 mkdir -p bash_outputs
@@ -37,12 +37,12 @@ for filename in $TESTS; do
 	echo -n -e $'\n'"${CYAN}Running test${ENDCOLOR} $filename"
 	rm -rf exec_env
 	mkdir -p exec_env
-	cd exec_env && bash 2> ../bash_outputs/err 1> ../bash_outputs/out < ../$filename
+	cd exec_env && echo "$CMD" | bash 2> ../bash_outputs/err 1> ../bash_outputs/out
 	cd ..
 	BASH_EXIT=$?
 	rm -rf exec_env
 	mkdir -p exec_env
-	cd exec_env && ../../minishell 2> ../user_outputs/err 1> ../user_outputs/out < ../$filename
+	cd exec_env && echo "$CMD" | ../../minishell 2> ../user_outputs/err 1> ../user_outputs/out
 	cd ..
 	USER_EXIT=$?
 	OUT_DIFF=$(diff -U 3 bash_outputs/out user_outputs/out)
