@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 20:41:37 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/20 16:28:14 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/02 14:57:41 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ char	*here_doc_getline(t_mshell *sh, size_t i, t_fd fd, int *err)
 	line.txt_size = ft_strlen(line.txt);
 	line.is_txt_heap = true;
 	line.type = ((t_token *)sh->tokens.tab)[i].old_type;
-	if (((t_token *)sh->tokens.tab)[i].old_type == UNQUOTED)
-	{
-		if (get_expended_str(&line, sh) < 0)
-		{
-			free_token(&line);
-			return (NULL);
-		}
-	}
+	// if (((t_token *)sh->tokens.tab)[i].old_type == UNQUOTED)
+	// {
+	// 	if (get_expended_str(&line, sh) < 0)
+	// 	{
+	// 		free_token(&line);
+	// 		return (NULL);
+	// 	}
+	// }
 	*err = here_doc_line(fd, line.txt);
 	return (tmp);
 }

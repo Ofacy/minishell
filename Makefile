@@ -6,7 +6,7 @@
 #    By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/14 13:24:31 by bwisniew          #+#    #+#              #
-#    Updated: 2024/03/26 16:09:10 by bwisniew         ###   ########.fr        #
+#    Updated: 2024/04/02 18:54:24 by bwisniew         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ PARSER_SRCS = lexer.c syntax.c token_utils.c
 EXEC_SRCS =	path.c exec.c exec_fd.c here_doc.c fork.c exec_utils.c wait.c \
 			close.c exec_builtins.c
 
-EXPAND_SRCS = expander_token.c expander_len.c expander.c
+EXPAND_SRCS = expander_token.c expander_len.c expander_split.c expander.c \
+				expander_join.c
 
 BUILTINS_SRCS = env.c pwd.c unset.c cd.c echo.c builtin_utils.c export.c exit.c
 
