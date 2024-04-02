@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:17:35 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/21 18:55:43 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/02 09:44:34 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@
 
 bool	should_hide_dollar(t_token *token, size_t i)
 {
-	// (void) token;
-	// (void) i;
-	// return (0);
 	return (ft_strchr("'\"", token->txt[i + 1]) != NULL
 		&& token->type == UNQUOTED);
 }

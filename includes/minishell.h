@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:55:03 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/21 17:11:00 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/02 09:44:17 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ typedef struct s_mshell
 
 void		free_token(t_token *token);
 
-bool	should_hide_dollar(t_token *token, size_t i);
+bool		should_hide_dollar(t_token *token, size_t i);
 size_t		expander_skip_arrow(t_vector *lex, size_t i, size_t n);
 size_t		expended_len(t_token *token, t_mshell *sh);
 int			replace_env_var(char *token_str, char *exp_str, t_mshell *sh);
