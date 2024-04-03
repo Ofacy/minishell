@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:18:34 by lcottet           #+#    #+#             */
-/*   Updated: 2024/04/03 23:27:28 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/03 23:52:33 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,9 @@ pid_t	exec_txt(t_execute *exec, t_mshell *sh)
 	}
 	filetype = regular_file_check(sh, exec->cmd);
 	if (filetype == -1)
-		return (-1);
+		return (free(exec->cmd), -1);
 	else if (!filetype)
-		return (-4);
+		return (free(exec->cmd), -4);
 	pid = exec_fork(exec, sh);
 	free(exec->cmd);
 	return (pid);
