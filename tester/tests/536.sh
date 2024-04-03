@@ -1,7 +1,7 @@
 echo Amour Tu es Horrible > a
 echo 0123456789 > b
 echo Prout > c
-echo hola > a > b > c
+>d cat <a >>e
 cat a
-cat b
-cat c
+cat d
+cat e

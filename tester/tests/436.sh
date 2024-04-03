@@ -1,1 +1,2 @@
-exit | sleep 3
+echo que tal >> bonjour
+cat bonjour

@@ -1,1 +1,1 @@
-ech|o hola | cat
+cat Makefile | grep srcs | grep srcs | cat -e

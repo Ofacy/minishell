@@ -1,5 +1,3 @@
-echo hola > bonjour
-echo hey > hello
->bonjour <prout hello
-cat bonjour 
-cat hello
+rm -f bonjour
+rm bonjour > bonjour
+ls -l bonjour

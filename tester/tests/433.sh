@@ -1,1 +1,1 @@
-export | echo hola
+exit | sleep 3

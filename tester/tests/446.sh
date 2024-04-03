@@ -1,2 +1,1 @@
-ls -la > Docs/bonjour
-cat Docs/bonjour
+echo hola > > bonjour

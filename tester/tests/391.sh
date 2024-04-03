@@ -1,1 +1,1 @@
-echo hola | echo que tal
+echo oui | cat -e

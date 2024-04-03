@@ -1,1 +1,2 @@
-echo hola > > bonjour
+> bonjour echo hola
+cat bonjour

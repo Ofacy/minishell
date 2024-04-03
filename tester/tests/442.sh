@@ -1,2 +1,2 @@
-echo hola que tal > bonjour
-cat bonjour
+whereis grep > Docs/bonjour
+cat Docs/bonjour

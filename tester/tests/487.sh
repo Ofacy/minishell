@@ -1,1 +1,2 @@
-cat < ls > ls
+echo hola > bonjour
+cat < bonjour

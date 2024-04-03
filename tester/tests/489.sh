@@ -1,2 +1,2 @@
->>hola
-cat hola
+echo hola>bonjour
+cat<bonjour

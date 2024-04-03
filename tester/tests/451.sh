@@ -1,1 +1,2 @@
-echo hola >>> bonjour
+prout hola > bonjour
+ls

@@ -1,1 +1,1 @@
-echo | echo
+env | echo hola

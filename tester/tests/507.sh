@@ -1,6 +1,5 @@
-echo hola > ../bonjour
-echo hey > ../hello
-rm ../bonjour ../hello
->../bonjour >../hello <prout
-ls ..
-cat ../bonjour ../hello
+echo hola > srcs/bonjour
+echo hey > srcs/hello
+>srcs/bonjour >>srcs/hello <prout
+cat srcs/bonjour 
+cat srcs/hello

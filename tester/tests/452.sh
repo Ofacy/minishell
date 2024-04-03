@@ -1,2 +1,3 @@
-> bonjour echo hola
-cat bonjour
+echo hola > hello >> hello >> hello
+ls
+cat hello

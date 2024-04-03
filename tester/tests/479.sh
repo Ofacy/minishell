@@ -1,1 +1,1 @@
-cat <pwd
+cat >>
