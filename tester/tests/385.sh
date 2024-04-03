@@ -1,1 +1,1 @@
-exit -69 -96
+ls | exit

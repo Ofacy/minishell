@@ -1,1 +1,1 @@
-exit '+666'
+env | echo hola

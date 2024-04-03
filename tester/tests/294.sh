@@ -1,1 +1,1 @@
-pwd
+cd /e"tc"

@@ -1,1 +1,1 @@
-exit '2'66'32'
+echo oui | echo non | echo hola | grep hola

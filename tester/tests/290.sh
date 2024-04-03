@@ -1,1 +1,1 @@
-/bin/echo Hola Que Tal
+cd 'srcs'

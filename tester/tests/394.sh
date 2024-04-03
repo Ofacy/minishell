@@ -1,1 +1,1 @@
-exit '----666'
+echo oui | cat -e

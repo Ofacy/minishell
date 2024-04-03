@@ -1,2 +1,1 @@
-chmod 000 minishell
-./minishell
+exit 666 hola 666

@@ -1,1 +1,2 @@
-unset HOL?A HOL.A
+unset PATH
+echo $PATH

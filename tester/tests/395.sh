@@ -1,1 +1,1 @@
-exit '++++666'
+echo oui | echo non | echo hola | grep oui

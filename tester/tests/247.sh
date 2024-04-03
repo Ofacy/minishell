@@ -1,1 +1,3 @@
-unset INEXISTANT
+unset PWD
+env | grep PWD
+pwd

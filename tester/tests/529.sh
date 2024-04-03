@@ -1,4 +1,3 @@
-echo hola > ../bonjour
-echo hey > ../hello
->../bonjour >../hello <prout
-cat ../bonjour ../hello
+export HOLA="bonjour hello"
+>hey>$HOLA>hey>hey
+ls

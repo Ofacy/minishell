@@ -1,1 +1,1 @@
-cd .. | pwd
+ech|o hola | cat

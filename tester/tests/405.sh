@@ -1,1 +1,2 @@
-exit -9223372036854775808
+whoami | grep $USER > /tmp/bonjour
+cat /tmp/bonjour

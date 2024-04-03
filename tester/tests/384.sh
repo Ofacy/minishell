@@ -1,1 +1,1 @@
-exit +42
+cat | cat | cat | ls

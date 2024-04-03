@@ -1,4 +1,3 @@
 echo hola > bonjour
-rm bonjour
-echo que tal >> bonjour
-cat < bonjour
+<bonjour cat | wc > bonjour
+cat bonjour

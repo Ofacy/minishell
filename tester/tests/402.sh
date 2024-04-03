@@ -1,1 +1,1 @@
-exit -'666'"666"666
+ifconfig | grep ":"

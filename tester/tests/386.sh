@@ -1,1 +1,1 @@
-exit --666
+ls | exit 42

@@ -1,1 +1,1 @@
-/bin/echo
+cd srcs objs

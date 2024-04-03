@@ -1,1 +1,1 @@
-ls | exit 42
+ls | ls hola

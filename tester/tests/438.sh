@@ -1,1 +1,2 @@
-ls -la | grep "'.'"
+echo hola > bonjour
+cat bonjour

@@ -1,1 +1,1 @@
-export hola | unset hola | echo $?
+cd srcs

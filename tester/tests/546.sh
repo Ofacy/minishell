@@ -1,3 +1,5 @@
-rm -f bonjour
-rm bonjour > bonjour
-ls -l bonjour
+echo Amour Tu es Horrible > a
+echo 0123456789 > b
+echo Prout > c
+cat << hola > bonjour
+cat bonjour

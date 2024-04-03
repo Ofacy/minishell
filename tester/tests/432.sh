@@ -1,1 +1,2 @@
-ls | ls hola
+export HOLA | echo hola
+env | grep PROUT

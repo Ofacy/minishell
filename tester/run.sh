@@ -6,14 +6,14 @@
 #    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 13:41:27 by lcottet           #+#    #+#              #
-#    Updated: 2024/04/03 18:39:56 by lcottet          ###   ########.fr        #
+#    Updated: 2024/04/03 19:11:34 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #!/bin/bash
 
 OUTPUT_EXIT=1
-ERROR_EXIT=1
+ERROR_EXIT=0
 STATUS_EXIT=1
 
 RED="\e[31m"

@@ -1,2 +1,5 @@
-echo hola que tal > /tmp/bonjour
-cat -e /tmp/bonjour
+echo hola > bonjour
+echo hey > hello
+echo hola > bonjour > hello > bonjour
+cat bonjour
+cat hello

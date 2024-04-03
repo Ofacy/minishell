@@ -1,1 +1,1 @@
-exit hola
+exit --666

@@ -1,4 +1,3 @@
-echo hola > bonjour hey
+export HOLA="bonjour hello"
+>$HOLA
 ls
-cat bonjour
-cat hey

@@ -1,2 +1,2 @@
-prout hola > bonjour
+> pwd
 ls

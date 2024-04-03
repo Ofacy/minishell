@@ -1,6 +1,4 @@
-echo hola > bonjour
-echo hey > hello
-rm bonjour hello
->bonjour >hello < prout
-cat bonjour 
-cat hello
+echo Amour Tu es Horrible > a
+echo 0123456789 > b
+echo Prout > c
+cat << 'hola'

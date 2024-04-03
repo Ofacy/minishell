@@ -1,1 +1,1 @@
-exit '666'
+echo hola | echo que tal

@@ -1,1 +1,1 @@
-exit "'666'"
+echo hola | cat -e | cat -e | cat -e

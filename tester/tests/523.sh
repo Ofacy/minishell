@@ -1,2 +1,3 @@
-e'c'"h"o hola > bonjour
-cat 'bo'"n"jour
+rm -f bonjour
+rm bonjour > bonjour
+ls -l bonjour

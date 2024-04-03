@@ -1,1 +1,2 @@
-exit -9223372036854775809
+whoami | cat -e | cat -e > /tmp/bonjour
+cat /tmp/bonjour

@@ -1,2 +1,1 @@
-env -i ./minishell
-export
+exit +0
