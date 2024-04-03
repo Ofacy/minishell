@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:12:55 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/21 18:55:47 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/03 17:11:26 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "expander.h"
 #include "libft.h"
 #include "get_next_line.h"
 #include <stdio.h>
@@ -30,7 +31,7 @@ t_token	prompt(t_mshell *sh)
 	prompt.txt_size = ft_strlen(prompt.txt);
 	prompt.is_txt_heap = false;
 	prompt.type = UNQUOTED;
-	if (get_expended_str(&prompt, sh) != 0)
+	if (token_expand(&prompt, sh, expanded_len(sh, &prompt)) != 0)
 		free_token(&prompt);
 	return (prompt);
 }

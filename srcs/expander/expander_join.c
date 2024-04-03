@@ -1,30 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expander_utils.c                                   :+:      :+:    :+:   */
+/*   expander_join.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/07 22:26:27 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/21 18:55:41 by lcottet          ###   ########.fr       */
+/*   Created: 2024/04/02 18:51:26 by bwisniew          #+#    #+#             */
+/*   Updated: 2024/04/02 19:17:30 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "expander.h"
 #include "libft.h"
 #include <stdlib.h>
-#include <stdio.h>
-
-int	replace_env_var(char *token_str, char *exp_str, t_mshell *sh)
-{
-	t_env	*env_var;
-
-	env_var = env_get(sh, token_str, false);
-	if (!env_var)
-		return (0);
-	ft_strlcpy(exp_str, env_var->value, env_var->value_size + 1);
-	return (env_var->value_size);
-}
 
 size_t	expander_skip_arrow(t_vector *lex, size_t i, size_t n)
 {
@@ -65,48 +53,27 @@ char	*expander_join(t_token *t1, t_token *t2)
 	return (str);
 }
 
-int	expend_file_ambi(t_token *token, t_mshell *sh)
+int	expander_unseparated(t_vector *lex, size_t i, size_t n)
 {
-	size_t	char_i;
-	t_env	*env_var;
+	t_token	*token;
+	char	*tmp;
 
-	char_i = 0;
-	while (char_i < token->txt_size)
+	while (i < n)
 	{
-		if (token->txt[char_i] == '$' && token->type != SINGLE_QUOTED)
+		token = ((t_token *)lex->tab) + i;
+		while (!token->is_separated)
 		{
-			env_var = env_get(sh, token->txt + char_i + 1, false);
-			if (!env_var)
-			{
-				char_i++;
-				continue ;
-			}
-			else if (ft_strchr(env_var->value, ' ') != NULL)
-			{
-				custom_error(env_var->key, "ambiguous redirect");
+			tmp = expander_join(token,
+					((t_token *)lex->tab) + i + 1);
+			if (!tmp)
 				return (1);
-			}
-			char_i += env_var->key_size + 1;
+			token->txt = tmp;
+			vector_remove(lex, i + 1);
 		}
-		char_i++;
-	}
-	return (0);
-}
-
-int	expend_file(t_mshell *sh, size_t i)
-{
-	size_t	i_cp;
-
-	i_cp = i;
-	i++;
-	while (i < sh->tokens.len && ((t_token *)sh->tokens.tab)[i].is_file == 1)
-	{
-		if (expend_file_ambi(&((t_token *)sh->tokens.tab)[i], sh) != 0)
-			return (1);
+		if (((t_token *)lex->tab)[i].type == SINGLE_QUOTED)
+			((t_token *)lex->tab)[i].type = UNQUOTED;
+		i = expander_skip_arrow(lex, i, n);
 		i++;
 	}
-	if (expander(sh, i_cp + 1,
-			expander_skip_arrow(&sh->tokens, i_cp, sh->tokens.len) + 1) < 0)
-		return (1);
 	return (0);
 }

@@ -6,11 +6,12 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 20:41:37 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/20 16:28:14 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:26:48 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "expander.h"
 #include "libft.h"
 #include <readline/readline.h>
 #include <unistd.h>
@@ -61,7 +62,7 @@ char	*here_doc_getline(t_mshell *sh, size_t i, t_fd fd, int *err)
 	line.type = ((t_token *)sh->tokens.tab)[i].old_type;
 	if (((t_token *)sh->tokens.tab)[i].old_type == UNQUOTED)
 	{
-		if (get_expended_str(&line, sh) < 0)
+		if (token_expand(&line, sh, expanded_len(sh, &line)) != 0)
 		{
 			free_token(&line);
 			return (NULL);
