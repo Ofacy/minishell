@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 19:28:50 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/04/02 19:26:40 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/03 16:27:44 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,11 @@ size_t	expand_str(t_token *token, char *exp_txt, t_mshell *sh)
 					env_var->value, env_var->value_size + 1);
 				exp_i += env_var->value_size;
 			}
-			txt_i += skip_envname(token->txt + txt_i + 1) + 1;
+			txt_i += skip_envname(token->txt + txt_i + 1);
 		}
 		else
-			exp_txt[exp_i++] = token->txt[txt_i++];
+			exp_txt[exp_i++] = token->txt[txt_i];
+		txt_i++;
 	}
 	exp_txt[exp_i] = '\0';
 	return (exp_i);

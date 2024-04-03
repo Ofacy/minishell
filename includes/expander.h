@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 19:30:58 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/04/02 19:25:26 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/03 14:21:20 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ size_t	skip_envname(char *str);
 size_t	expander_split(t_mshell *sh, size_t token_i);
 int		expander_unseparated(t_vector *lex, size_t i, size_t n);
 int		token_expand(t_token *token, t_mshell *sh, size_t exp_len);
+size_t	expander_skip_file(t_vector *lex, size_t i, size_t n);
 
 #endif

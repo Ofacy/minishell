@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 18:29:04 by lcottet           #+#    #+#             */
-/*   Updated: 2024/04/02 14:57:25 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/03 14:23:26 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int	exec_set_output(t_execute *exec, t_mshell *sh, size_t i)
 {
 	exec->has_redirect = true;
 	close_fd(&exec->out);
-	// if (expend_file(sh, i))
-	// 	return (1);
+	if (expand_file(sh, i))
+		return (1);
 	exec->out = open(((t_token *)sh->tokens.tab)[i + 1].txt,
 			O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (exec->out == -1)
@@ -63,8 +63,8 @@ int	exec_set_output(t_execute *exec, t_mshell *sh, size_t i)
 int	exec_set_input(t_execute *exec, t_mshell *sh, size_t i)
 {
 	close_fd(&exec->in);
-	// if (expend_file(sh, i))
-	// 	return (1);
+	if (expand_file(sh, i))
+		return (1);
 	exec->in = open(((t_token *)sh->tokens.tab)[i + 1].txt, O_RDONLY);
 	if (exec->in == -1)
 	{
@@ -78,8 +78,8 @@ int	exec_set_append(t_execute *exec, t_mshell *sh, size_t i)
 {
 	exec->has_redirect = true;
 	close_fd(&exec->out);
-	// if (expend_file(sh, i))
-	// 	return (1);
+	if (expand_file(sh, i))
+		return (1);
 	exec->out = open(((t_token *)sh->tokens.tab)[i + 1].txt,
 			O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (exec->out == -1)
