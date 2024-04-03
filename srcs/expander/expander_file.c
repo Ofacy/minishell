@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 13:50:42 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/04/03 18:26:42 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/03 19:17:15 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	expand_file(t_mshell *sh, size_t token_i)
 		token_i++;
 	}
 	if (expander(sh, i_cp + 1, expander_skip_file(&sh->tokens,
-				i_cp, sh->tokens.len) + 1) < 0)
+				i_cp, sh->tokens.len)) < 0)
 		return (1);
 	return (0);
 }
