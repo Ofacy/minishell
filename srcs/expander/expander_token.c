@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 19:28:50 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/04/03 18:26:04 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:46:32 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ size_t	skip_envname(char *str)
 	size_t	i;
 
 	i = 0;
+	if (str[i] == '?')
+		return (1);
 	while (str[i] && ft_strchr(ENV_NAME_CHAR, str[i]))
 		i++;
 	return (i);

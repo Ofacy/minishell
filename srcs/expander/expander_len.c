@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 19:40:47 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/04/03 18:14:05 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:57:20 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ bool	need_expand_str(t_token *token, size_t str_i)
 	{
 		if (str_i + 1 < token->txt_size)
 		{
-			if (ft_strchr(ENV_NAME_CHAR, token->txt[str_i + 1]))
+			if (ft_strchr(ENV_NAME_CHAR, token->txt[str_i + 1])
+				|| token->txt[str_i + 1] == '?')
 				return (true);
 		}
 		else if (!token->is_separated && token->type == UNQUOTED)
