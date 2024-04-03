@@ -1,1 +1,1 @@
-ifconfig | grep ":"
+ls -la | grep "."

@@ -1,2 +1,3 @@
-export HOL=A=bonjour
-env
+export HOLA=p
+export BYE=w
+$"HOLA"$"BYE"d

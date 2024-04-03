@@ -1,1 +1,1 @@
-ls | ls | hola | rev
+ech|o hola | cat

@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:17:47 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/04/03 18:10:33 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:26:17 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ size_t	expander_split_add(t_mshell *sh, size_t token_i, char **split)
 	token = &((t_token *)(sh->tokens.tab))[token_i + i];
 	if (i != 0)
 		((t_token *)(sh->tokens.tab))[token_i + i - 1].is_separated
-		= token->is_separated;
+			= token->is_separated;
 	return (i);
 }
 

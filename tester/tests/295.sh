@@ -1,2 +1,1 @@
-unset PATH
-echo $PATH
+export hola | unset hola | echo $?

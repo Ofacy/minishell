@@ -6,7 +6,7 @@
 #    By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/14 13:24:31 by bwisniew          #+#    #+#              #
-#    Updated: 2024/04/03 14:23:02 by bwisniew         ###   ########.fr        #
+#    Updated: 2024/04/03 18:20:54 by bwisniew         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,24 +42,24 @@ NAME = minishell
 
 LIBFT = libft/libft.a
 
-VECOTR = vector/libvct.a
+VECTOR = vector/libvct.a
 
 TESTER = ./run.sh
 TESTER_DIR = ./tester
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(VECOTR) $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(VECOTR) -lreadline
+$(NAME): $(LIBFT) $(VECTOR) $(OBJ)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(VECTOR) -lreadline
 
-$(OUTDIR)/%.o: $(SRCS_DIR)/%.c $(LIBFT) $(VECOTR)
+$(OUTDIR)/%.o: $(SRCS_DIR)/%.c $(LIBFT) $(VECTOR)
 	@mkdir -p $(@D)
 	$(CC) $(C_FLAGS) $(INCLUDE:%=-I %) -o $@ -c $<
 
 $(LIBFT): FORCE
 	make -C libft
 
-$(VECOTR): FORCE
+$(VECTOR): FORCE
 	make -C vector
 
 valgrind: $(NAME)
@@ -71,7 +71,7 @@ clean:
 	make -C vector clean
 
 fclean: clean
-	rm -f $(NAME) $(LIBFT) $(VECOTR)
+	rm -f $(NAME) $(LIBFT) $(VECTOR)
 
 re: fclean $(NAME)
 

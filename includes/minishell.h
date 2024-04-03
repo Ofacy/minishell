@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:55:03 by lcottet           #+#    #+#             */
-/*   Updated: 2024/04/03 16:26:52 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:21:30 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,6 @@ typedef struct s_mshell
 }	t_mshell;
 
 void		free_token(t_token *token);
-
-// bool		should_hide_dollar(t_token *token, size_t i);
-// bool		is_white_end(char c);
-// size_t		expander_skip_arrow(t_vector *lex, size_t i, size_t n);
-// size_t		expended_len(t_token *token, t_mshell *sh);
-// int			replace_env_var(char *token_str, char *exp_str, t_mshell *sh);
-// int			expend_file(t_mshell *sh, size_t i);
-// int			get_expended_str(t_token *token, t_mshell *sh);
-// int			expender_token_split(t_vector *tokens, size_t *i);
 int			expand_file(t_mshell *sh, size_t token_i);
 int			expander(t_mshell *sh, size_t start, size_t end);
 

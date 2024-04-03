@@ -1,1 +1,1 @@
-./minishell
+exit hola que tal

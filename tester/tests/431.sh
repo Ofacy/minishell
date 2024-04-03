@@ -1,1 +1,1 @@
-ls | exit 42
+echo hola | cat -e | cat -e | cat -e

@@ -1,1 +1,1 @@
-cd srcs objs
+cd '/'

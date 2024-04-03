@@ -1,2 +1,1 @@
-export HOLA9=bonjour
-env
+export HOL{A=bonjour

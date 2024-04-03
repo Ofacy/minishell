@@ -1,2 +1,3 @@
-export HOLA | echo hola
-env | grep PROUT
+export HOLA=hey
+echo bonjour > $HOLA
+echo $HOLA

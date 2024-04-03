@@ -1,1 +1,1 @@
-export HOL.A=bonjour
+export HOLA = bonjour

@@ -1,2 +1,1 @@
-ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls
-|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls
+cat Makefile | grep pr | head -n 5 | hello

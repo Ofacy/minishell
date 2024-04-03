@@ -1,2 +1,2 @@
-cd ////////
-pwd
+unset HOME
+cd $HOME

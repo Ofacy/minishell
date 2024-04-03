@@ -1,1 +1,1 @@
-export $?
+export HO-LA=bonjour

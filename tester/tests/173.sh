@@ -1,2 +1,2 @@
-export Hola
-export
+export _HOLA=bonjour
+env

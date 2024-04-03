@@ -1,2 +1,1 @@
-unset HOME
-cd $HOME
+ls hola

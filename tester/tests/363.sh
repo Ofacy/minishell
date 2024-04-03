@@ -1,1 +1,2 @@
-cd minishell Docs crashtest.c
+touch hola
+./hola

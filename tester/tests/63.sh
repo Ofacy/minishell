@@ -1,1 +1,1 @@
-echo -nnn -----nn---nnnn
+echo -nnn --------nnnn

@@ -1,2 +1,5 @@
-e'c'"h"o hola > bonjour
-cat 'bo'"n"jour
+echo hola > srcs/bonjour
+echo hey > srcs/hello
+>srcs/bonjour <prout >>srcs/hello
+cat srcs/bonjour 
+cat srcs/hello

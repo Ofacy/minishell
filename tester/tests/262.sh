@@ -1,2 +1,1 @@
-unset PATH
-ls
+unset HOL?A HOL.A

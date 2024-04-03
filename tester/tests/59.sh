@@ -1,1 +1,1 @@
-echo -n -nnn hola -nnnn
+echo -n -nnn-nnnn

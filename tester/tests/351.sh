@@ -1,2 +1,1 @@
-cd /
-cd ..
+cd minishell Docs crashtest.c

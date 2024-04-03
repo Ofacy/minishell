@@ -1,2 +1,1 @@
-touch hola
-./hola
+exit 42

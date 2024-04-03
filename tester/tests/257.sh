@@ -1,2 +1,1 @@
-export HOLA=-n
-"echo $HOLA" hey
+unset 9HOLA

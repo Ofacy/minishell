@@ -1,1 +1,2 @@
-export HOLA=bon!jour
+export HOLA='"'
+echo " $HOLA " | cat -e

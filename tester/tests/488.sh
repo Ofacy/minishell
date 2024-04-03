@@ -1,2 +1,3 @@
-echo hola que tal > bonjour
-cat bonjour
+echo hola > hello >> hello >> hello
+ls
+cat hello

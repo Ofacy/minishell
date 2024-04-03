@@ -1,1 +1,1 @@
-exit '++++666'
+cat | cat | cat | ls

@@ -1,1 +1,1 @@
-exit | ls
+cd .. | echo "hola"

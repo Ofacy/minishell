@@ -1,1 +1,1 @@
-echo"'hola'"
+echo '''ho"''''l"a'''

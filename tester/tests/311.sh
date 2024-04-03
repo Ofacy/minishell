@@ -1,1 +1,1 @@
-/bin/cd Desktop
+cd

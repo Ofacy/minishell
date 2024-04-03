@@ -1,1 +1,2 @@
-echo oui | cat -e
+whoami | cat -e | cat -e > /tmp/bonjour
+cat /tmp/bonjour

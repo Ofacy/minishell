@@ -1,1 +1,2 @@
-exit '666'"666"666
+echo hola > bonjour
+cat -e bonjour | exit

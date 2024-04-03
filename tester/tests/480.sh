@@ -1,1 +1,2 @@
-time sleep 3 | sleep 3
+pwd>bonjour
+cat bonjour

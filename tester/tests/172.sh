@@ -1,1 +1,2 @@
-export
+export HOLA9=bonjour
+env

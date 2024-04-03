@@ -1,1 +1,1 @@
-cat | cat | cat | ls
+echo oui | echo non | echo hola | grep non

@@ -1,1 +1,1 @@
-unset cd
+pwd hola que tal

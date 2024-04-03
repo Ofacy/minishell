@@ -1,1 +1,1 @@
-cd .././../.././../bin/ls
+cd $HOME $HOME

@@ -1,1 +1,1 @@
-pwd | echo hola
+whoami | grep $USER

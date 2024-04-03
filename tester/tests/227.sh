@@ -1,2 +1,2 @@
-export HOLA="cat Makefile | grep NAME"  
+export HOLA="ls        -l    - a"
 echo $HOLA

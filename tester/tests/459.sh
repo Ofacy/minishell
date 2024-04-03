@@ -1,1 +1,1 @@
-ls -la | grep "."
+cat Makefile | grep srcs | cat -e

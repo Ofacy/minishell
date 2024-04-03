@@ -1,1 +1,1 @@
-cd /e'tc'
+cd /minishell

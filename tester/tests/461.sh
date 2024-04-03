@@ -1,1 +1,1 @@
-echo test.c | cat -e| cat -e| cat -e| cat -e| cat -e| cat -e| cat -e| cat -e|cat -e|cat -e|cat -e
+cat Makefile | grep pr | head -n 5 | cd file_not_exist

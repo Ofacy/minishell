@@ -1,1 +1,1 @@
-echo $:$= | cat -e
+echo " $ " | cat -e

@@ -1,1 +1,1 @@
-echo $HOME9
+echo $HOME%

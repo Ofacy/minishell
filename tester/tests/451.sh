@@ -1,2 +1,1 @@
-whoami | cat -e | cat -e > /tmp/bonjour
-cat /tmp/bonjour
+echo hola | cat | cat | cat | cat | cat | grep hola

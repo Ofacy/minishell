@@ -1,1 +1,1 @@
-echo -p
+echo -nnnnn

@@ -1,1 +1,2 @@
-cat Makefile | grep srcs | cat -e
+echo hola > bonjour
+cat bonjour

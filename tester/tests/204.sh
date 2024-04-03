@@ -1,2 +1,2 @@
-export HOLA=bon jour
+export HOLA$USER=bonjour
 env

@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 19:28:50 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/04/03 16:27:44 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:26:04 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ int	tokens_expand(t_mshell *sh, size_t token_i)
 
 	token = &((t_token *)(sh->tokens.tab))[token_i];
 	nb_exp = 1;
-	token_expand(token, sh, expanded_len(sh, &((t_token *)sh->tokens.tab)[token_i]));
+	token_expand(token, sh,
+		expanded_len(sh, &((t_token *)sh->tokens.tab)[token_i]));
 	if (token->type == UNQUOTED)
 	{
 		nb_exp = expander_split(sh, token_i);

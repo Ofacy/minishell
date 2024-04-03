@@ -1,1 +1,1 @@
-exit "'666'"
+exit | ls

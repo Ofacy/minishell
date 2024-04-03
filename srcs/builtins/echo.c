@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:42 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/21 12:15:06 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/03/21 19:38:16 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,19 @@
 bool	echo_is_valid_flag(char *src, bool *has_n)
 {
 	size_t	i;
+	bool	n;
 
+	n = false;
 	if (src[0] != '-')
 		return (false);
 	i = 1;
 	while (src[i] == 'n')
 	{
-		*has_n = false;
+		n = true;
 		i++;
 	}
+	if (src[i] == '\0' && n && *has_n)
+		*has_n = false;
 	return (src[i] == '\0');
 }
 

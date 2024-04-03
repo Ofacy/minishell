@@ -1,1 +1,1 @@
-unset export
+pwd

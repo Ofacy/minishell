@@ -1,2 +1,2 @@
-whoami | grep $USER > /tmp/bonjour
-cat /tmp/bonjour
+ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls
+|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls

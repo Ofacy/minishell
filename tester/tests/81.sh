@@ -1,1 +1,1 @@
-echo $UID$HOME
+echo $hola*

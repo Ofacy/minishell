@@ -1,1 +1,1 @@
-pwd ls
+cd srcs

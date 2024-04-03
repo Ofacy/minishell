@@ -1,1 +1,1 @@
-unset unset
+pwd -p

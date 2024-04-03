@@ -6,11 +6,15 @@
 #    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 13:41:27 by lcottet           #+#    #+#              #
-#    Updated: 2024/03/21 19:08:40 by lcottet          ###   ########.fr        #
+#    Updated: 2024/03/29 14:24:19 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #!/bin/bash
+
+OUTPUT_EXIT=1
+ERROR_EXIT=1
+STATUS_EXIT=1
 
 RED="\e[31m"
 BLUE="\e[34m"
@@ -20,11 +24,13 @@ GREEN="\e[32m"
 CYAN="\e[36m"
 ENDCOLOR="\e[0m"
 
-TESTS=$(ls -v1 ./tests/*.sh)
+TESTS=$(ls -v1 tests/*.sh)
 
-NB_TEST=$(echo $TESTS | wc -l )
+NB_TEST=$(echo "$TESTS" | wc -l )
 echo -e $'\n\n\n\n'"${YELLOW}Running $NB_TEST tests...${ENDCOLOR}"
 
+mkdir -p bash_outputs
+mkdir -p user_outputs
 OG_PWD=$(pwd)
 for filename in $TESTS; do
 	CMD=$(cat $filename)$'\n'pwd$'\n'exit
@@ -39,24 +45,30 @@ for filename in $TESTS; do
 	cd exec_env && ../../minishell 2> ../user_outputs/err 1> ../user_outputs/out < ../$filename
 	cd ..
 	USER_EXIT=$?
-	OUT_DIFF=$(diff bash_outputs/out user_outputs/out)
-	ERR_DIFF=$(diff bash_outputs/err user_outputs/err)
-	if [ "$OUT_DIFF" != "" ]; then
+	OUT_DIFF=$(diff -U 3 bash_outputs/out user_outputs/out)
+	ERR_DIFF=$(diff -U 3 bash_outputs/err user_outputs/err)
+	if [ "$OUTPUT_DIFF" != "" ]; then
 		echo -e " ${RED}KO${ENDCOLOR}"
 		echo "OUTPUT DIFF:"
 		echo "$OUT_DIFF"
-		exit 1
+		if [[ "$OUTPUT_EXIT" -eq 1 ]]; then
+			exit 1
+		fi
 	elif [ "$(cat user_outputs/err | wc -l)" != "$(cat bash_outputs/err | uniq -w 14 | wc -l)" ]; then
 		echo -e " ${RED}KO${ENDCOLOR}"
 		echo "ERROR DIFF:"
 		echo "$ERR_DIFF"
-		exit 1
+		if [[ "$ERROR_EXIT" -eq 1 ]]; then
+			exit 1
+		fi
 	elif [ "$BASH_EXIT" != "$USER_EXIT" ]; then
 		echo -e " ${RED}KO${ENDCOLOR}"
 		echo "EXIT CODE DIFF:"
 		echo "Expected: $BASH_EXIT"
 		echo "Got: $USER_EXIT"
-		exit 1
+		if [[ "$STATUS_EXIT" -eq 1 ]]; then
+			exit 1
+		fi
 	else
 		echo -e " ${GREEN}OK${ENDCOLOR}"
 	fi

@@ -1,1 +1,1 @@
-/bin/env
+pwd ls env

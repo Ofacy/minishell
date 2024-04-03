@@ -1,1 +1,1 @@
-echo      \n hola
+echo "         " | cat -e

@@ -1,2 +1,2 @@
-export HOLA=bonjour=casse-toi
+export HOLA="cat Makefile | grep NAME"  
 echo $HOLA

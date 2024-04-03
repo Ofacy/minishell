@@ -1,2 +1,1 @@
-echo hola > bonjour
-cat bonjour
+echo hola >>> bonjour
