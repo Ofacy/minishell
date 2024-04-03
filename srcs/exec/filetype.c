@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 23:12:15 by lcottet           #+#    #+#             */
-/*   Updated: 2024/04/03 23:30:53 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/03 23:39:57 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	regular_file_check(t_mshell *sh, char *path)
 	}
 	if (!S_ISREG(sb.st_mode))
 	{
-		custom_error(path, "is a directory");
+		custom_error(path, "Is a directory");
 		if (set_env_return(sh, 127))
 			return (-1);
 	}
