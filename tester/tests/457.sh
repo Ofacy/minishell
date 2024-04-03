@@ -1,1 +1,1 @@
-ech|o hola | cat
+sleep 3 | sleep 3

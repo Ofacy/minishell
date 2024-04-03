@@ -1,2 +1,1 @@
-export HOLA="l" 
-'$HOLA's
+export '='='='

@@ -1,1 +1,1 @@
-echo -n -n
+echo -nnnnn

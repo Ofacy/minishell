@@ -1,2 +1,2 @@
-export HOLA=bonjour=casse-toi
+export HOLA="   -n bonjour   "  
 echo $HOLA

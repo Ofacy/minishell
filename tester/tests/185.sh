@@ -1,1 +1,1 @@
-export HO#LA=bonjour
+export HOL+A=bonjour

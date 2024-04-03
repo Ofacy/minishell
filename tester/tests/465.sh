@@ -1,2 +1,2 @@
-export HOLA | echo hola
-env | grep PROUT
+echo hola que tal > bonjour
+cat bonjour

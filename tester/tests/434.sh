@@ -1,1 +1,1 @@
-cd .. | pwd
+ls | hola | ls

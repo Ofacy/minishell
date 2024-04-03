@@ -1,2 +1,2 @@
-unset PATH
-echo $PATH
+unset OLDPWD
+env | grep OLDPWD

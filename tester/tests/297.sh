@@ -1,1 +1,1 @@
-/bin/echo Hola Que Tal
+pwd hola que tal

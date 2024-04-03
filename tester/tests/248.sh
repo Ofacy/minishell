@@ -1,4 +1,3 @@
-export HOLA=bonjour
-env
-unset HOLA
-env
+unset PWD
+env | grep PWD
+pwd

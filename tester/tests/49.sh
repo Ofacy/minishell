@@ -1,1 +1,1 @@
-echo "         " | cat -e
+""''echo hola""'''' que""'' tal""''

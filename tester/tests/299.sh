@@ -1,1 +1,1 @@
-/bin/cd Desktop
+pwd ls

@@ -1,2 +1,2 @@
-export HOLA=at
-c$HOLA Makefile
+export HOLA="  bonjour  hey  "  
+echo wesh"$HOLA" | cat -e

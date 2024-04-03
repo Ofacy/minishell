@@ -1,2 +1,1 @@
-export _HO_LA_=bonjour
-env
+export HO-LA=bonjour

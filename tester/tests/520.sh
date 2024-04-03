@@ -1,1 +1,2 @@
-cat < ls > ls
+echo hola >srcs/bonjour
+cat <srcs/bonjour

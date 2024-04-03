@@ -1,1 +1,1 @@
-ls -la | grep "'.'"
+cat Makefile | cat -e | cat -e

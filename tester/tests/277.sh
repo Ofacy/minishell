@@ -1,1 +1,2 @@
-unset $PWD
+unset PATH
+cat Makefile

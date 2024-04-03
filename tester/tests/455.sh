@@ -1,1 +1,2 @@
-echo hola|cat
+export HOLA | echo hola
+env | grep PROUT

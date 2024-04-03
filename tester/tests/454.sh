@@ -1,1 +1,1 @@
-echo hola |cat
+unset HOLA | cat -e

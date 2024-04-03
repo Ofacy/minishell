@@ -1,1 +1,1 @@
-ls | exit 42
+echo oui | echo non | echo hola | grep non

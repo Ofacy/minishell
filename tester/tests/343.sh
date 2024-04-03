@@ -1,1 +1,1 @@
-cd $HOME
+cd ~

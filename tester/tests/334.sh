@@ -1,1 +1,1 @@
-cd '/'
+cd $HOME $HOME

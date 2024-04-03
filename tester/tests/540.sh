@@ -1,6 +1,5 @@
-echo hola > ../bonjour
-echo hey > ../hello
-rm ../bonjour ../hello
->../bonjour >../hello <prout
-ls ..
-cat ../bonjour ../hello
+echo hola > bonjour
+echo hey > hello
+<bonjour >hello
+cat bonjour 
+cat hello

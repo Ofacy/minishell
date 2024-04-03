@@ -1,2 +1,2 @@
-chmod 000 minishell
-./minishell
+env -i ./minishell
+export

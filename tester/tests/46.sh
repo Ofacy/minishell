@@ -1,1 +1,1 @@
-echo Hola Que Tal
+echo    Hola     Que    Tal

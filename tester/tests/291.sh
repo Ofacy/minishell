@@ -1,1 +1,1 @@
-unset pwd
+/bin/env

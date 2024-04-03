@@ -1,2 +1,4 @@
-echo hola >bonjour
-cat <bonjour
+echo hola > bonjour hey
+ls
+cat bonjour
+cat hey

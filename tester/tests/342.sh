@@ -1,1 +1,2 @@
-cd ---
+   cd / | echo $?
+pwd

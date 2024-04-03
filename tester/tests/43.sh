@@ -1,1 +1,1 @@
-echo "-n" Hola
+echo Hola -n

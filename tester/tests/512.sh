@@ -1,1 +1,2 @@
-cat <pwd
+>>hola
+cat hola

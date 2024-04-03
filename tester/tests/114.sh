@@ -1,1 +1,1 @@
-echo $DONTEXIST Hola
+echo ''hola''

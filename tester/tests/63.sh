@@ -1,1 +1,1 @@
-echo -nnn --------nnnn
+echo $?$

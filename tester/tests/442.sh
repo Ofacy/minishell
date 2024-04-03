@@ -1,1 +1,1 @@
-ls | ls hola
+echo hola | cat

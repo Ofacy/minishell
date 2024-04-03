@@ -1,1 +1,1 @@
-echo test.c | cat -e| cat -e| cat -e| cat -e| cat -e| cat -e| cat -e| cat -e|cat -e|cat -e|cat -e
+cat Makefile | grep srcs | cat -e

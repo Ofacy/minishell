@@ -1,2 +1,2 @@
-export HOLA$USER=bonjour
-env
+export HOLA="bonjour      "  
+echo $HOLA | cat -e

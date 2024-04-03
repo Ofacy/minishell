@@ -1,2 +1,3 @@
-cd /
-cd ..
+unset HOME
+export HOME=
+cd

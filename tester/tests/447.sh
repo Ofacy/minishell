@@ -1,1 +1,1 @@
-ls -la | grep "."
+ech|o hola | cat

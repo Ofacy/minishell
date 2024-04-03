@@ -1,1 +1,1 @@
-cd minishell Docs crashtest.c
+./Makefile

@@ -1,2 +1,1 @@
-export HOLA="l" 
-$HOLAs
+export ""=""

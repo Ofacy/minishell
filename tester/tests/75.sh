@@ -1,1 +1,1 @@
-echo $UID
+echo $HOME%

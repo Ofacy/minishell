@@ -1,1 +1,2 @@
-cd /minishell
+unset HOME
+cd $HOME

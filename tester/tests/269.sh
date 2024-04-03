@@ -1,1 +1,1 @@
-unset HOL-A
+unset $HOLA

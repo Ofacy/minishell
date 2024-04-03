@@ -1,1 +1,1 @@
-./minishell
+exit exit

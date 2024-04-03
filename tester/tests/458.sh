@@ -1,1 +1,1 @@
-cat Makefile | cat -e | cat -e
+sleep 3 | exit

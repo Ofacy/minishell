@@ -1,1 +1,2 @@
-cat Makefile | grep pr | head -n 5 | hello
+echo que tal >> bonjour
+cat bonjour

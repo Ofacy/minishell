@@ -1,1 +1,1 @@
-ifconfig | grep hola
+ls | ls | echo hola | rev

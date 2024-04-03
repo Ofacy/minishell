@@ -1,1 +1,1 @@
-echo $?$
+echo " $ " | cat -e

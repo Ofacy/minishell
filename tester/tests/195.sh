@@ -1,4 +1,2 @@
-export HOLA=bonsoir
-export HOLA=bonretour
-export HOLA=bonjour
+export HOLA=bon@jour
 env

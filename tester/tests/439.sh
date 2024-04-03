@@ -1,2 +1,1 @@
-whoami | cat -e | cat -e > /tmp/bonjour
-cat /tmp/bonjour
+echo test.c | cat -e| cat -e| cat -e| cat -e| cat -e| cat -e| cat -e| cat -e|cat -e|cat -e|cat -e

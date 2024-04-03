@@ -1,5 +1,3 @@
-echo hola > srcs/bonjour
-echo hey > srcs/hello
-<prout >>srcs/bonjour >>srcs/hello
-cat srcs/bonjour 
-cat srcs/hello
+export HOLA="bonjour hello"
+>$"HOLA"
+ls

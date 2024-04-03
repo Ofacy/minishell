@@ -1,2 +1,2 @@
-export HOLA=bon$jour
-env
+export HOLA=bonjour=casse-toi
+echo $HOLA

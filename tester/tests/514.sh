@@ -1,1 +1,2 @@
-cat <../pwd
+echo hola >bonjour
+cat <bonjour

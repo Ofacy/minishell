@@ -1,1 +1,1 @@
-[touche du haut]
+pwd ls env

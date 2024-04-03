@@ -1,1 +1,1 @@
-export HO*LA=bonjour
+export +HOLA=bonjour

@@ -1,1 +1,1 @@
-unset sudo
+pwd

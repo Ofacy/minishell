@@ -1,2 +1,1 @@
-cd ///
-pwd
+cd $HOME/42_works

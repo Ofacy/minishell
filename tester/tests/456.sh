@@ -1,1 +1,1 @@
-echo hola ||| cat
+export | echo hola

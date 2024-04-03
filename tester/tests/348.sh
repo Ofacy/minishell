@@ -1,2 +1,5 @@
-unset HOME
-cd $HOME
+mkdir a
+cd a
+rm -r ../a
+echo $PWD
+echo $OLDPWD

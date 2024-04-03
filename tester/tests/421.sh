@@ -1,2 +1,1 @@
-echo hola > bonjour
-exit | cat -e bonjour
+echo hola | cat -e | cat -e | cat -e

@@ -1,2 +1,2 @@
-export HO$?LA=bonjour
+export HOLA=bon jour
 env

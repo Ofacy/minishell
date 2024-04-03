@@ -1,1 +1,1 @@
-$LESS$VAR
+Ctlr-D

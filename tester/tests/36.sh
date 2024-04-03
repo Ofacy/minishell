@@ -1,1 +1,1 @@
-Makefile
+echo -n

@@ -1,1 +1,2 @@
-ls hola
+env -i ./minishell
+cd
