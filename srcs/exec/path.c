@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:23:03 by lcottet           #+#    #+#             */
-/*   Updated: 2024/04/03 22:43:56 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/03 22:57:48 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,12 @@ char	**get_path_folders(t_mshell *sh)
 
 	path = PATH_DEFAULT;
 	var = env_get(sh, "PATH", false);
-	if (var && var->value)
+	if (var)
 	{
-		path = var->value;
+		if (var->value)
+			path = var->value;
+		else
+			path = "";
 	}
 	return (ft_split(path, ':'));
 }

@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:11:23 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/21 18:55:48 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/03 22:50:33 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	prepare_mshell(t_mshell *mshell, char **env)
 		return (1);
 	init_mshell(mshell);
 	dup2(STDERR_FILENO, STDOUT_FILENO);
-	if (create_env(&mshell->env, env) != 0)
+	if (create_env(mshell, env) != 0)
 		return (1);
 	return (0);
 }

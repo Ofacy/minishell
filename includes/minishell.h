@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:55:03 by lcottet           #+#    #+#             */
-/*   Updated: 2024/04/03 18:21:30 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/03 22:49:45 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int			expander(t_mshell *sh, size_t start, size_t end);
 t_env		*env_get(t_mshell *sh, char *key, bool nullvalue);
 int			set_env_return(t_mshell *sh, int value);
 int			env_set(t_mshell *sh, char *key, char *value);
-int			create_env(t_vector *vector, char **env);
+int			create_env(t_mshell *sh, char **env);
 void		env_free(void *env);
 
 char		*get_user_input(t_mshell *sh);
