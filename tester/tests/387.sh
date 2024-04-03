@@ -1,1 +1,1 @@
-exit | ls
+echo | echo

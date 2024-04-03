@@ -1,3 +1,3 @@
-echo hola > bonjour
-<bonjour cat | wc > bonjour
-cat bonjour
+export HOLA="bonjour hello"
+>"$HOLA"
+ls

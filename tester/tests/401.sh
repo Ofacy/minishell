@@ -1,1 +1,1 @@
-cd .. | pwd
+whoami | grep $USER

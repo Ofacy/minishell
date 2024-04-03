@@ -1,1 +1,2 @@
-ls | exit 42
+echo hola > bonjour
+cat -e bonjour | exit

@@ -1,2 +1,2 @@
-whereis grep > Docs/bonjour
-cat Docs/bonjour
+pwd >                     bonjour
+cat bonjour

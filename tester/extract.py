@@ -12,7 +12,7 @@ with open('Minishell.csv', 'r') as file:
     # Parcourir chaque ligne du fichier CSV
     for ligne in csv_reader:
         # Vérifier si la ligne contient "NON GERE"
-        if "NON GERE" not in ligne and "(" not in ligne[1] and "\\" not in ligne[1] and "time" not in ligne[1] and " <<< " not in ligne[1] and ligne[1] != "$> :" and ligne[1] != "$> !" and "-HOLA" not in ligne[1] and ";" not in ligne[1] and "-p" not in ligne[1]:
+        if "NON GERE" not in ligne and "(" not in ligne[1] and "\\" not in ligne[1] and "time" not in ligne[1] and " <<< " not in ligne[1] and ligne[1] != "$> :" and ligne[1] != "$> !" and "-HOLA" not in ligne[1] and ";" not in ligne[1] and "-p" not in ligne[1] and "env -i" not in ligne[1]:
             if ligne[1].startswith("                                           !!!!! Contenu du fichier a : "):
                 add_files = True
             ligne_sans_premiers_caracteres = ""

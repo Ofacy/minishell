@@ -1,1 +1,1 @@
-ls | ls | hola | rev
+ls -la | grep "'.'"

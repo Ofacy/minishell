@@ -1,1 +1,1 @@
-cat Makefile | grep srcs | cat -e
+cat Makefile | grep pr | head -n 5 | hello

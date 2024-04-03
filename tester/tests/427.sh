@@ -1,1 +1,1 @@
-cat Makefile | grep srcs | grep srcs | cat -e
+export HOLA=bonjour | cat -e | cat -e

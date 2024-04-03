@@ -1,2 +1,2 @@
-echo hola que tal > /tmp/bonjour
-cat -e /tmp/bonjour
+ls -la > Docs/bonjour
+cat Docs/bonjour

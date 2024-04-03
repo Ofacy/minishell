@@ -1,1 +1,1 @@
-cat >> <<
+cat < ls > ls

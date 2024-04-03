@@ -1,1 +1,2 @@
-sleep 3 | exit
+echo hola > bonjour
+cat bonjour

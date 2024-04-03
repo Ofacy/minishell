@@ -1,5 +1,5 @@
 echo hola > bonjour
 echo hey > hello
->bonjour >hello < prout
+rm bonjour hello
+>bonjour <prout hello
 cat bonjour 
-cat hello

@@ -1,1 +1,2 @@
-cat < ls
+>>hola
+cat hola

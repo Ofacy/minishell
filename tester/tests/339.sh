@@ -1,1 +1,1 @@
-exit exit
+exit 42

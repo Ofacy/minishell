@@ -1,1 +1,1 @@
-cd / | echo "hola"
+ifconfig | grep hola
