@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:55:03 by lcottet           #+#    #+#             */
-/*   Updated: 2024/04/03 18:21:30 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/03 23:29:22 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int			exec_builtins(t_execute *exec, t_mshell *sh);
 void		exec_cmd(t_execute *exec, t_mshell *sh, char **envp);
 void		exec_fail(t_execute *exec, t_mshell *sh, char **envp);
 void		choose_fork_exec(t_mshell *sh, t_execute *exec, char **envp);
+int			regular_file_check(t_mshell *sh, char *path);
 
 char		*expander_join(t_token *t1, t_token *t2);
 
