@@ -1,1 +1,1 @@
-cd ../minishell
+cd ~

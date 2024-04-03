@@ -1,1 +1,2 @@
-ech|o hola | cat
+pwd>bonjour
+cat bonjour

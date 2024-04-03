@@ -1,1 +1,1 @@
-pwd | echo hola
+ls -la | grep "'.'"

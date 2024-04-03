@@ -1,1 +1,1 @@
-env|"wc "-l
+exit -259

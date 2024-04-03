@@ -1,5 +1,2 @@
-pwd
-unset PWD
-env | grep PWD
-cd $PWD
-pwd
+unset OLDPWD
+env | grep OLDPWD

@@ -1,1 +1,1 @@
-/bin/env
+cd "srcs"

@@ -1,1 +1,2 @@
-cd _
+touch hola
+./hola

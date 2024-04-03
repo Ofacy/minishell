@@ -1,1 +1,2 @@
-echo hola|cat
+whereis grep > Docs/bonjour
+cat Docs/bonjour

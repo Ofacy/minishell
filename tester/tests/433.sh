@@ -1,1 +1,1 @@
-ls | ls | hola
+export | echo hola

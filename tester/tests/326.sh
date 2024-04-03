@@ -1,2 +1,2 @@
-cd ////////
-pwd
+chmod 000 minishell
+./minishell

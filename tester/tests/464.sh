@@ -1,4 +1,5 @@
 echo hola > bonjour
-rm bonjour
-echo que tal >> bonjour
-cat < bonjour
+echo hey > hello
+echo hola > bonjour > hello > bonjour
+cat bonjour
+cat hello

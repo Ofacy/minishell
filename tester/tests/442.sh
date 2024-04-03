@@ -1,1 +1,2 @@
-echo hola | cat
+echo hola que tal > bonjour
+cat bonjour

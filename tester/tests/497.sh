@@ -1,3 +1,2 @@
->bonjour echo > hola>bonjour>hola>>bonjour>hola hey >bonjour hola >hola
-cat bonjour
-cat hola
+echo hola >srcs/bonjour
+cat <srcs/bonjour

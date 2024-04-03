@@ -1,2 +1,1 @@
-whoami | cat -e | cat -e > /tmp/bonjour
-cat /tmp/bonjour
+cat Makefile | grep pr | head -n 5 | hello

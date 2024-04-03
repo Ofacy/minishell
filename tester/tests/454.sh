@@ -1,1 +1,2 @@
-unset HOLA | cat -e
+prout hola > bonjour
+ls

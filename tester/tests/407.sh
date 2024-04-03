@@ -1,1 +1,2 @@
-cat | cat | cat | ls
+whereis ls | cat -e | cat -e > /tmp/bonjour
+cat /tmp/bonjour

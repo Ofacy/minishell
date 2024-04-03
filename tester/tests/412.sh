@@ -1,2 +1,1 @@
-echo hola > bonjour
-cat -e bonjour | exit
+ls | ls | hola | rev

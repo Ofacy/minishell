@@ -1,1 +1,2 @@
-cd $HOME/42_works
+env -i ./minishell
+env

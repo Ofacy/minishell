@@ -1,1 +1,2 @@
-unset HOLA=
+unset PATH
+cat Makefile

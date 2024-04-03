@@ -1,1 +1,1 @@
-ifconfig | grep ":"
+cat Makefile | cat -e | cat -e

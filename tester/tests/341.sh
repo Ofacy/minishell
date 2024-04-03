@@ -1,1 +1,1 @@
-cd minishell Docs crashtest.c
+exit hola que tal

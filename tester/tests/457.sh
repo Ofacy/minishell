@@ -1,1 +1,4 @@
-sleep 3 | sleep 3
+echo hola > hello >> hello >> hello
+echo hola >> hello
+echo hola > hello >> hello >> hello
+cat < hello

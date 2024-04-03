@@ -1,2 +1,2 @@
-> bonjour echo hola bonjour
-cat bonjour
+echo hola > srcs/bonjour
+cat < srcs/bonjour

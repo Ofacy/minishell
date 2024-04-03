@@ -1,5 +1,1 @@
-mkdir a
-mkdir a/b
-cd a/b
-rm -r ../../a
-pwd
+exit 666 666

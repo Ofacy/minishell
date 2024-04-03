@@ -1,1 +1,3 @@
-cd /e"tc"
+unset HOME
+export HOME
+cd

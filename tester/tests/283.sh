@@ -1,1 +1,1 @@
-unset echo
+cd ..

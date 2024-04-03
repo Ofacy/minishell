@@ -1,1 +1,1 @@
-ls | hola
+unset HOLA | cat -e

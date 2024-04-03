@@ -1,5 +1,1 @@
-mkdir a
-cd a
-rm -r ../a
-echo $PWD
-echo $OLDPWD
+exit 666 666 666 666

@@ -1,1 +1,1 @@
-cd $HOME
+expr 1 + 1

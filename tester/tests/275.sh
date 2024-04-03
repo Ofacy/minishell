@@ -1,2 +1,1 @@
-unset "" HOLA
-env | grep HOLA
+pwd pwd pwd

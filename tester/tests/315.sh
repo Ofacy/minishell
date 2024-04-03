@@ -1,1 +1,2 @@
-cd '/etc'
+unset HOME
+cd $HOME

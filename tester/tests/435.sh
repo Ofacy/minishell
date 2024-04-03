@@ -1,1 +1,1 @@
-ls | ls | hola | rev
+sleep 3 | exit

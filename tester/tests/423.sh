@@ -1,1 +1,1 @@
-cd / | echo "hola"
+echo hola ||| cat

@@ -1,3 +1,1 @@
-unset HOME
-export HOME
-cd
+exit hola

@@ -1,1 +1,1 @@
-exit '"666"'
+cd .. | echo "hola"

@@ -1,2 +1,3 @@
-ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls
-|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls
+echo hola > bonjour
+echo que tal >> bonjour
+cat < bonjour

@@ -1,1 +1,1 @@
-echo hola | echo que tal
+ls -la | grep "."

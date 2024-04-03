@@ -1,1 +1,2 @@
-cat Makefile | cat -e | cat -e
+pwd >                     bonjour
+cat bonjour

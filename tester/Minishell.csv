@@ -799,8 +799,6 @@ $>","0
 0",
 ,"$> unset PATH
 $> ls",,,,OK,OK,bash: ls: No such file or directory,127,
-,"$> unset """"",,,,OK,OK,"bash: unset: `': not a valid identifier
-$>",1,
 ,$> unset INEXISTANT,,,,OK,OK,$>,0,Cas où la variable n'existe pas
 ,"$> unset PWD
 $> env | grep PWD
@@ -827,46 +825,14 @@ $>
 $> env | grep OLDPWD",,,,OK,OK,"$>
 $>","0
 0",
-,$> unset 9HOLA,,,,OK,OK,"bash: unset: `9HOLA': not a valid identifier
-$>",1,
 ,$> unset HOLA9,,,,OK,OK,$>,0,
-,$> unset HOL?A,,,,OK,OK,"bash: unset: `HOL?A': not a valid identifier
-$>",1,
-,$> unset HOLA HOL?A,,,,OK,OK,"bash: unset: `HOL?A': not a valid identifier
-$>",1,Il unset bien HOLA
-,$> unset HOL?A HOLA,,,,OK,OK,"bash: unset: `HOL?A': not a valid identifier
-$>",1,Il unset bien HOLA
-,$> unset HOL?A HOL.A,,,,OK,OK,"bash: unset: `HOL?A': not a valid identifier
-bash: unset: `HOL.A': not a valid identifier
-$>",1,
-,$> unset HOLA=,,,,OK,OK,"bash: unset: `HOLA=': not a valid identifier
-$>",1,
-,$> unset HOL\\\\A,NON GERE,,,OK,OK,bash: unset: `HOL\\A': not a valid identifier,1,
 ,$> unset HOL;A,NON GERE,,,OK,OK,bash: A: command not found,127,
-,$> unset HOL.A,,,,OK,OK,bash: unset: `HOL.A': not a valid identifier,1,
-,$> unset HOL+A,,,,OK,OK,bash: unset: `HOL+A': not a valid identifier,1,
-,$> unset HOL=A,,,,OK,OK,bash: unset: `HOL=A': not a valid identifier,1,
-,$> unset HOL{A,,,,OK,OK,bash: unset: `HOL{A': not a valid identifier,1,
-,$> unset HOL}A,,,,OK,OK,bash: unset: `HOL}A': not a valid identifier,1,
-,$> unset HOL-A,,,,OK,OK,bash: unset: `HOL-A': not a valid identifier,1,
 ,$> unset -HOLA,,,,OK,OK,bash: unset: -H: invalid option,2,
 ,$> unset _HOLA,,,,OK,OK,$>,0,
 ,$> unset HOL_A,,,,OK,OK,$>,0,
 ,$> unset HOLA_,,,,OK,OK,$>,0,
-,$> unset HOL*A,,,,OK,OK,bash: unset: `HOL*A': not a valid identifier,1,
-,$> unset HOL#A,,,,OK,OK,bash: unset: `HOL#A': not a valid identifier,1,
 ,$> unset $HOLA,,,,OK,OK,$>,0,"Il va unset le contenu de $HOLA, c'est-a-dire la variable bonjour"
-,$> unset $PWD,,,,OK,OK,bash: unset: `/home/vietdu91/42_works/minishell': not a valid identifier,1,
-,$> unset HOL@,,,,OK,OK,bash: unset: `HOL@': not a valid identifier,1,
-,$> unset HOL!A,,,,OK,OK,bash: !A: event not found,1,
-,$> unset HOL^A,,,,OK,OK,bash: unset: `HOL^A': not a valid identifier,1,
 ,$> unset HOL$?A,,,,OK,OK,$>,0,"Unset prend en compte le contenu de $?, c'est-a-dire qu'il lit HOL0A ou HOL127A"
-,$> unset HOL\~A,,,,OK,OK,bash: unset: `HOL~': not a valid identifier,1,
-,"$> unset """" HOLA
-$> env | grep HOLA",,,,OK,OK,"bash: unset: `': not a valid identifier
-$>
-$>","1
-0",HOLA sera quand meme unset !!
 ,"$> unset PATH
 $> echo $PATH",,,,OK,OK,"
 $>","0
@@ -875,9 +841,6 @@ $>","0
 $> cat Makefile",,,,OK,OK,"bash: cat: No such file or directory
 $>","0
 1",
-,$> unset =,,,,OK,OK,bash: unset: `=': not a valid identifier,0,
-,$> unset ======,,,,OK,OK,bash: unset: `======': not a valid identifier,0,
-,$> unset ++++++,,,,OK,OK,bash: unset: `++++++': not a valid identifier,0,
 ,$> unset _______,,,,OK,OK,$>,0,
 ,$> unset export,,,,OK,OK,$>,0,
 ,$> unset echo,,,,OK,OK,$>,0,

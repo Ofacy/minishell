@@ -1,1 +1,2 @@
-cd "$PWD/srcs"
+env -i ./minishell
+export
