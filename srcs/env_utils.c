@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 20:53:51 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/19 18:53:58 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/04 00:15:10 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	**env_to_envp(t_vector *env)
 			return (NULL);
 		i++;
 	}
-	envp[i] = NULL;
+	envp[envp_len] = NULL;
 	return (envp);
 }
 
