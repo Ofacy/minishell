@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:23:03 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/19 18:41:07 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/03 22:57:48 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,18 @@
 char	**get_path_folders(t_mshell *sh)
 {
 	t_env	*var;
+	char	*path;
 
+	path = PATH_DEFAULT;
 	var = env_get(sh, "PATH", false);
-	if (!var)
+	if (var)
 	{
-		errno = ENOENT;
-		return (NULL);
+		if (var->value)
+			path = var->value;
+		else
+			path = "";
 	}
-	return (ft_split(var->value, ':'));
+	return (ft_split(path, ':'));
 }
 
 char	*path_valid(char *file, char *curr_path, int access_mode)
@@ -69,7 +73,7 @@ char	*get_openable_path(char *file, int access_mode, t_mshell *sh)
 		if (tmp)
 			return (ft_freesplit(path), tmp);
 		if (errno == EACCES)
-			return (NULL);
+			return (ft_freesplit(path), NULL);
 		i++;
 	}
 	ft_freesplit(path);

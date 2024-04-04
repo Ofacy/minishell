@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:15:13 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/19 18:55:09 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/03 22:53:11 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,24 +100,29 @@ t_env	*env_get(t_mshell *sh, char *key, bool nullvalue)
 	return (NULL);
 }
 
-int	create_env(t_vector *vector, char **env)
+int	create_env(t_mshell *sh, char **env)
 {
-	t_env		env_tmp;
-	size_t		i;
+	char	*value;
+	char	*key;
+	size_t	i;
 
 	i = 0;
-	vector_init(vector, sizeof(t_env));
+	vector_init(&sh->env, sizeof(t_env));
+	if (env_set(sh, "OLDPWD", NULL) != 0)
+		return (1);
+	if (env_set(sh, "PWD", NULL) != 0)
+		return (1);
+	if (env_set(sh, "SHLVL", "1") != 0)
+		return (1);
 	while (env[i])
 	{
-		env_tmp.key = ft_strcdup(env[i], '=');
-		if (!env_tmp.key)
+		key = ft_strcdup(env[i], '=');
+		if (!key)
 			return (1);
-		env_tmp.value = ft_strdup(ft_strchr(env[i], '=') + 1);
-		if (!env_tmp.value)
-			return (free(env_tmp.key), 1);
-		env_tmp.key_size = ft_strlen(env_tmp.key);
-		env_tmp.value_size = ft_strlen(env_tmp.value);
-		if (vector_add(vector, &env_tmp) != 0)
+		value = ft_strdup(ft_strchr(env[i], '=') + 1);
+		if (!value)
+			return (free(key), 1);
+		if (env_set(sh, key, value) != 0)
 			return (1);
 		i++;
 	}

@@ -79,7 +79,7 @@ int			expander(t_mshell *sh, size_t start, size_t end);
 t_env		*env_get(t_mshell *sh, char *key, bool nullvalue);
 int			set_env_return(t_mshell *sh, int value);
 int			env_set(t_mshell *sh, char *key, char *value);
-int			create_env(t_vector *vector, char **env);
+int			create_env(t_mshell *sh, char **env);
 void		env_free(void *env);
 
 char		*get_user_input(t_mshell *sh);
