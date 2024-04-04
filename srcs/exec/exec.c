@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:18:34 by lcottet           #+#    #+#             */
-/*   Updated: 2024/03/21 19:02:00 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/03 23:52:33 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,9 @@ void	exec_cmd(t_execute *exec, t_mshell *sh, char **envp)
 
 pid_t	exec_txt(t_execute *exec, t_mshell *sh)
 {
-	char		*null;
-	pid_t		pid;
+	char	*null;
+	pid_t	pid;
+	int		filetype;
 
 	if (exec->args.len == 0)
 		return (-4);
@@ -93,6 +94,11 @@ pid_t	exec_txt(t_execute *exec, t_mshell *sh)
 			return (-3);
 		return (-4);
 	}
+	filetype = regular_file_check(sh, exec->cmd);
+	if (filetype == -1)
+		return (free(exec->cmd), -1);
+	else if (!filetype)
+		return (free(exec->cmd), -4);
 	pid = exec_fork(exec, sh);
 	free(exec->cmd);
 	return (pid);
