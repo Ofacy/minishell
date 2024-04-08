@@ -6,13 +6,52 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:36 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/18 10:58:10 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/08 13:07:43 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "libft.h"
 #include <stdio.h>
+
+static long long	ft_getnb(const char *nptr, size_t i)
+{
+	long	nb;
+
+	nb = 0;
+	while (ft_isdigit(nptr[i]))
+	{
+		if (nb != (nb * 10 + nptr[i] - 48) / 10)
+		{
+			builtin_error("exit", "numeric argument required");
+			return (-1);
+		}
+		nb = nb * 10 + nptr[i] - 48;
+		i++;
+	}
+	return (nb);
+}
+
+static long long	ft_atoll(const char *nptr)
+{
+	size_t	i;
+	char	sign;
+	long	nb;
+
+	i = 0;
+	sign = 1;
+	nb = 0;
+	while (ft_isspace(nptr[i]))
+		i++;
+	if (nptr[i] == '-' || nptr[i] == '+')
+	{
+		if (nptr[i] == '-')
+			sign *= -1;
+		i++;
+	}
+	nb = ft_getnb(nptr, i);
+	return ((int)(nb * sign));
+}
 
 static	int	ft_strisnum(char *str)
 {
@@ -52,9 +91,9 @@ int	exit_builtin(t_mshell *sh, t_execute *exec)
 			sh->exit = 2;
 			return (2);
 		}
-		sh->exit = (int)(unsigned char)ft_atoi(args[1]);
+		sh->exit = (int)(unsigned char)ft_atoll(args[1]);
 		return (sh->exit);
 	}
-	sh->exit = 0;
+	sh->exit = ft_atoll(sh->last_return.key);
 	return (0);
 }
