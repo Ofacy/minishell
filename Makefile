@@ -6,7 +6,7 @@
 #    By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/14 13:24:31 by bwisniew          #+#    #+#              #
-#    Updated: 2024/04/03 23:15:19 by lcottet          ###   ########.fr        #
+#    Updated: 2024/04/08 11:25:55 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRCS =	main.c env.c prompt.c error.c env_utils.c mshell_utils.c signal.c
 PARSER_SRCS = lexer.c syntax.c token_utils.c
 
 EXEC_SRCS =	path.c exec.c exec_fd.c here_doc.c fork.c exec_utils.c wait.c \
-			close.c exec_builtins.c filetype.c
+			close.c exec_builtins.c filetype.c here_doc_utils.c
 
 EXPAND_SRCS = expander_token.c expander_len.c expander_split.c expander.c \
 				expander_join.c expander_file.c
