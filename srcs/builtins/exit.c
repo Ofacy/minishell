@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:36 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/04/08 13:41:15 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/08 14:28:59 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,6 @@ int	exit_builtin(t_mshell *sh, t_execute *exec)
 		sh->exit = (int)(unsigned char)ft_atoll(args[1]);
 		return (sh->exit);
 	}
-	sh->exit = ft_atoll(sh->last_return.key);
+	sh->exit = ft_atoll(sh->last_return.value);
 	return (0);
 }

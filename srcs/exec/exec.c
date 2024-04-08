@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:18:34 by lcottet           #+#    #+#             */
-/*   Updated: 2024/04/03 23:52:33 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/08 14:29:39 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ pid_t	exec(t_mshell *sh)
 	pid_t		pid;
 	t_execute	exec;
 
-	pid = -2;
+	pid = -4;
 	exec.nextin = dup(sh->stdin);
 	exec.has_pipe = false;
 	exec_init(&exec, sh, false);

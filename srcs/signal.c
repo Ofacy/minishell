@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 16:35:40 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/21 18:55:46 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/08 14:04:03 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 #include <readline/history.h>
 #include <unistd.h>
 
-int	g_signal = -1;
+int	g_signal = 0;
 
 void	reset_signal(void)
 {
-	g_signal = -1;
+	g_signal = 0;
 }
 
 void	signal_handler(int sig)
