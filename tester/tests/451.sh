@@ -1,2 +1,0 @@
-prout hola > bonjour
-ls

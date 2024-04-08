@@ -1,2 +1,0 @@
-pwd >                     bonjour
-cat bonjour

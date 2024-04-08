@@ -1,1 +1,0 @@
-export HO*LA=bonjour
