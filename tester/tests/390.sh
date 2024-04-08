@@ -1,1 +1,0 @@
-echo oui | cat -e

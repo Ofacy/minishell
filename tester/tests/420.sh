@@ -1,1 +1,0 @@
-ech|o hola | cat
