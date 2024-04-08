@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:43 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/04/03 22:35:17 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/08 18:20:45 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,34 @@ int	cd_home(t_mshell *sh)
 	return (cd_change_env(sh));
 }
 
+int	cd_oldpwd(t_mshell *sh)
+{
+	t_env	*oldpwd;
+
+	oldpwd = env_get(sh, "OLDPWD", false);
+	if (!oldpwd)
+	{
+		custom_error("cd", "OLDPWD not set");
+		return (1);
+	}
+	if (chdir(oldpwd->value) == -1)
+	{
+		error("cd");
+		return (1);
+	}
+	return (cd_change_env(sh));
+}
+
 int	cd(t_mshell *sh, t_execute *exec)
 {
 	char	**args;
 
 	(void)sh;
 	args = exec->args.tab;
-	if (args[1] == NULL)
+	if (args[1] == NULL || (args[1] != NULL && args[1][0] == '~'))
 		return (cd_home(sh));
+	if (args[1] == NULL || (args[1] != NULL && args[1][0] == '-'))
+		return (cd_oldpwd(sh));
 	else if (args[2] != NULL)
 	{
 		custom_error("cd", "too many arguments");
