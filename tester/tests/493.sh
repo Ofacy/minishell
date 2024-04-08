@@ -1,2 +1,2 @@
-echo hola > srcs/bonjour
-cat < srcs/bonjour
+echo hola >srcs/bonjour
+cat <srcs/bonjour

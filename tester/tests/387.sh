@@ -1,1 +1,1 @@
-echo | echo
+echo hola | echo que tal

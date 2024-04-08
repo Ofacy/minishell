@@ -1,1 +1,1 @@
-ls | exit
+ls | exit 42

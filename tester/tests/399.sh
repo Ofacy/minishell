@@ -1,1 +1,1 @@
-ifconfig | grep ":"
+ifconfig | grep hola

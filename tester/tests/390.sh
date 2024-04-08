@@ -1,1 +1,1 @@
-env | echo hola
+echo oui | cat -e

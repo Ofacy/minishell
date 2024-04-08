@@ -1,1 +1,1 @@
-echo oui | echo non | echo hola | grep oui
+echo oui | echo non | echo hola | grep non

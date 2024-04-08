@@ -1,3 +1,3 @@
 export HOLA="bonjour hello"
->$HOLA>hey
+>hey>$HOLA
 ls

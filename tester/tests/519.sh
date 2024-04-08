@@ -1,3 +1,3 @@
-echo hola > bonjour
-<bonjour cat | wc > bonjour
-cat bonjour
+rm -f bonjour
+rm bonjour > bonjour
+ls -l bonjour

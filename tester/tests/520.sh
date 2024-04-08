@@ -1,3 +1,3 @@
-rm -f bonjour
-rm bonjour > bonjour
-ls -l bonjour
+export HOLA="bonjour hello"
+>$HOLA
+ls

@@ -1,1 +1,1 @@
-cd .. | pwd
+ifconfig | grep ":"

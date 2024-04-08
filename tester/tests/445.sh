@@ -1,2 +1,1 @@
-pwd >                     bonjour
-cat bonjour
+echo hola > > bonjour

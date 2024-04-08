@@ -1,1 +1,1 @@
-ls -la | grep "."
+ls -la | grep "'.'"

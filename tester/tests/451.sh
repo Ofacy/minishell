@@ -1,2 +1,3 @@
-prout hola > bonjour
+echo hola > hello >> hello >> hello
 ls
+cat hello

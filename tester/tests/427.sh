@@ -1,1 +1,1 @@
-export HOLA=bonjour | cat -e | cat -e
+unset HOLA | cat -e

@@ -1,1 +1,1 @@
-echo hola | echo que tal
+pwd | echo hola

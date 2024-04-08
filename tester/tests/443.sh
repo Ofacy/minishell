@@ -1,2 +1,2 @@
-ls -la > Docs/bonjour
-cat Docs/bonjour
+pwd>bonjour
+cat bonjour

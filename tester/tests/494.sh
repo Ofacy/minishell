@@ -1,2 +1,3 @@
-echo hola >srcs/bonjour
-cat <srcs/bonjour
+echo hola > bonjour
+echo que tal >> bonjour
+cat < bonjour

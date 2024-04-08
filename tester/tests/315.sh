@@ -1,2 +1,3 @@
 unset HOME
-cd $HOME
+export HOME=
+cd

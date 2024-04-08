@@ -1,1 +1,1 @@
-cd $HOME $HOME
+cd $HOME/42_works

@@ -1,2 +1,2 @@
-pwd>bonjour
+pwd >                     bonjour
 cat bonjour

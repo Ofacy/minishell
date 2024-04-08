@@ -1,1 +1,1 @@
-cat <srcs/pwd
+cat <../pwd

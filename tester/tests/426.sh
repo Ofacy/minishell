@@ -1,1 +1,1 @@
-cat Makefile | grep pr | head -n 5 | hello
+export HOLA=bonjour | cat -e | cat -e

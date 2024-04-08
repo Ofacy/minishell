@@ -1,3 +1,3 @@
 echo hola > hello
 echo hey > bonjour
-echo <bonjour <hello
+echo <hello <bonjour

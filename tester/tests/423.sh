@@ -1,1 +1,1 @@
-cat Makefile | grep srcs | cat -e
+cat Makefile | grep srcs | grep srcs | cat -e

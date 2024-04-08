@@ -1,1 +1,1 @@
-ech|o hola | cat
+cat Makefile | cat -e | cat -e

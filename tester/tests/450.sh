@@ -1,2 +1,2 @@
-> bonjour | echo hola
-cat bonjour
+prout hola > bonjour
+ls

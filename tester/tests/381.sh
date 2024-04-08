@@ -1,1 +1,1 @@
-cat | cat | cat | ls
+ls | exit

@@ -1,1 +1,1 @@
-ifconfig | grep hola
+whoami | grep $USER

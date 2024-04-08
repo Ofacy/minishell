@@ -1,1 +1,1 @@
-cd "$PWD/srcs"
+cd '$PWD/srcs'

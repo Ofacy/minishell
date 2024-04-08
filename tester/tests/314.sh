@@ -1,1 +1,2 @@
-cd '$PWD/srcs'
+unset HOME
+cd $HOME

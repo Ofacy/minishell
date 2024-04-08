@@ -1,2 +1,2 @@
 echo hola > bonjour
-exit | cat -e bonjour
+cat -e bonjour | exit

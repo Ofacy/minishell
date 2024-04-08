@@ -1,1 +1,1 @@
-pwd | echo hola
+env | echo hola

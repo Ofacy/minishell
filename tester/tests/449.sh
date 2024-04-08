@@ -1,2 +1,2 @@
-> bonjour echo hola
+> bonjour | echo hola
 cat bonjour

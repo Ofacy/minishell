@@ -1,3 +1,3 @@
 echo hola > hello >> hello >> hello
-ls
-cat hello
+echo hola >> hello
+cat < hello

@@ -1,1 +1,1 @@
-echo hola| cat
+echo hola |cat

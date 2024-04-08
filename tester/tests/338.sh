@@ -1,1 +1,1 @@
-exit hola que tal
+exit 42

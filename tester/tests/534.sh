@@ -1,6 +1,5 @@
 echo Amour Tu es Horrible > a
 echo 0123456789 > b
 echo Prout > c
-mkdir dir
-ls -la > dir/bonjour
-cat dir/bonjour
+<a
+cat a

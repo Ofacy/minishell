@@ -1,1 +1,1 @@
-env|"wc "-l
+expr 1 + 1

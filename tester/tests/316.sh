@@ -1,3 +1,3 @@
 unset HOME
-export HOME=
+export HOME
 cd

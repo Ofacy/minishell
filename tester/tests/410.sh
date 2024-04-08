@@ -1,1 +1,1 @@
-ls | ls | echo hola | rev
+ls -la | grep "."

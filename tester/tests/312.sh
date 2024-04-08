@@ -1,1 +1,1 @@
-cd $HOME/42_works
+cd "$PWD/srcs"

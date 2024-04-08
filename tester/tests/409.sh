@@ -1,1 +1,1 @@
-ls | ls | hola | rev
+ls | ls | echo hola | rev

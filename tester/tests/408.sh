@@ -1,1 +1,1 @@
-ls | hola | ls
+ls | ls | hola | rev

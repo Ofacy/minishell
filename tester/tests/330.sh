@@ -1,2 +1,1 @@
-touch hola
-./hola
+env|"wc" -l

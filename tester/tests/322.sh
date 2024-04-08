@@ -2,4 +2,5 @@ mkdir a
 mkdir a/b
 cd a/b
 rm -r ../../a
-pwd
+echo $PWD
+echo $OLDPWD

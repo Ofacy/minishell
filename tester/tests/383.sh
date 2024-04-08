@@ -1,1 +1,1 @@
-ls | exit 42
+exit | ls

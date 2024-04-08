@@ -1,1 +1,1 @@
-env|"wc" -l
+env|"wc "-l

@@ -1,3 +1,2 @@
-export HOLA=hey
-echo bonjour > $HOLA
-echo $HOLA
+whereis grep > Docs/bonjour
+cat Docs/bonjour

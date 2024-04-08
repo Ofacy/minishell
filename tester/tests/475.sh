@@ -1,1 +1,1 @@
-< pwd
+cat <pwd

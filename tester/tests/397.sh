@@ -1,1 +1,1 @@
-cd / | echo "hola"
+cd .. | pwd

@@ -1,1 +1,1 @@
-cat Makefile | grep srcs | grep srcs | cat -e
+cat Makefile | grep pr | head -n 5 | cd file_not_exist

@@ -1,1 +1,1 @@
-echo hola | cat -e | cat -e | cat -e
+cd .. | echo "hola"
