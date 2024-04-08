@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:36 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/04/08 13:07:43 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/08 13:41:15 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <stdio.h>
 
-static long long	ft_getnb(const char *nptr, size_t i)
+static long	ft_getnb(const char *nptr, size_t i)
 {
 	long	nb;
 
@@ -32,7 +32,7 @@ static long long	ft_getnb(const char *nptr, size_t i)
 	return (nb);
 }
 
-static long long	ft_atoll(const char *nptr)
+static int	ft_atoll(const char *nptr)
 {
 	size_t	i;
 	char	sign;
