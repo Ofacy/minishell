@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 17:58:52 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/20 15:25:55 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/08 14:04:46 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	wait_for_child(pid_t last_pid)
 		return (1);
 	if (errno != ECHILD)
 		return (error("wait"), 127);
-	if (last_pid == -1 && g_signal == -1)
+	if (last_pid == -1 && g_signal == 0)
 		return (127);
 	else if (last_pid == -1)
 		return (128 + g_signal);

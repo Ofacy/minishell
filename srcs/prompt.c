@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:12:55 by lcottet           #+#    #+#             */
-/*   Updated: 2024/04/03 17:11:26 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/08 14:05:40 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@ char	*get_user_input(t_mshell *sh)
 		input = readline(c_prompt.txt);
 	else
 		input = get_next_line(STDIN_FILENO);
+	if (g_signal != 0)
+	{
+		set_env_return(sh, 128 + g_signal);
+		reset_signal();
+	}
 	free_token(&c_prompt);
 	return (input);
 }
