@@ -6,13 +6,14 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 20:41:37 by lcottet           #+#    #+#             */
-/*   Updated: 2024/04/03 18:26:48 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:46:31 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "expander.h"
 #include "libft.h"
+#include "get_next_line.h"
 #include <readline/readline.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -48,7 +49,7 @@ char	*here_doc_getline(t_mshell *sh, size_t i, t_fd fd, int *err)
 	t_token	line;
 	char	*tmp;
 
-	line.txt = readline(PROMPT_HEREDOC);
+	line.txt = hd_get_user_input();
 	if (g_signal != -1)
 		return (here_doc_signal(&line, sh, err));
 	else if (!line.txt)
@@ -60,13 +61,11 @@ char	*here_doc_getline(t_mshell *sh, size_t i, t_fd fd, int *err)
 	line.txt_size = ft_strlen(line.txt);
 	line.is_txt_heap = true;
 	line.type = ((t_token *)sh->tokens.tab)[i].old_type;
-	if (((t_token *)sh->tokens.tab)[i].old_type == UNQUOTED)
+	if (line.type == UNQUOTED
+		&& token_expand(&line, sh, expanded_len(sh, &line)))
 	{
-		if (token_expand(&line, sh, expanded_len(sh, &line)) != 0)
-		{
-			free_token(&line);
-			return (NULL);
-		}
+		free_token(&line);
+		return (free(tmp), NULL);
 	}
 	*err = here_doc_line(fd, line.txt);
 	return (tmp);
@@ -96,7 +95,7 @@ int	exec_set_heredoc(t_execute *exec, t_mshell *sh, size_t i)
 	close_fd(&exec->in);
 	err = 0;
 	file = open(".heredoc", O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (file == -1)
+	if (expander_unseparated(&sh->tokens, i + 1, i + 2) != 0 || file == -1)
 	{
 		exec->in = -1;
 		error(".heredoc");
@@ -105,7 +104,7 @@ int	exec_set_heredoc(t_execute *exec, t_mshell *sh, size_t i)
 	reset_signal();
 	signal(SIGINT, signal_heredoc);
 	line = here_doc_getline(sh, i + 1, file, &err);
-	while (line && ft_strncmp(line, ((t_token *)sh->tokens.tab)[i + 1].txt,
+	while (line && !hd_cmp(((t_token *)sh->tokens.tab)[i + 1].txt, line,
 		((t_token *)sh->tokens.tab)[i + 1].txt_size) && g_signal != SIGINT)
 	{
 		free(line);
