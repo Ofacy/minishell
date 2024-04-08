@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:15:13 by lcottet           #+#    #+#             */
-/*   Updated: 2024/04/03 22:53:11 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/08 12:54:47 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,10 @@ int	create_env(t_mshell *sh, char **env)
 
 	i = 0;
 	vector_init(&sh->env, sizeof(t_env));
-	if (env_set(sh, "OLDPWD", NULL) != 0)
-		return (1);
-	if (env_set(sh, "PWD", NULL) != 0)
-		return (1);
-	if (env_set(sh, "SHLVL", "1") != 0)
+	if (env_set(sh, "OLDPWD", NULL) != 0
+		|| env_set(sh, "PWD", NULL) != 0
+		|| env_set(sh, "SHLVL", "1") != 0
+		|| env_set(sh, "PATH", PATH_DEFAULT) != 0)
 		return (1);
 	while (env[i])
 	{
