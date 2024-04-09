@@ -1,1 +1,0 @@
-ifconfig | grep hola

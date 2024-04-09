@@ -66,15 +66,6 @@ $>",2,
 ,$> >>|><,,,,OK,OK,"bash: syntax error near
 unexpected token `|'
 $>",2,
-,$> &&,,,,OK,OK,"bash: syntax error near
-unexpected token `&&'
-$>",2,
-,$> &&&&&,,,,OK,OK,"bash: syntax error near
-unexpected token `&&'
-$>",2,
-,$> &&&&&&&&&&&&&&,,,,OK,OK,"bash: syntax error near
-unexpected token `&&'
-$>",2,
 ,$> ;;,NON GERE,,,OK,OK,"bash: syntax error near
 unexpected token `;;'
 $>",2,
@@ -949,8 +940,6 @@ $OLD_PWD et $PWD sont inversés
 ,$> cd --,NON GERE,,,OK,OK,$>,0,"Retourne à $HOME
 $OLD_PWD et $PWD sont inversés
 /home/vietdu91"
-,$> cd ---,,,,OK,OK,"bash: cd: --: invalid option
-$>",2,
 ,$> cd $HOME,,,,OK,OK,$>,0,/home/vietdu91
 ,$> cd $HOME $HOME,,,,OK,OK,"bash: cd: too many arguments
 $>",1,

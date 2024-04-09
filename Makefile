@@ -6,7 +6,7 @@
 #    By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/14 13:24:31 by bwisniew          #+#    #+#              #
-#    Updated: 2024/04/08 11:25:55 by lcottet          ###   ########.fr        #
+#    Updated: 2024/04/08 18:50:53 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,18 +71,24 @@ clean:
 	make -C vector clean
 
 fclean: clean
-	rm -f $(NAME) $(LIBFT) $(VECTOR)
+	rm -f $(NAME) $(LIBFT) $(VECTOR) $(TESTER_DIR)/tests/*.sh
 
 re: fclean $(NAME)
 
 norm:
 	norminette includes libft vector srcs
 
-test: $(NAME)
+$(TESTER_DIR)/tests/0.sh: $(TESTER_DIR)/extract.py $(TESTER_DIR)/Minishell.csv
+	rm -rf tester/tests/*.sh
+	cd $(TESTER_DIR) && python3 extract.py
+
+test-extract: $(TESTER_DIR)/tests/0.sh
+
+test: $(NAME) test-extract
 	cd $(TESTER_DIR) && bash $(TESTER)
 
 FORCE:
 
 -include $(DEP)
 
-.PHONY: all clean fclean re norm FORCE valgrind test
+.PHONY: all clean fclean re norm FORCE valgrind test test-extract
