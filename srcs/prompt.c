@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:12:55 by lcottet           #+#    #+#             */
-/*   Updated: 2024/04/08 14:05:40 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:33:49 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <errno.h>
 
 t_token	prompt(t_mshell *sh)
 {
@@ -52,6 +53,7 @@ char	*get_user_input(t_mshell *sh)
 		input = readline(c_prompt.txt);
 	else
 		input = get_next_line(STDIN_FILENO);
+	errno = 0;
 	if (g_signal != 0)
 	{
 		set_env_return(sh, 128 + g_signal);

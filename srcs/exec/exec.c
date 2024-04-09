@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:18:34 by lcottet           #+#    #+#             */
-/*   Updated: 2024/04/08 14:29:39 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:28:56 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,15 @@ int	exec_set_cmd(t_execute *exec, t_mshell *sh)
 	if (!exec->cmd)
 	{
 		if (errno == ENOENT)
+		{
 			custom_error(((char **)exec->args.tab)[0], "command not found");
+			set_env_return(sh, 127);
+		}
 		else
+		{
 			error(((char **)exec->args.tab)[0]);
+			set_env_return(sh, 126);
+		}
 		return (1);
 	}
 	return (0);
@@ -87,7 +93,7 @@ pid_t	exec_txt(t_execute *exec, t_mshell *sh)
 	if (vector_add(&exec->args, &null) != 0)
 		return (-1);
 	if (exec_set_cmd(exec, sh))
-		return (-1);
+		return (-4);
 	if (exec->builtin && !exec->has_pipe)
 	{
 		if (exec_builtins(exec, sh) != 0)
@@ -98,7 +104,7 @@ pid_t	exec_txt(t_execute *exec, t_mshell *sh)
 	if (filetype == -1)
 		return (free(exec->cmd), -1);
 	else if (!filetype)
-		return (free(exec->cmd), -4);
+		return (free(exec->cmd), set_env_return(sh, 126), -4);
 	pid = exec_fork(exec, sh);
 	free(exec->cmd);
 	return (pid);
@@ -119,11 +125,11 @@ pid_t	exec(t_mshell *sh)
 	{
 		if (exec_prepare(sh, &exec, &i) != 0)
 			return (close_exec(&exec), vector_free(&exec.args), -1);
-		pid = -3;
+		pid = -2;
 		if (exec.in > 0 && exec.out > 0)
 		{
 			pid = exec_txt(&exec, sh);
-			if (pid < 0)
+			if (pid < 0 && pid == -1)
 				return (close_exec(&exec), vector_free(&exec.args), pid);
 		}
 		exec_init(&exec, sh, true);
