@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 11:22:29 by lcottet           #+#    #+#             */
-/*   Updated: 2024/04/08 11:43:58 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/09 16:33:58 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 #include "minishell.h"
 #include <readline/readline.h>
 #include <stdbool.h>
+#include <errno.h>
 
 char	*hd_get_user_input(void)
 {
 	if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO) && isatty(STDERR_FILENO))
 		return (readline(PROMPT_HEREDOC));
+	errno = 0;
 	return (get_next_line(STDIN_FILENO));
 }
 

@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 20:41:37 by lcottet           #+#    #+#             */
-/*   Updated: 2024/04/08 11:46:31 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/08 18:58:18 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*here_doc_getline(t_mshell *sh, size_t i, t_fd fd, int *err)
 	char	*tmp;
 
 	line.txt = hd_get_user_input();
-	if (g_signal != -1)
+	if (g_signal != 0)
 		return (here_doc_signal(&line, sh, err));
 	else if (!line.txt)
 	{

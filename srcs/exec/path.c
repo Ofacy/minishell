@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:23:03 by lcottet           #+#    #+#             */
-/*   Updated: 2024/04/08 13:03:54 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/09 16:32:14 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ char	*path_valid(char *file, char *curr_path, int access_mode)
 	char	*tmp1;
 	char	*tmp;
 
+	if (file[0] == '\0')
+		return (NULL);
 	tmp1 = ft_strjoin(curr_path, "/");
 	if (!tmp1)
 		return (NULL);
@@ -62,8 +64,6 @@ char	*get_openable_path(char *file, int access_mode, t_mshell *sh)
 	int		i;
 	char	**path;
 
-	if (!file)
-		return (NULL);
 	if (ft_strchr(file, '/') && access(file, access_mode) != -1)
 		return (ft_strdup(file));
 	if (errno == EACCES)
@@ -81,6 +81,8 @@ char	*get_openable_path(char *file, int access_mode, t_mshell *sh)
 			return (ft_freesplit(path), NULL);
 		i++;
 	}
+	if (errno == 0)
+		errno = ENOENT;
 	ft_freesplit(path);
 	return (NULL);
 }

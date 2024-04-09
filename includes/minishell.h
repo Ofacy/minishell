@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:55:03 by lcottet           #+#    #+#             */
-/*   Updated: 2024/04/08 11:37:09 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/08 19:54:38 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,5 +135,7 @@ void		signal_handler(int sig);
 void		signal_stop(int sig);
 void		signal_heredoc(int sig);
 void		reset_signal(void);
+
+int			ft_atoll(const char *nptr);
 
 #endif

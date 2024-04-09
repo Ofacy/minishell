@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:43 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/04/09 15:37:39 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:37:12 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,7 @@ int	cd_home(t_mshell *sh)
 		custom_error("cd", "HOME not set");
 		return (1);
 	}
-	if (chdir(home->value) == -1)
-	{
-		error("cd");
-		return (1);
-	}
+	chdir(home->value);
 	return (cd_change_env(sh, NULL));
 }
 
