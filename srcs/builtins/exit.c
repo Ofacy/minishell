@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:36 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/04/08 14:28:59 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:56:58 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,7 @@ int	exit_builtin(t_mshell *sh, t_execute *exec)
 	argc = 0;
 	while (args[argc])
 		argc++;
-	if (argc > 2)
-	{
-		custom_error("exit", "too many arguments");
-		return (1);
-	}
-	else if (argc == 2)
+	if (argc == 2)
 	{
 		if (!ft_strisnum(args[1]))
 		{
@@ -93,6 +88,11 @@ int	exit_builtin(t_mshell *sh, t_execute *exec)
 		}
 		sh->exit = (int)(unsigned char)ft_atoll(args[1]);
 		return (sh->exit);
+	}
+	else if (argc > 2)
+	{
+		custom_error("exit", "too many arguments");
+		return (1);
 	}
 	sh->exit = ft_atoll(sh->last_return.value);
 	return (0);
