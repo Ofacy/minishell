@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:43 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/04/09 16:37:12 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/10 15:35:37 by bwisniew         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int	cd_oldpwd(t_mshell *sh)
 		error("cd");
 		return (1);
 	}
+	printf("%s\n", oldpwd->value);
 	return (cd_change_env(sh, NULL));
 }
 
