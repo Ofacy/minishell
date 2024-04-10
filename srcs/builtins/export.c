@@ -6,14 +6,14 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:39 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/19 18:35:56 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/10 22:45:14 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "ft_printf.h"
 #include "minishell.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 t_env	*export_sort(t_mshell *sh)
 {
@@ -38,10 +38,11 @@ int	export_print(t_mshell *sh)
 		return (1);
 	while (i < sh->env.len)
 	{
-		if (env[i].value && printf("%s=%s\n", env[i].key, env[i].value) == -1)
-			return (0);
-		else if (!env[i].value && printf("%s\n", env[i].key) == -1)
-			return (0);
+		if (env[i].value
+			&& ft_printf("%s=%s\n", env[i].key, env[i].value) == -1)
+			return (1);
+		else if (!env[i].value && ft_printf("%s\n", env[i].key) == -1)
+			return (1);
 		i++;
 	}
 	free(env);
