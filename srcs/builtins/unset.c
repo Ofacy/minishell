@@ -6,12 +6,20 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:38 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/04/02 08:54:26 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/09 23:24:44 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "libft.h"
+
+static void	env_remove(t_vector *env, t_env *var)
+{
+	if (!var)
+		return ;
+	env_free(var);
+	vector_remove(env, var - (t_env *)env->tab);
+}
 
 int	unset(t_mshell *sh, t_execute *exec)
 {
@@ -29,8 +37,7 @@ int	unset(t_mshell *sh, t_execute *exec)
 	while (args[i])
 	{
 		env = env_get(sh, args[i], false);
-		if (env)
-			vector_remove(&sh->env, env - (t_env *)sh->env.tab);
+		env_remove(&sh->env, env);
 		i++;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:18:34 by lcottet           #+#    #+#             */
-/*   Updated: 2024/04/09 16:28:56 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/10 01:24:50 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	exec_init(t_execute *exec, t_mshell *sh, bool next)
 {
 	if (next)
 	{
+		vector_foreach(&exec->args, (void (*)(void *))free_arg);
 		vector_free(&exec->args);
 		close_fd(&exec->in);
 		close_fd(&exec->out);

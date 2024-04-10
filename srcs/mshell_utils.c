@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 21:09:43 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/04/08 10:15:27 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/09 23:32:52 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	init_mshell(t_mshell *sh)
 
 void	free_mshell(t_mshell *sh)
 {
+	if (!sh)
+		return ;
 	free(sh->input);
 	free(sh->last_return.value);
 	vector_foreach(&sh->tokens, (void (*)(void *))free_token);
