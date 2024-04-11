@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 20:41:37 by lcottet           #+#    #+#             */
-/*   Updated: 2024/04/08 18:58:18 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/11 17:02:05 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "expander.h"
 #include "libft.h"
+#include "ft_printf.h"
 #include "get_next_line.h"
 #include <readline/readline.h>
 #include <unistd.h>
@@ -23,11 +24,15 @@
 
 int	here_doc_line(int file, char *line)
 {
-	if (write(file, line, ft_strlen(line)) == -1)
-		return (free(line), 1);
+	size_t	i;
+
+	i = 0;
+	while (line[i] && line[i] != '\n')
+		i++;
+	if (write(file, line, i) == -1)
+		return (1);
 	if (write(file, "\n", 1) == -1)
-		return (free(line), 1);
-	free(line);
+		return (1);
 	return (0);
 }
 
@@ -67,8 +72,10 @@ char	*here_doc_getline(t_mshell *sh, size_t i, t_fd fd, int *err)
 		free_token(&line);
 		return (free(tmp), NULL);
 	}
-	*err = here_doc_line(fd, line.txt);
-	return (tmp);
+	if (!hd_cmp(((t_token *)sh->tokens.tab)[i].txt, tmp,
+		((t_token *)sh->tokens.tab)[i].txt_size))
+		*err = here_doc_line(fd, line.txt);
+	return (free_token(&line), tmp);
 }
 
 int	get_final_heredoc_fd(t_execute *exec, t_fd old, int err)
