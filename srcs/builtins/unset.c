@@ -6,12 +6,11 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:38 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/04/09 23:24:44 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/11 17:54:10 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "libft.h"
 
 static void	env_remove(t_vector *env, t_env *var)
 {

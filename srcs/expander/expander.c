@@ -6,12 +6,11 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 19:13:27 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/04/11 16:44:42 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/11 17:52:45 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expander.h"
-#include <stdio.h>
 
 int	expander(t_mshell *sh, size_t start, size_t end)
 {

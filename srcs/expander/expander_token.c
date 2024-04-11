@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 19:28:50 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/04/03 18:46:32 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/11 17:52:59 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "minishell.h"
 #include "libft.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 size_t	skip_envname(char *str)
 {

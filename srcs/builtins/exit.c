@@ -6,13 +6,12 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:36 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/04/09 14:17:29 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/11 17:54:04 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "libft.h"
-#include <stdio.h>
 
 static long	ft_getnb(const char *nptr, size_t i)
 {

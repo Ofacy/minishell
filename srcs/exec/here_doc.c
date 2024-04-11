@@ -6,15 +6,13 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 20:41:37 by lcottet           #+#    #+#             */
-/*   Updated: 2024/04/11 17:02:05 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/11 17:53:48 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "expander.h"
 #include "libft.h"
-#include "ft_printf.h"
-#include "get_next_line.h"
 #include <readline/readline.h>
 #include <unistd.h>
 #include <fcntl.h>

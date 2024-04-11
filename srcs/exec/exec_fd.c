@@ -6,16 +6,13 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 18:29:04 by lcottet           #+#    #+#             */
-/*   Updated: 2024/04/03 14:23:26 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/11 17:53:18 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "libft.h"
 #include <unistd.h>
 #include <fcntl.h>
-#include <string.h>
-#include <errno.h>
 #include <readline/readline.h>
 
 int	exec_set_heredoc(t_execute *exec, t_mshell *sh, size_t i);

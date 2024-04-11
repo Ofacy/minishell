@@ -6,12 +6,11 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 16:21:31 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/03/21 20:07:29 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/11 17:52:33 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "libft.h"
 #include "ft_printf.h"
 
 static t_tokentype	check_special(t_vector *tokens)

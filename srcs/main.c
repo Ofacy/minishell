@@ -6,14 +6,13 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:11:23 by lcottet           #+#    #+#             */
-/*   Updated: 2024/04/11 17:13:51 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/11 17:52:38 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "lexer.h"
 #include "ft_printf.h"
-#include "get_next_line.h"
 #include <unistd.h>
 #include <stdlib.h>
 #include <readline/history.h>

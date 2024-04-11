@@ -6,13 +6,12 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 19:40:47 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/04/03 18:57:20 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/11 17:52:53 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expander.h"
 #include "libft.h"
-#include <stdio.h>
 
 bool	is_quoted(t_token *token)
 {

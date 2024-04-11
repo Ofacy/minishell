@@ -6,7 +6,7 @@
 /*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:18:34 by lcottet           #+#    #+#             */
-/*   Updated: 2024/04/10 01:24:50 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/11 17:53:06 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "minishell.h"
-#include "libft.h"
 #include <stdio.h>
 
 void	exec_init(t_execute *exec, t_mshell *sh, bool next)
