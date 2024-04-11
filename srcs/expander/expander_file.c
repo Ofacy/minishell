@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   expander_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 13:50:42 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/04/03 19:17:15 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/11 17:14:12 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "expander.h"
 #include "libft.h"
+#include <stdio.h>
 
 size_t	expander_skip_file(t_vector *lex, size_t i, size_t n)
 {
@@ -64,7 +65,8 @@ int	expand_file(t_mshell *sh, size_t token_i)
 	i_cp = token_i;
 	token_i++;
 	while (token_i < sh->tokens.len
-		&& ((t_token *)sh->tokens.tab)[token_i].is_file == 1)
+		&& (((t_token *)sh->tokens.tab)[token_i].is_file == 1
+		&& !is_type_arrow(((t_token *)sh->tokens.tab)[token_i].type)))
 	{
 		if (expand_ambi_file(&((t_token *)sh->tokens.tab)[token_i], sh) != 0)
 			return (1);

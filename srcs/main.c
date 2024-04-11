@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:11:23 by lcottet           #+#    #+#             */
-/*   Updated: 2024/04/09 16:35:22 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/04/11 17:13:51 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "lexer.h"
+#include "ft_printf.h"
 #include "get_next_line.h"
-#include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <readline/history.h>
@@ -99,7 +99,7 @@ int	main(int argc, char **argv, char **env)
 		minishell(&mshell, input);
 	}
 	if (isatty(STDIN_FILENO))
-		printf("exit\n");
+		ft_printf("exit\n");
 	errno = 0;
 	finish_mshell(&mshell);
 	return ((char)mshell.exit);

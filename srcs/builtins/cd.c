@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:43 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/04/10 15:35:37 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/11 15:55:42 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "libft.h"
+#include "ft_printf.h"
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
-#include <stdio.h>
 
 int	cd_getcwd_err(t_mshell *sh, char *argv)
 {
@@ -99,7 +99,7 @@ int	cd_oldpwd(t_mshell *sh)
 		error("cd");
 		return (1);
 	}
-	printf("%s\n", oldpwd->value);
+	ft_printf("%s\n", oldpwd->value);
 	return (cd_change_env(sh, NULL));
 }
 

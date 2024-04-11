@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bwisniew <bwisniew@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:57:34 by bwisniew          #+#    #+#             */
-/*   Updated: 2024/04/08 15:49:06 by bwisniew         ###   ########.fr       */
+/*   Updated: 2024/04/11 15:54:25 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
+#include "ft_printf.h"
 #include <string.h>
 #include <stdlib.h>
 
@@ -24,7 +24,7 @@ int	pwd(t_mshell *sh, t_execute	*exec)
 	env = env_get(sh, "PWD", false);
 	if (env)
 	{
-		printf("%s\n", env->value);
+		ft_printf("%s\n", env->value);
 		return (0);
 	}
 	pwd = getcwd(NULL, 0);
@@ -33,7 +33,7 @@ int	pwd(t_mshell *sh, t_execute	*exec)
 		error("pwd");
 		return (1);
 	}
-	printf("%s\n", pwd);
+	ft_printf("%s\n", pwd);
 	free(pwd);
 	return (0);
 }
